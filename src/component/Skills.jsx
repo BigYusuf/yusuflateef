@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 function Skills({highlightskills1, highlightskills2}) {
     return (
         <div>
@@ -20,7 +19,7 @@ function Skills({highlightskills1, highlightskills2}) {
                                         <h3 className="skills__name">HTML</h3>
                                         <span className="skills__level">Basic</span>
                                     </div>
-                                </div>
+                                </div> 
                                 
                                 <div className="skills__data">
                                     <i className="bx bxs-badge-check"></i>

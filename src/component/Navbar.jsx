@@ -37,17 +37,17 @@ const Navbar = () => {
         <nav className="nav container">
             <Link to="/" className="nav__logo">Yusuf</Link>
             <div className="nav__menu">
-                 <ul className="nav__list">                    
+                <ul className="nav__list">                    
                      {NavbarData.map((e) =>(
                         <NavbarList key= {e.id} id={e.id} icon={e.icon} titleRef={e.titleRef} active ={selected === e.id} setSelected={setSelected}/>
                      ))}
-                    </ul>
+                </ul>
             </div>
                 {/* Theme change button */}
                 <div className="nav__icon">
                     <i className="bx bx-info-circle change-theme"onClick={handleTooltip}onMouseOver={handleTooltip}></i>
                     <i className="bx bx-moon change-theme"onClick={handleTheme} id="theme-button"></i>
-                   
+                    
                     <span className={tooltip ? "info__AI active" : "info__AI"}>
                     Use the Microphone button <span className="bx bx-microphone"></span> to control website.
                         You can perform task like

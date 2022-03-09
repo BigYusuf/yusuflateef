@@ -86,7 +86,6 @@ const Contact = ({name, setName,mail, setMail,message, setMessage, highlighName,
                         
                     <div className= "contact__content">
                         <h3 className="contact__title">Write me your project</h3>
-
                         <form action="" className="contact__form" ref={form} onSubmit={sendEmail}>
                             <div className="contact__form-div">
                                 <label htmlFor="" className="contact__form-tag">Names</label>

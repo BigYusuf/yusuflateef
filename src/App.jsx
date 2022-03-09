@@ -8,13 +8,11 @@ import "./App.css";
 
 
 const App = () => {
-   
     
   return (
 
     <BrowserRouter>
     <Navbar/>
-    
     <main className="main" id="main">
         
         <Alan/>
