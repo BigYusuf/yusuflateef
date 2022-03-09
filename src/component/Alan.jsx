@@ -13,7 +13,12 @@ const Alan = () => {
   //  const [change, setChange] = useState("");
   
     const [name, setName] = useState("");
+    const [mail, setMail] = useState("");
+    const [message, setMessage] = useState("");
     const [alanInstance, setAlanInstance] = useState();
+    const [highlighName, setHighlightName] = useState(false);
+    const [highlightMail, setHighlightMail] = useState(false);
+    const [highlightMessage, setHighlightMessage] = useState(false);
     const [highlightWhatsapp, setHighlightWhatsapp] = useState(false);
     const [highlightMessenger, setHighlightMessenger] = useState(false);
     const [highlightEmail, setHighlightEmail] = useState(false);
@@ -65,19 +70,24 @@ const Alan = () => {
               else if (commandData.command === 'skills' ) {  skills(); }
               else if (commandData.command === 'work' ) {projects();
                  console.log(commandData)}
-               if (commandData.command === 'whats-app' ) { console.log(commandData)}
+               if (commandData.command === 'whats-app' ) { 
+                window.location.href = "https://api.whatsapp.com/send?phone=08101109290&text=Hello, more information!";
+              }
                if (commandData.command === 'highlight-WhatsApp' ) { 
                 setHighlightEmail(false);
                 setHighlightWhatsapp(!highlightWhatsapp);
                 }
-               if (commandData.command === 'highlight-mail' ) { 
+               if (commandData.command === 'highlight-email' ) { 
                 setHighlightEmail(!highlightEmail);
                 }
                if (commandData.command === 'highlight-fb-ms' ) { 
-                setHighlightEmail(false);
                 setHighlightWhatsapp(false);
                 setHighlightMessenger(!highlightMessenger);
                 }
+               if (commandData.command === 'highlight-form' ) { 
+                setHighlightMessenger(false);
+                }
+              
                if (commandData.command === 'highlight-about1' ) { 
                 setHighlightdesc(!highlightdesc);
                 }
@@ -116,15 +126,35 @@ const Alan = () => {
                 setHighlightservices3(!highlightservices3);
                 }
                if (commandData.command === 'testimonial' ) {testi()}
-               if (commandData.command === 'feedback' ) {
+               if (commandData.command === 'input-name' ) {
                  setName(commandData.value.value);
                 }
-          //     if (command === 'feedback',  value === feedback {()}
+                if (commandData.command === 'highlight-name' ) {
+                  setHighlightName(!highlighName);
+                }
+                if (commandData.command === 'input-mail' ) {
+                  setMail(commandData.value.value);
+                 }
+                if (commandData.command === 'highlight-mail' ) {
+                  setHighlightMail(!highlightMail);
+                }
+                if (commandData.command === 'input-msg' ) {
+                 // setMessage(commandData.value.value);
+                  console.log(commandData)
+                 }
+                if (commandData.command === 'highlight-msg' ) {
+                  setHighlightName(false);
+                  setHighlightMessage(!highlightMail);
+                }
+                if (commandData.command === 'highlight-clear-contact' ) { 
+                  setHighlightMessage(false);
+                  }
             }
         })
       )
       }, [alanInstance, highlightservices1, highlightservices2, 
         highlightservices3, highlightskills1, highlightskills2,
+        highlighName, highlightMail, highlightMessage,
         highlightWhatsapp, highlightEmail, highlightMessenger, 
         highlightdesc, highlightsupport, highlightexp, highlightwork]);
 
@@ -147,6 +177,13 @@ const Alan = () => {
             <Testimonials/>
             <Contact name={name}
                      setName={setName}
+                     mail={mail}
+                     setMail={setMail}
+                     message={message}
+                     setMessage={setMessage}
+                     highlighName={highlighName}
+                     highlightMail={highlightMail}
+                     highlightMessage={highlightMessage}
                      highlightWhatsapp={highlightWhatsapp}
                      highlightEmail={highlightEmail}
                      highlightMessenger={highlightMessenger}

@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 import Toast from './toast/Toast';
 import emailjs from '@emailjs/browser';
 
-const Contact = ({name, setName, highlightWhatsapp, highlightEmail, highlightMessenger}) => {
+const Contact = ({name, setName,mail, setMail,message, setMessage, highlighName, highlightMail, highlightMessage,  highlightWhatsapp, highlightEmail, highlightMessenger}) => {
     const [list, setList] = useState([]);
     let toastProperties = null;
   
@@ -45,15 +45,12 @@ const Contact = ({name, setName, highlightWhatsapp, highlightEmail, highlightMes
         });
     };
     
-   
-   //  document.getElementById("name").innerHTML= "Johnny Bravo";
     return (
         <div>
             {/* ========================== contact =========================== */}
             <section className="contact section"id="contact">
                 <span className="section__subtitle">Get in touch</span>
                 <h2 className="section__title">Contact Me</h2>
-                
                 <div className="contact__container container grid">
                     <div className="contact__content">
                         <h3 className="contact__title">Talk to me</h3>
@@ -87,29 +84,38 @@ const Contact = ({name, setName, highlightWhatsapp, highlightEmail, highlightMes
                         </div>
                     </div>
                         
-                    <div className="contact__content">
+                    <div className= "contact__content">
                         <h3 className="contact__title">Write me your project</h3>
 
                         <form action="" className="contact__form" ref={form} onSubmit={sendEmail}>
                             <div className="contact__form-div">
                                 <label htmlFor="" className="contact__form-tag">Names</label>
-                                <input 
+                                <input
                                     type="text" name="name" value={name}
                                     onChange={(e) => setName(e.target.value)}
                                     required placeholder="Insert your Name" 
-                                    className="contact__form-input">
+                                    className={highlighName ? "contact__form-input active" : "contact__form-input"}>
+
+                                    </input>
+                            </div>
+                            <div className= "contact__form-div">
+                                <label htmlFor="" className="contact__form-tag">Mail</label>
+                                <input type="email"name="email" value={mail}
+                                    onChange={(e) => setMail(e.target.value)}
+                                    required placeholder="Insert your Email"
+                                    className={highlightMail ? "contact__form-input active" : "contact__form-input"}>
 
                                     </input>
                             </div>
                             
-                            <div className="contact__form-div">
-                                <label htmlFor="" className="contact__form-tag">Mail</label>
-                                <input type="email"name="email" required placeholder="Insert your Email"className="contact__form-input"></input>
-                            </div>
-                            
                             <div className="contact__form-div contact__form-area">
                                 <label htmlFor="" className="contact__form-tag">Project</label>
-                                <textarea rows="10"required name="message" id="" col="30" placeholder="Write your project" type="text" className="contact__form-input"></textarea>
+                                <textarea rows="10"required name="message"  value={message}
+                                    onChange={(e) => setMessage(e.target.value)}
+                                    id="" col="30" placeholder="Write your project" 
+                                    type="text" className={highlightMessage ? "contact__form-input active" : "contact__form-input"}>
+
+                                    </textarea>
                             </div>
                             <button className="button">Send Message</button>
                             <Toast toastlist={list} position="bottom-left" setList={setList} />

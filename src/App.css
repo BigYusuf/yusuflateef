@@ -189,6 +189,8 @@ img{
     color: var(--title-color);
 }
 .contact__card.active,
+.contact__content.active,
+.contact__form-div.active,
 .about__box.active,
 .about__description.active,
 .skills__content.active,
@@ -198,6 +200,10 @@ img{
 .messenger.active{
     border: 5px solid  var(--first-color);
 }
+.contact__form-input.active{
+    border: 2px solid  var(--first-color);
+}
+
 /* Change background header*/
 .scroll-header{
     box-shadow: 0 4px 4px hsla(0, 0%, 4%, .3);
@@ -862,9 +868,31 @@ img{
     font-size: 1.25rem;
     cursor: pointer;
     transition: .3s;
+    margin-left: 2rem;
 }
 .change-theme:hover{
     color: var(--first-color);
+}
+
+.info__AI{
+    position: absolute;
+    top: 5rem;
+    width: 250px;
+    right: 9rem;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    opacity: 0;
+    background-color: var(--container-color);
+}
+.info__AI.active{
+    opacity: 1;
+}
+.info__AI-list{
+    margin-top: 0.75rem;
+}
+.info__AI-list li{
+    padding: 0 0.5rem 0.5rem 0.5rem;
 }
 body.light-theme{
     --title-color: hsl(var(--second-hue), 15%, 15%);
@@ -925,6 +953,12 @@ body.light-theme{
     .nav__menu{
         padding: 1rem 1.5rem;
     }
+    
+    .info__AI{
+        width: 200px;
+        right: 1.5rem;
+        font-size: .75rem;
+    }
     .home__buttons{
         flex-direction: column;
     }
@@ -945,6 +979,7 @@ body.light-theme{
         font-size: var(--small-font-size);
     }
     .services__container{
+        grid-template-columns: 1fr;
         justify-content: center;
         grid-template-columns: 1fr;
     }
@@ -958,6 +993,18 @@ body.light-theme{
         flex-direction: column;
     }
 }
+@media screen and (max-width: 450px){
+    .services__container{
+        grid-template-columns: 1fr;
+        justify-content: center;
+        grid-template-columns: 1fr;
+    }
+    .info__AI{
+        right: 2rem;
+        width: 200px;
+        font-size: .75rem;
+    }
+}
 /*For medium devices*/
 @media screen and (min-width: 576px){
     .nav__menu{
@@ -965,6 +1012,11 @@ body.light-theme{
         left: 0;
         right: 0;
         margin: 0 auto;
+    }
+    .info__AI{
+        right: 6rem;
+        width: 200px;
+        font-size: .75rem;
     }
     .about__info{
         grid-template-columns: repeat(3, 140px);
