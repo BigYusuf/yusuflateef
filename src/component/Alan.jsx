@@ -1,11 +1,11 @@
 import React, { useState, useEffect  } from 'react';
-import Intro  from "./Intro";
-import About  from "./About";
-import Skills  from "./Skills";
-import ServicesCopy  from "./ServicesCopy";
-import Work  from "./Work";
+import Intro from "./Intro";
+import About from "./About";
+import Skills from "./Skills";
+import Services from "./Services";
+import Work from "./Work";
 import Contact from './Contact';
-import Testimonials  from "./Testimonials";
+import Testimonials from "./Testimonials";
 import {handleTheme} from './Utils';
 import alanBtn from "@alan-ai/alan-sdk-web";
 
@@ -15,6 +15,7 @@ const Alan = () => {
     const [name, setName] = useState("");
     const [mail, setMail] = useState("");
     const [message, setMessage] = useState("");
+    const [loader, setLoader] = useState(false);
     const [alanInstance, setAlanInstance] = useState();
     const [highlighName, setHighlightName] = useState(false);
     const [highlightMail, setHighlightMail] = useState(false);
@@ -33,25 +34,25 @@ const Alan = () => {
     const [highlightservices3, setHighlightservices3] = useState(false);
 
     const aboutMe = () => {  
-        window.location.href = 'http://localhost:3000/#about';
-    }
+        window.location.href = '#about';
+      }
     const home = () => { 
-        window.location.href = 'http://localhost:3000/#home';
+        window.location.href = '#home';
     }
     const contact = () => { 
-        window.location.href = 'http://localhost:3000/#contact';
+        window.location.href = '#contact';
     }
     const projects = () => { 
-        window.location.href = 'http://localhost:3000/#work';
+        window.location.href = '#work';
     }
     const skills = () => {
-        window.location.href = 'http://localhost:3000/#skills';
+        window.location.href = '#skills';
     }
     const services = () => {
-        window.location.href = 'http://localhost:3000/#services';
+        window.location.href = '#services';
     }
     const testi = () =>  {
-        window.location.href = 'http://localhost:3000/#Testimonial';
+        window.location.href = '#Testimonial';
     }
     
     useEffect(() => {
@@ -68,18 +69,20 @@ const Alan = () => {
               else if (commandData.command === 'home' ) {home();  }
               else if (commandData.command === 'contact' ) { contact(); }
               else if (commandData.command === 'skills' ) {  skills(); }
-              else if (commandData.command === 'work' ) {projects();
-                 console.log(commandData)}
+              else if (commandData.command === 'work' ) {projects();}
                if (commandData.command === 'whats-app' ) { 
-                window.location.href = "https://api.whatsapp.com/send?phone=08101109290&text=Hello, more information!";
+                window.location.href = "https://api.whatsapp.com/send?phone=+2348101109290&text=Hello, more information!";
               }
-               if (commandData.command === 'highlight-WhatsApp' ) { 
+               if (commandData.command === 'email' ) { 
+                window.location.href = "mailto:yusuflateef0000@gmail.com" 
+               }
+              if (commandData.command === 'highlight-WhatsApp' ) { 
                 setHighlightEmail(false);
                 setHighlightWhatsapp(!highlightWhatsapp);
-                }
-               if (commandData.command === 'highlight-email' ) { 
+              }
+              if (commandData.command === 'highlight-email' ) { 
                 setHighlightEmail(!highlightEmail);
-                }
+              }
                if (commandData.command === 'highlight-fb-ms' ) { 
                 setHighlightWhatsapp(false);
                 setHighlightMessenger(!highlightMessenger);
@@ -126,9 +129,7 @@ const Alan = () => {
                 setHighlightservices3(!highlightservices3);
                 }
                if (commandData.command === 'testimonial' ) {testi()}
-               if (commandData.command === 'input-name' ) {
-                 setName(commandData.value.value);
-                }
+               if (commandData.command === 'input-name' ) { setName(commandData.value.value)}
                 if (commandData.command === 'highlight-name' ) {
                   setHighlightName(!highlighName);
                 }
@@ -140,7 +141,6 @@ const Alan = () => {
                 }
                 if (commandData.command === 'input-msg' ) {
                  // setMessage(commandData.value.value);
-                  console.log(commandData)
                  }
                 if (commandData.command === 'highlight-msg' ) {
                   setHighlightName(false);
@@ -169,7 +169,7 @@ const Alan = () => {
             <Skills highlightskills1={highlightskills1}
                     highlightskills2={highlightskills2}
             />
-            <ServicesCopy highlightservices1={highlightservices1}
+            <Services highlightservices1={highlightservices1}
                           highlightservices2={highlightservices2}
                           highlightservices3={highlightservices3}
             />
@@ -181,13 +181,14 @@ const Alan = () => {
                      setMail={setMail}
                      message={message}
                      setMessage={setMessage}
+                     loader={loader}
+                     setLoader={setLoader}
                      highlighName={highlighName}
                      highlightMail={highlightMail}
                      highlightMessage={highlightMessage}
                      highlightWhatsapp={highlightWhatsapp}
                      highlightEmail={highlightEmail}
                      highlightMessenger={highlightMessenger}
-                     
             />
         </div>
     )

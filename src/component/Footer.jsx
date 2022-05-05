@@ -11,13 +11,13 @@ const Footer = () => {
                     <h1 className="footer__title">Yusuf</h1>
                     <ul className="footer__list">
                         <li>
-                            <Link to="about" className="footer__link">About</Link>
+                            <a href="#about" className="footer__link">About</a>
                         </li>
                         <li>
-                            <Link to="work" className="footer__link">Projects</Link>
+                            <a href="#work" className="footer__link">Projects</a>
                         </li>
                         <li>
-                            <Link to="testimonial" className="footer__link">Testimonial</Link>
+                            <a href="#testimonial" className="footer__link">Testimonial</a>
                         </li>
                     </ul>
                     <ul className="footer__social">

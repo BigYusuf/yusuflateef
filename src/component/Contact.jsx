@@ -1,48 +1,44 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import {Link} from "react-router-dom";
-import Toast from './toast/Toast';
 import emailjs from '@emailjs/browser';
+import { collection, addDoc } from "firebase/firestore"; 
+import { db } from '../firebase';
+import {ToastContainer, toast, Zoom} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-const Contact = ({name, setName,mail, setMail,message, setMessage, highlighName, highlightMail, highlightMessage,  highlightWhatsapp, highlightEmail, highlightMessenger}) => {
-    const [list, setList] = useState([]);
-    let toastProperties = null;
-  
-    const showToast = type => {
-      switch(type) {
-        case 'success':
-          toastProperties = {
-            id: list.length+1,
-            title: 'Message Sent',
-            description: 'Will get back to You ASAP',
-            backgroundColor: '#5cb85c'
-          }
-          break;
-        case 'danger':
-          toastProperties = {
-            id: list.length+1,
-            title: 'Danger',
-            description: 'Error',
-            backgroundColor: '#d9534f'
-          }
-          break;
-        default:
-          toastProperties = [];
-      }
-      setList([...list, toastProperties]);
-    };
+const Contact = ({name, setName,mail, setMail, message, setMessage, loader, setLoader,
+    highlighName, highlightMail, highlightMessage,  highlightWhatsapp, highlightEmail, highlightMessenger}) => {
     const form = useRef();
     
     const sendEmail = (e) => {
       e.preventDefault();
-      emailjs.sendForm('service_73k6c0a', 'template_0n0ym3t', form.current, 'user_TxNwOLu80dLefT1wHFxyt')
-      //emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', form.current, 'YOUR_USER_ID')
+      setLoader(true);
+      /*--------------------------mail service----------------------------*/
+      emailjs.sendForm( 
+          process.env.REACT_APP_SERVICE_ID, 
+          process.env.REACT_APP_TEMPLATE_ID, 
+          form.current, 
+          process.env.REACT_APP_USER_ID)
         .then((result) => {
             console.log(result.text);
-            showToast('success');
-         }, (error) => {
+            toast.success("Message Sent","Thank you, Will get back to You ASAP");
+            
+      /*--------------------------send to firestore database----------------------------*/
+            addDoc(collection(db, "portfolio"), {
+                name:name,
+                mail:mail,
+                message:message
+            });
+      /*--------------------------send to firestore database----------------------------*/
+            setLoader(false);
+        }, (error) => {
             console.log(error.text);
-            showToast('danger');
+            toast.error("Error!!!, Message not Sent");
+            setLoader(false);
         });
+    setName('');
+    setMail('');
+    setMessage('');
     };
     
     return (
@@ -58,8 +54,8 @@ const Contact = ({name, setName,mail, setMail,message, setMessage, highlighName,
                             <div className={highlightEmail ? "contact__card active" : "contact__card"}>
                                     <i className="bx bx-mail-send contact__card-icon"></i>
                                     <h3 className="contact__card-title">Email</h3>
-                                    <span className="contact__card-data">mystik5551@gmail.com</span>
-                                    <a href="mailto:mystik5551@gmail.com" className="contact__button">
+                                    <span className="contact__card-data">yusuflateef0000@gmail.com</span>
+                                    <a href="mailto:yusuflateef0000@gmail.com" className="contact__button">
                                         Write me <i className="bx bx-right-arrow-alt contact__button-icon"></i>
                                     </a>
                             </div>
@@ -68,7 +64,7 @@ const Contact = ({name, setName,mail, setMail,message, setMessage, highlighName,
                                 <i className="bx bxl-whatsapp contact__card-icon"></i>
                                 <h3 className="contact__card-title">WhatsApp</h3>
                                 <span className="contact__card-data">08101109290</span>
-                                <a href="https://api.whatsapp.com/send?phone=08101109290&text=Hello, more information!" className="contact__button">
+                                <a href="https://api.whatsapp.com/send?phone=+2348101109290&text=Hello, more information!" className="contact__button">
                                     Write me <i className="bx bx-right-arrow-alt contact__button-icon"></i>
                                 </a>
                             </div>
@@ -77,7 +73,7 @@ const Contact = ({name, setName,mail, setMail,message, setMessage, highlighName,
                                 <i className="bx bxl-messenger contact__card-icon"></i>
                                 <h3 className="contact__card-title">Messenger</h3>
                                 <span className="contact__card-data">BigYusufff</span>
-                                <Link to="#" target="_blank" className="contact__button">
+                                <Link to="http://m.me/Bigyusufff/" target="_blank" className="contact__button">
                                     Write me <i className="bx bx-right-arrow-alt contact__button-icon"></i>
                                 </Link>
                             </div>
@@ -116,8 +112,15 @@ const Contact = ({name, setName,mail, setMail,message, setMessage, highlighName,
 
                                     </textarea>
                             </div>
-                            <button className="button">Send Message</button>
-                            <Toast toastlist={list} position="bottom-left" setList={setList} />
+                            <div className="contact__form-buttonSection">
+
+                                <button className={loader ? "contact__Send-button button active" : "contact__Send-button button"}>Send Message</button>
+                                <div className="contact__form-notification">
+                                    <h4 className="contact__form-noti-header">Message Sent</h4>
+                                    <span className="contact__form-noti-body">Thank you, Will get back to You ASAP</span>
+                                </div>
+                            </div>
+                            <ToastContainer draggable={false} transition={Zoom} autoClose={3000}/>
                         </form>
                     </div>
 

@@ -16,7 +16,7 @@ const Testimonials = () => {
     centerPadding: "0px",
     autoplay: true,
     speed: 500,
-    slidesToShow: 3,
+    slidesToShow: 2,
     slidesToScroll: 1,
     responsive: [
      {
@@ -28,14 +28,14 @@ const Testimonials = () => {
      {
        breakpoint: 768,
        settings: {
-         slidesToShow: 2,
+         slidesToShow: 1,
        }
      },
      {
        breakpoint: 480,
        settings: {
          slidesToShow: 1,
-         centerPadding: "60px",
+       //  centerPadding: "60px",
        }
      }
     ]

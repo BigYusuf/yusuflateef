@@ -14,18 +14,18 @@ const Intro = () => {
 
                         <div className="home__buttons">
                             <Link download="" to="#" className="button button--ghost">Download CV</Link>
-                            <a download="" href="#about" className="button">About me</a>
+                            <a href="#contact" className="button">connect</a>
                         </div>
                     </div>
                     <div className="home__handle">
-                        <img src="/image/pic-2.png" alt="" className="home__img"/>
+                        <img src="/image/yusuf1.jpg" alt="" className="home__img"/>
                     </div>
-
+                 
                     <div className="home__social">
                         <Link to="https://www.linkedin.com" target="_blank" className="home__social-link">
                             <i className="bx bxl-linkedin-square"></i>
                         </Link>
-                        <Link to="https://www.github.com"target="_blank" className="home__social-link">
+                        <Link to="https://www.github.com/bigYusuf"target="_blank" className="home__social-link">
                             <i className="bx bxl-github"></i>
                         </Link>
                         <Link to="https://www.dribbble.com"target="_blank" className="home__social-link">

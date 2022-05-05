@@ -1,42 +1,95 @@
 
-import React, { useState, useEffect } from 'react';
-import { serviceModalData, Data1, Data2, Data3 } from '../dummyData';
-import { ServicesList } from './ActiveList';
-
-const Services = () => {
-    
-    const [selected, setSelected] = useState("");
-    const [data, setData] = useState([]);
-    useEffect(() => {
-        switch (selected) {
-            case 24:
-                setData(Data1)
-                break;
-            case 25:
-                setData(Data2)
-                break;
-            case 26:
-                setData(Data3)
-                break;
-        
-            default:
-                
-                break;
-        }
-    }, [selected])
+import React from 'react';
+const Services = ({highlightservices1, highlightservices2, highlightservices3}) => {
     return (
         <div>
             {/* ========================== services=========================== */}
-            <section className="services section">
+            <section className="services section"id="services">
                 <span className="section__subtitle">My Services</span>
                 <h2 className="section__title">What I Offer</h2>
                 
                 <div className="services__container container grid">
-                   {serviceModalData.map((e) => (
-                       <ServicesList key = {e.id} title1 = {e.title1} title2 ={e.title2} description ={e.description} li1 ={e.li1} li2 ={e.li2} li3 ={e.li3} active={selected === e.id} setSelected={setSelected}
-                      />
-                   ))}
-                   
+                    <div className={highlightservices1 ? "services__card active" : "services__card"}>              
+                        <h3 className="services__title">Product Designer</h3>
+                        <p className="services__modal-description">
+                            Service with more than 3 years of experience.
+                            Providing quality work to clients and companies
+                        </p>
+                        <ul className="services__modal-list">
+                            <li className="services__modal-item">
+                                <i className="bx bx-check services__modal-icon"></i>
+                                <p className="services__modal-info">
+                                    I develop the user interface
+                                </p>
+                            </li>
+                            <li className="services__modal-item">
+                                <i className="bx bx-check services__modal-icon"></i>
+                                <p className="services__modal-info">
+                                    I develop the user interface
+                                </p>
+                            </li>
+                            <li className="services__modal-item">
+                                <i className="bx bx-check services__modal-icon"></i>
+                                <p className="services__modal-info">
+                                    Design and mockups of products for companies
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div className={highlightservices2 ? "services__card active" : "services__card"}>              
+                        <h3 className="services__title">Product Designer</h3>
+                        <p className="services__modal-description">
+                            Service with more than 3 years of experience.
+                            Providing quality work to clients and companies
+                        </p>
+                        <ul className="services__modal-list">
+                            <li className="services__modal-item">
+                                <i className="bx bx-check services__modal-icon"></i>
+                                <p className="services__modal-info">
+                                    I develop the user interface
+                                </p>
+                            </li>
+                            <li className="services__modal-item">
+                                <i className="bx bx-check services__modal-icon"></i>
+                                <p className="services__modal-info">
+                                    I develop the user interface
+                                </p>
+                            </li>
+                            <li className="services__modal-item">
+                                <i className="bx bx-check services__modal-icon"></i>
+                                <p className="services__modal-info">
+                                    Design and mockups of products for companies
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div className={highlightservices3 ? "services__card active" : "services__card"}>              
+                        <h3 className="services__title">API Designer</h3>
+                        <p className="services__modal-description">
+                            Service with more than 3 years of experience.
+                            Providing quality work to clients and companies
+                        </p>
+                        <ul className="services__modal-list">
+                            <li className="services__modal-item">
+                                <i className="bx bx-check services__modal-icon"></i>
+                                <p className="services__modal-info">
+                                    I develop the user interface
+                                </p>
+                            </li>
+                            <li className="services__modal-item">
+                                <i className="bx bx-check services__modal-icon"></i>
+                                <p className="services__modal-info">
+                                    I develop the user interface
+                                </p>
+                            </li>
+                            <li className="services__modal-item">
+                                <i className="bx bx-check services__modal-icon"></i>
+                                <p className="services__modal-info">
+                                    Design and mockups of products for companies
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </section>
         </div>

@@ -1,17 +1,16 @@
 
 import React, { useRef, useEffect, useCallback, useState } from 'react';
-import { useSpring, animated } from 'react-spring';
-import {Link} from "react-router-dom";
-import { WorkList} from './ActiveList';
+import { useSpring } from 'react-spring';
+import { WorkList, WorkModal} from './ActiveList';
 import {list, allData, webData, APIData, brandData} from '../dummyData'
 
 const Work = () => {
     const [selected, setSelected] = useState("web")
     const [showModal, setShowModal] = useState(false)
     const [data, setData] = useState([])
-    const openModal = () =>{
-        setShowModal(prev => !prev)
-    }
+    //const openModal = () =>{
+      //  setSelected(prev => !prev)
+   // }
 
     useEffect(() => {
         switch (selected) {
@@ -42,7 +41,7 @@ const Work = () => {
     transform: showModal ? `translateY(0%)` : `translateY(-100%)`
   });
 
-  const closeModal = e => {
+  const closeModal = (e) => {
     if (modalRef.current === e.target) {
       setShowModal(false);
     }
@@ -52,7 +51,7 @@ const Work = () => {
     e => {
       if (e.key === 'Escape' && showModal) {
         setShowModal(false);
-        console.log('I pressed');
+     //   console.log('I pressed');
       }
     },
     [setShowModal, showModal]
@@ -91,90 +90,17 @@ const Work = () => {
                 </div>
 
                 <div className="work__container container grid">
-                    {data.map((d) => (
-                        <div className="work__card" key={d.id}>
-                        <img src={d.img} alt="" className="work__img"/>
-                        <h3 className="work__title">{d.title}</h3>
-                        <Link to="#" onClick = {openModal}className="work__button">
-                            Demo <i className="bx bx-right-arrow-alt work__icon"></i>
-                        </Link>
-                        {showModal && <div>
-                <div className="work__modal active-modal" onClick={closeModal} ref={modalRef}>
-                    <animated.div style={animation}>
-                        <div className="work__modal-content">
-                        <i className="bx bx-x work__modal-close" onClick={() => setShowModal(prev => !prev)}></i>
-                        <div className="work__modal-contentUp">
-                        <h3 className="work__modal-title">{d.title}</h3>
-                        </div>
-                        <div className="work__modal-contentDown">
-                            <div className="work__modal-left">
-                            <i className="bx bx-left-arrow work__modal-icon" onClick={prevSlide} ></i>
-                       
-                                <div className="wrapper__img">
-                                    {/*imgData.map((d, index)=> {
-                                        return( 
-                                        <div key={index} className={index === current ? 'slide active': 'slide'}>
-                                        {index ===current && (<img  src={d.img} alt="" className="work__modal-image"/>)}
-                                        
-                                       </div>
-                                        )
-                                    })*/}
-                                     {d.images.map((e, index)=> {
-                                        return( 
-                                        <div key={index} className={index === current ? 'slide active': 'slide'}>
-                                        {index === current && (<img  src={e.img1} alt="" className="work__modal-image"/>)}
-                                        
-                                       </div>
-                                        )
-                                    })}
-                                </div>
-                            <i className="bx bx-right-arrow work__modal-icon" onClick={nextSlide}></i>
-                            </div>
-                            <div className="work__modal-right">
-                                <p className="work__modal-description">
-                                    Service with more than 3 years of experience.
-                                    Providing quality work to clients and companies
-                                </p>
-                                <ul className="work__modal-list">
-                                    <li className="work__modal-item">
-                                        <i className="bx bx-check work__modal-icon"></i>
-                                        <p className="work__modal-info">
-                                            Frontend: React, Native CSS
-                                        </p>
-                                    </li>
-                                    <li className="work__modal-item">
-                                        <i className="bx bx-check work__modal-icon"></i>
-                                        <p className="work__modal-info">
-                                            Backend: Node, Express, MongoDB
-                                        </p>
-                                    </li>
-                                    <li className="work__modal-item">
-                                        <i className="bx bx-check work__modal-icon"></i>
-                                        <p className="work__modal-info">
-                                            Design & Planning: MS Excel
-                                        </p>
-                                    </li>
-                                </ul>
-                                <div className="work__modal-buttonGroup">
-                                    <Link to="#" className="work__button">
-                                        Demo <i className="bx bx-right-arrow-alt work__icon"></i>
-                                    </Link>
-                                    <Link to="#" className="work__button">
-                                        Real <i className="bx bx-right-arrow-alt work__icon"></i>
-                                    </Link>
-                                </div>
-                            </div>
-                        </div>
-                        </div>
-                    </animated.div>
+                    {data.map((c) => (
+                       <WorkModal key={c.id} title={c.title}
+                       id={c.id} img={c.img} images={c.images} current={current} 
+                       prevSlide={prevSlide}
+                       nextSlide={nextSlide} animation={animation} 
+                       modalRef={modalRef}
+                       backend={c.backend}  frontend={c.frontend}
+                       closeModal={closeModal} active ={showModal === c.id} 
+                       setShowModal={setShowModal}/>
+                  ))}
                 </div>
-            </div>
-            }
-                         </div>
-                    
-                    ))}
-                </div>
-               
             </section>
         </div>
     )
