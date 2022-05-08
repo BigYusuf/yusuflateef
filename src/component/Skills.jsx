@@ -116,7 +116,6 @@ function Skills({highlightskills1, highlightskills2}) {
                                         <span className="skills__level">**********</span>
                                     </div>
                                 </div>
-                                
                             </div>
 
                             <div className="skills__group">
