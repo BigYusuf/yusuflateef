@@ -10,57 +10,72 @@ function Skills({highlightskills1, highlightskills2}) {
                 
                 <div className= "skills__container container grid">
                     <div className={highlightskills1 ? "skills__content active": "skills__content"}>
-                        <h3 className="skills__title"> Frontend developer</h3>
+                        <h3 className="skills__title"> Stacks</h3>
                         <div className="skills__box">
                             <div className="skills__group">
                                 <div className="skills__data">
                                     <i className="bx bxs-badge-check"></i>
                                     <div>
-                                        <h3 className="skills__name">HTML</h3>
-                                        <span className="skills__level">Basic</span>
+                                        <h3 className="skills__name">React JS</h3>
+                                        <span className="skills__level">**********</span>
                                     </div>
                                 </div> 
                                 
                                 <div className="skills__data">
                                     <i className="bx bxs-badge-check"></i>
                                     <div>
-                                        <h3 className="skills__name">CSS</h3>
-                                        <span className="skills__level">Advanced</span>
+                                        <h3 className="skills__name">Next JS</h3>
+                                        <span className="skills__level">**********</span>
                                     </div>
                                 </div>
                                 
                                 <div className="skills__data">
                                     <i className="bx bxs-badge-check"></i>
                                     <div>
-                                        <h3 className="skills__name">Javascript</h3>
-                                        <span className="skills__level">Intermediate</span>
+                                        <h3 className="skills__name">Tailwind CSS</h3>
+                                        <span className="skills__level">**********</span>
                                     </div>
                                 </div>
                                 
+                                <div className="skills__data">
+                                    <i className="bx bxs-badge-check"></i>
+                                    <div>
+                                        <h3 className="skills__name">Sanity</h3>
+                                        <span className="skills__level">**********</span>
+                                    </div>
+                                </div>
                             </div>
 
                             <div className="skills__group">
                                 <div className="skills__data">
                                     <i className="bx bxs-badge-check"></i>
                                     <div>
-                                        <h3 className="skills__name">React</h3>
-                                        <span className="skills__level">Intermediate</span>
-                                    </div>
-                                </div>
-
-                                <div className="skills__data">
-                                    <i className="bx bxs-badge-check"></i>
-                                    <div>
                                         <h3 className="skills__name">Node</h3>
-                                        <span className="skills__level">Intermediate</span>
+                                        <span className="skills__level">**********</span>
                                     </div>
                                 </div>
 
                                 <div className="skills__data">
                                     <i className="bx bxs-badge-check"></i>
                                     <div>
-                                        <h3 className="skills__name">Git</h3>
-                                        <span className="skills__level">Intermediate</span>
+                                        <h3 className="skills__name">MongoDB</h3>
+                                        <span className="skills__level">**********</span>
+                                    </div>
+                                </div>
+
+                                <div className="skills__data">
+                                    <i className="bx bxs-badge-check"></i>
+                                    <div>
+                                        <h3 className="skills__name">Mark Down</h3>
+                                        <span className="skills__level">**********</span>
+                                    </div>
+                                </div>
+
+                                <div className="skills__data">
+                                    <i className="bx bxs-badge-check"></i>
+                                    <div>
+                                        <h3 className="skills__name">Firebase</h3>
+                                        <span className="skills__level">**********</span>
                                     </div>
                                 </div>
                             </div>
@@ -68,30 +83,37 @@ function Skills({highlightskills1, highlightskills2}) {
                     </div>
 
                     <div className={highlightskills2 ? "skills__content active": "skills__content"}>
-                        <h3 className="skills__title"> Backend developer</h3>
+                        <h3 className="skills__title"> Tools</h3>
                         <div className="skills__box">
                             <div className="skills__group">
                                 <div className="skills__data">
                                     <i className="bx bxs-badge-check"></i>
                                     <div>
-                                        <h3 className="skills__name">HTML</h3>
-                                        <span className="skills__level">Basic</span>
+                                        <h3 className="skills__name">VS Code</h3>
+                                        <span className="skills__level">**********</span>
                                     </div>
                                 </div>
                                 
                                 <div className="skills__data">
                                     <i className="bx bxs-badge-check"></i>
                                     <div>
-                                        <h3 className="skills__name">CSS</h3>
-                                        <span className="skills__level">Advanced</span>
+                                        <h3 className="skills__name">Chrome </h3>
+                                        <span className="skills__level">**********</span>
                                     </div>
                                 </div>
                                 
                                 <div className="skills__data">
                                     <i className="bx bxs-badge-check"></i>
                                     <div>
-                                        <h3 className="skills__name">Javascript</h3>
-                                        <span className="skills__level">Intermediate</span>
+                                        <h3 className="skills__name">Git / Github</h3>
+                                        <span className="skills__level">**********</span>
+                                    </div>
+                                </div>
+                                <div className="skills__data">
+                                    <i className="bx bxs-badge-check"></i>
+                                    <div>
+                                        <h3 className="skills__name">Postman</h3>
+                                        <span className="skills__level">**********</span>
                                     </div>
                                 </div>
                                 
@@ -101,26 +123,19 @@ function Skills({highlightskills1, highlightskills2}) {
                                 <div className="skills__data">
                                     <i className="bx bxs-badge-check"></i>
                                     <div>
-                                        <h3 className="skills__name">React</h3>
-                                        <span className="skills__level">Intermediate</span>
+                                        <h3 className="skills__name">Profiler</h3>
+                                        <span className="skills__level">**********</span>
                                     </div>
                                 </div>
 
                                 <div className="skills__data">
                                     <i className="bx bxs-badge-check"></i>
                                     <div>
-                                        <h3 className="skills__name">Node</h3>
-                                        <span className="skills__level">Intermediate</span>
+                                        <h3 className="skills__name">Redux</h3>
+                                        <span className="skills__level">**********</span>
                                     </div>
                                 </div>
 
-                                <div className="skills__data">
-                                    <i className="bx bxs-badge-check"></i>
-                                    <div>
-                                        <h3 className="skills__name">Git</h3>
-                                        <span className="skills__level">Intermediate</span>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>

@@ -30,9 +30,11 @@ const About = ({highlightdesc, highlightexp, highlightwork, highlightsupport}) =
                     </div>
                 </div>
                 <p className={highlightdesc ? "about__description active": "about__description"}>
-                    Frontend devevloper, I create web pages with UI / UX swdefgh sdfghj sdfgh sdfgh sdfv
+                I am dedicated, and open-minded freelancing developer. 
+                I believe that a person should work on developing their professional skills and learning new things all the time. 
+                Currently, I am looking for new career opportunities my current job position cannot provide.
                 </p>
-                <Link to="#contact" className="button">Contact Me</Link>
+                <Link to="#contact" className="button">Let's chat</Link>
             </div>
 
         </div>

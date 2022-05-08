@@ -143,15 +143,15 @@ export const TestimonialData =[
     },
     { 
         id: 2, name: "Endurance Ogbeide", img: "/image/tes2.png",
-        desc: 'A really good job, all aspects of the project were followed step by step and with good results.',
+        desc: 'Very considerate guy. Thanks for all the help.',
     },
     { 
         id: 3, name: "Halimat Olabisi", img: "/image/tes3.jpg",
-        desc: 'A really good job, all aspects of the project were followed step by step and with good results.',
+        desc: 'Always wonderful. Looking forward to working with your next semester.',
     },
     { 
-        id: 4, name: "John Jik", img: "/image/pic-4.png",
-        desc: 'A really good job, all aspects of the project were followed step by step and with good results.',
+        id: 4, name: "Marvel", img: "/image/pic-4.png",
+        desc: 'The only reason I like your work is because you take your time to listen to what i have to say and do my work how i want them.',
     },
    
 ]

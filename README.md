@@ -9,7 +9,7 @@
   </a>
 
   <p align="center">
-    An awesome README template to jumpstart your projects!
+    An awesome portfolio projects!
     <br />
     <a href="https://github.com/BigYusuf/yusuflateef"><strong>Explore the docs »</strong></a>
     <br />

@@ -8,7 +8,7 @@ const Footer = () => {
             <footer className="footer" id="footer">
                 
                 <div className="footer__container container grid">
-                    <h1 className="footer__title">Yusuf</h1>
+                    <h1 className="footer__title"><span className="nav__logo1">Big</span>Yusuff</h1>
                     <ul className="footer__list">
                         <li>
                             <a href="#about" className="footer__link">About</a>

@@ -217,7 +217,7 @@ img{
 .home__container{
     position: relative;
     row-gap: 2.5rem;
-    padding-top: 2rem;
+    padding-top: 0rem;
 }
 .home__data{
     text-align: center;
