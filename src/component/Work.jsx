@@ -96,7 +96,8 @@ const Work = () => {
                        prevSlide={prevSlide}
                        nextSlide={nextSlide} animation={animation} 
                        modalRef={modalRef}
-                       backend={c.backend}  frontend={c.frontend}
+                       demo={c.demo} github={c.github} design={c.design}
+                       backend={c.backend} frontend={c.frontend} desc={c.desc}
                        closeModal={closeModal} active ={showModal === c.id} 
                        setShowModal={setShowModal}/>
                   ))}

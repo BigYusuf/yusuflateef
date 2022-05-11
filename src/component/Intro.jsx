@@ -22,15 +22,15 @@ const Intro = () => {
                     </div>
                  
                     <div className="home__social">
-                        <Link to="https://www.linkedin.com" target="_blank" className="home__social-link">
+                        <a href="https://www.linkedin.com" className="home__social-link">
                             <i className="bx bxl-linkedin-square"></i>
-                        </Link>
-                        <Link to="https://www.github.com/bigYusuf"target="_blank" className="home__social-link">
+                        </a>
+                        <a href="https://www.github.com/bigYusuf" className="home__social-link">
                             <i className="bx bxl-github"></i>
-                        </Link>
-                        <Link to="https://www.dribbble.com"target="_blank" className="home__social-link">
+                        </a>
+                        <a href="https://www.dribbble.com" className="home__social-link">
                             <i className="bx bxl-dribbble"></i>
-                        </Link>
+                        </a>
                     </div>
                     <a href="#about" className="home__scroll">
                         <i className="bx bx-mouse home__scroll-icon"></i>

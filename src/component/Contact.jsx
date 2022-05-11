@@ -1,7 +1,6 @@
 import React, { useRef } from 'react';
-import {Link} from "react-router-dom";
 import emailjs from '@emailjs/browser';
-import { collection, addDoc } from "firebase/firestore"; 
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from '../firebase';
 import {ToastContainer, toast, Zoom} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -27,7 +26,8 @@ const Contact = ({name, setName,mail, setMail, message, setMessage, loader, setL
             addDoc(collection(db, "portfolio"), {
                 name:name,
                 mail:mail,
-                message:message
+                message:message,
+                createdAt:serverTimestamp()
             });
       /*--------------------------send to firestore database----------------------------*/
             setLoader(false);
@@ -73,9 +73,9 @@ const Contact = ({name, setName,mail, setMail, message, setMessage, loader, setL
                                 <i className="bx bxl-messenger contact__card-icon"></i>
                                 <h3 className="contact__card-title">Messenger</h3>
                                 <span className="contact__card-data">BigYusufff</span>
-                                <Link to="http://m.me/Bigyusufff/" target="_blank" className="contact__button">
+                                <a href="http://m.me/Bigyusufff/" className="contact__button">
                                     Write me <i className="bx bx-right-arrow-alt contact__button-icon"></i>
-                                </Link>
+                                </a>
                             </div>
                         </div>
                     </div>

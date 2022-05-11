@@ -39,12 +39,15 @@ export const ModalList = ({id, title, active, setSelected}) =>{
         </div>
     )
 }
-export const WorkModal = ({id, frontend,backend, title,img,current, prevSlide, nextSlide, active, setShowModal,animation, closeModal, modalRef, images}) =>{
+export const WorkModal = ({id, design, demo, github, desc, frontend, backend, title, img, current, prevSlide, nextSlide, active, setShowModal,animation, closeModal, modalRef, images}) =>{
     return (
         <div className="work__card" key={id}>
-        <img src={img} alt="" className="work__img"/>
+        <Link to="#" onClick={() => setShowModal(id)}>
+            <img src={img} alt="" className="work__img"/>
+        </Link>
+
         <h3 className="work__title">{title}</h3>
-        <Link to="#" onClick={() => setShowModal(id)}className="work__button">
+        <Link to="#" onClick={() => setShowModal(id)} className="work__button">
             Demo <i className="bx bx-right-arrow-alt work__icon"></i>
         </Link>
             <div className={active ? "work__modal active-modal" : "work__modal"} onClick={closeModal} ref={modalRef}>
@@ -71,8 +74,7 @@ export const WorkModal = ({id, frontend,backend, title,img,current, prevSlide, n
                         </div>
                         <div className="work__modal-right">
                             <p className="work__modal-description">
-                                Service with more than 3 years of experience.
-                                Providing quality work to clients and companies
+                                {desc}
                             </p>
                             <ul className="work__modal-list">
                                 <li className="work__modal-item">
@@ -86,17 +88,17 @@ export const WorkModal = ({id, frontend,backend, title,img,current, prevSlide, n
                                 <li className="work__modal-item">
                                     <i className="bx bx-check work__modal-icon"></i>
                                     <p className="work__modal-info">
-                                        Design & Planning: MS Excel
+                                        Design & Planning: {design}
                                     </p>
                                 </li>
                             </ul>
                             <div className="work__modal-buttonGroup">
-                                <Link to="#" className="work__button">
+                                <a href={github} className="work__button">
+                                    Codes <i className="bx bx-right-arrow-alt work__icon"></i>
+                                </a>
+                                <a href={demo} className="work__button">
                                     Demo <i className="bx bx-right-arrow-alt work__icon"></i>
-                                </Link>
-                                <Link to="#" className="work__button">
-                                    Real <i className="bx bx-right-arrow-alt work__icon"></i>
-                                </Link>
+                                </a>
                             </div>
                         </div>
                     </div>
