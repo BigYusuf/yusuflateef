@@ -31,7 +31,7 @@ export const webData = [
     frontend:"React JS and CSS",
     backend:"Node, Express, MongoDB, Firebase, NodeMailer, Paypal etc",
     desc: "This Ecommerce website for selling cars",
-    images:[{img1:"/image/ademotor1.png"}, {img1:"/image/w2.jpeg"}, {img1:"/image/w3.jpeg"}, {img1:"/image/w4.jpeg",}],
+    images:[{img1:"/image/ademotor1.png"}, {img1:"/image/productpage.png"}, {img1:"/image/allProducts.png"}, {img1:"/image/popularcars.png",}],
     demo:'https://car-shop-ademoto.herokuapp.com/',
     github:'https://github.com/BigYusuf/Ademotor-cars',
     design:'MS Excel, sketch drawing on paper',

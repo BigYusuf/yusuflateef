@@ -12,7 +12,8 @@ export const WorkList = ({id, title, active, setSelected}) => {
 export const NavbarList = ({id, icon, titleRef, active, setSelected}) =>{
     return (
         <li className="nav__item" key = {id}>
-            <a href={titleRef} className={active ? "nav__link active-link" : "nav__link"} onClick={() => setSelected(id)}>
+            <a href={titleRef} className={active ? "nav__link active-link" : "nav__link"} 
+            onClick={() => setSelected(id)}>
                 <i className={icon}></i>
             </a>
         </li>
