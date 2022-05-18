@@ -28,7 +28,7 @@ const Intro = () => {
                         <a href="https://www.github.com/bigYusuf" className="home__social-link">
                             <i className="bx bxl-github"></i>
                         </a>
-                        <a href="https://www.dribbble.com" className="home__social-link">
+                        <a href="http://yusuflateefblog.vercel.app/" className="home__social-link">
                             <i className="bx bxl-dribbble"></i>
                         </a>
                     </div>

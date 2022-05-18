@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useCallback, useState } from 'react';
 import {Link} from "react-router-dom";
 import {NavbarList} from './ActiveList';
-import {NavbarData} from '../dummyData';
+import {NavbarData} from '../data';
 import {handleTheme} from "./Utils";
 
 
@@ -42,7 +42,7 @@ const Navbar = () => {
     return (
         <header className="header" id="header">
         <nav className="nav container">
-            <Link to="/" className="nav__logo"><span className="nav__logo1">Big</span>Yusuff</Link>
+            <Link to="/" className="nav__logo"><span className="nav__logo1">Big</span>Yusufff</Link>
             <div className="nav__menu">
                 <ul className="nav__list">
                      {NavbarData.map((e) =>(
@@ -54,22 +54,23 @@ const Navbar = () => {
                 <div className="nav__icon">
                   <i className="bx bx-info-circle change-theme"onClick={handleShowModal}></i>
                   <i className="bx bx-moon change-theme"onClick={handleTheme} id="theme-button"></i>
+                  {/* <i className="button button--ghost">Demo Login</i>*/}
+                {/* show home modal*/}
                   <div className={showModal ? "home__modal active-modal" : "home__modal"} onClick={closeModal} ref={modalRef}>
-                  <div className="home__modal-content">
-                    <i className="bx bx-x home__modal-close"onClick={() => setShowModal(prev => !prev)}></i>
-                    <h3 className="home__modal-title"><span className="bx bx-microphone"></span> Voice Control</h3>
-                    <p className="home__modal-description">
-                    Use the Microphone button <span className="bx bx-microphone"></span> to control website.
-                        You can perform task like
-                    </p>
-                      <ul className="home__modal-list">
-                        <li><span className="bx bx-check"></span>Navigation: Go home/ scroll to top/ contact</li>
-                        <li><span className="bx bx-check"></span>Interaction: Tell me about Yusuf/ switch background</li>
-                        <li><span className="bx bx-check"></span>conversation like AI portfolio</li>
-                      </ul>
+                    <div className="home__modal-content">
+                      <i className="bx bx-x home__modal-close"onClick={() => setShowModal(prev => !prev)}></i>
+                      <h3 className="home__modal-title"><span className="bx bx-microphone"></span> Voice Control</h3>
+                      <p className="home__modal-description">
+                      Use the Microphone button <span className="bx bx-microphone"></span> to control website.
+                          You can perform task like
+                      </p>
+                        <ul className="home__modal-list">
+                          <li><span className="bx bx-check"></span>Navigation: Go home/ scroll to top/ contact</li>
+                          <li><span className="bx bx-check"></span>Interaction: Tell me about Yusuf/ switch background</li>
+                          <li><span className="bx bx-check"></span>conversation like AI portfolio</li>
+                        </ul>
+                    </div>
                   </div>
-                  </div>
-
                 </div>
         </nav>
     </header>

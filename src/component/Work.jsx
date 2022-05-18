@@ -2,7 +2,7 @@
 import React, { useRef, useEffect, useCallback, useState } from 'react';
 import { useSpring } from 'react-spring';
 import { WorkList, WorkModal} from './ActiveList';
-import {list, allData, webData, APIData, brandData} from '../dummyData'
+import {list, webData, APIData, brandData} from '../data'
 
 const Work = () => {
     const [selected, setSelected] = useState("web")
@@ -14,9 +14,6 @@ const Work = () => {
 
     useEffect(() => {
         switch (selected) {
-            case 'all':
-                setData(allData)
-                break;
             case 'web':
                 setData(webData)
                 break;
@@ -27,7 +24,7 @@ const Work = () => {
                 setData(brandData)
                 break;
             default:
-                setData(allData)
+                setData(APIData)
                 break;
         }
     }, [selected])

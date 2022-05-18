@@ -1,5 +1,5 @@
 import React from 'react';
-import {TestimonialData} from '../dummyData';
+import {TestimonialData} from '../data';
 import Slider from "react-slick";
 // Import css files
 import "slick-carousel/slick/slick.css";

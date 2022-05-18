@@ -10,7 +10,7 @@ const Services = ({highlightservices1, highlightservices2, highlightservices3}) 
                 
                 <div className="services__container container grid">
                     <div className={highlightservices1 ? "services__card active" : "services__card"}>              
-                        <h3 className="services__title">Product Designer</h3>
+                        <h3 className="services__title">  Web Designer</h3>
                         <p className="services__modal-description">
                             Service with more than 3 years of experience.
                             Providing quality work to clients and companies
@@ -19,25 +19,25 @@ const Services = ({highlightservices1, highlightservices2, highlightservices3}) 
                             <li className="services__modal-item">
                                 <i className="bx bx-check services__modal-icon"></i>
                                 <p className="services__modal-info">
-                                    I develop the user interface
+                                    Develop the user interface
                                 </p>
                             </li>
                             <li className="services__modal-item">
                                 <i className="bx bx-check services__modal-icon"></i>
                                 <p className="services__modal-info">
-                                    I develop the user interface
+                                    Work hand in hand with client
                                 </p>
                             </li>
                             <li className="services__modal-item">
                                 <i className="bx bx-check services__modal-icon"></i>
                                 <p className="services__modal-info">
-                                    Design and mockups of products for companies
+                                 Complete transparency and product support
                                 </p>
                             </li>
                         </ul>
                     </div>
                     <div className={highlightservices2 ? "services__card active" : "services__card"}>              
-                        <h3 className="services__title">Product Designer</h3>
+                        <h3 className="services__title">  API Manager</h3>
                         <p className="services__modal-description">
                             Service with more than 3 years of experience.
                             Providing quality work to clients and companies
@@ -46,46 +46,45 @@ const Services = ({highlightservices1, highlightservices2, highlightservices3}) 
                             <li className="services__modal-item">
                                 <i className="bx bx-check services__modal-icon"></i>
                                 <p className="services__modal-info">
-                                    I develop the user interface
+                                    We create and manage API's
                                 </p>
                             </li>
                             <li className="services__modal-item">
                                 <i className="bx bx-check services__modal-icon"></i>
                                 <p className="services__modal-info">
-                                    I develop the user interface
-                                </p>
-                            </li>
-                            <li className="services__modal-item">
-                                <i className="bx bx-check services__modal-icon"></i>
-                                <p className="services__modal-info">
-                                    Design and mockups of products for companies
+                                    We design Npm packages
                                 </p>
                             </li>
                         </ul>
                     </div>
                     <div className={highlightservices3 ? "services__card active" : "services__card"}>              
-                        <h3 className="services__title">API Designer</h3>
+                        <h3 className="services__title">  GIS Developer</h3>
                         <p className="services__modal-description">
-                            Service with more than 3 years of experience.
-                            Providing quality work to clients and companies
+                            Provide GIS related services as a consultant and as a freelancer
                         </p>
                         <ul className="services__modal-list">
                             <li className="services__modal-item">
                                 <i className="bx bx-check services__modal-icon"></i>
                                 <p className="services__modal-info">
-                                    I develop the user interface
+                                    Create and manage Geo- database
                                 </p>
                             </li>
                             <li className="services__modal-item">
                                 <i className="bx bx-check services__modal-icon"></i>
                                 <p className="services__modal-info">
-                                    I develop the user interface
+                                    Create Data models to automate GIS processes
                                 </p>
                             </li>
                             <li className="services__modal-item">
                                 <i className="bx bx-check services__modal-icon"></i>
                                 <p className="services__modal-info">
-                                    Design and mockups of products for companies
+                                    Present GIS data or result as a website or application
+                                </p>
+                            </li>
+                            <li className="services__modal-item">
+                                <i className="bx bx-check services__modal-icon"></i>
+                                <p className="services__modal-info">
+                                    Convert data(shp, geojson) to API with database
                                 </p>
                             </li>
                         </ul>
