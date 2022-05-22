@@ -5,7 +5,7 @@
 <br/>
 <div align="center">
   <a href="https://github.com/BigYusuf/yusuflateef">
-    <h1 align="center"style="color:black;">Big<span style="color:blue;">Yusuff</span></h1>
+    <h1 align="center"style="color:black;">Big<span style="color:blue;">Yusufff</span></h1>
   </a>
 
   <p align="center">
@@ -172,9 +172,9 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 - [x] Take Screenshots of Web Application
 - [x] Update dummydata with real life working data
 - [x] Add / update Project Readme file
+- [x] Create well detail report on Project (Documentation)
 - [ ] Test functionality of website and its limits
 - [ ] Host website on custom domain
-- [ ] Create well detail report on Project (Documentation)
 - [ ] Continuous update and linking to blog post
 
 See the [open issues](https://github.com/BigYusuf/yusuflateef/issues) for a full list of proposed features (and known issues).
