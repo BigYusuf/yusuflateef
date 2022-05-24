@@ -151,3 +151,25 @@ export const ServicesList =({id, title1, title2, description, li1, li2, li3, act
 
     )
 }
+
+export const AddProjectModal = ({addworkModal, setAddworkModal, modalRef }) => {
+    return(
+        
+        <div className={addworkModal ? "home__modal active-modal" : "home__modal"} onClick={()=> setAddworkModal(false)} ref={modalRef}>
+        <div className="home__modal-content">
+          <i className="bx bx-x home__modal-close"onClick={() => setAddworkModal(prev => !prev)}></i>
+          <h3 className="home__modal-title"><span className="bx bx-microphone"></span> Add Project</h3>
+          <p className="home__modal-description">
+          Use aaaaaadd work <span className="bx bx-microphone"></span> to control website.
+              You can perform task like
+          </p>
+            <ul className="home__modal-list">
+              <li><span className="bx bx-check"></span>Navigation: Go home/ scroll to top/ contact</li>
+              <li><span className="bx bx-check"></span>Interaction: Tell me about Yusuf/ switch background</li>
+              <li><span className="bx bx-check"></span>conversation like AI portfolio</li>
+            </ul>
+        </div>
+      </div>
+
+    )
+}

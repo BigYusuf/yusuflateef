@@ -1,8 +1,7 @@
 import React from "react";
-import Navbar  from "./component/Navbar";
-import Alan  from "./component/Alan";
-import Footer  from "./component/Footer";
-import {BrowserRouter as Router} from "react-router-dom";
+import Alan  from "./pages/Alan";
+import Projects  from "./pages/Projects";
+import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import "./App.css";
 
 
@@ -11,11 +10,10 @@ const App = () => {
     
   return (
     <Router>
-      <Navbar/>
-      <main className="main" id="main">
-          <Alan/>
-      </main>
-      <Footer/>
+        <Routes>
+            <Route path="/" element={<Alan />}/>
+            <Route path="projects" element={<Projects />}/>
+        </Routes>
     </Router>
   )
 };

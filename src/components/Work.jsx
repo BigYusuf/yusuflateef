@@ -2,7 +2,7 @@
 import React, { useRef, useEffect, useCallback, useState } from 'react';
 import { useSpring } from 'react-spring';
 import { WorkList, WorkModal} from './ActiveList';
-import {list, webData, APIData, brandData} from '../data'
+import {list, webData, APIData, gisData} from '../data'
 
 const Work = () => {
     const [selected, setSelected] = useState("web")
@@ -20,8 +20,8 @@ const Work = () => {
             case 'api':
                 setData(APIData)
                 break;
-            case 'design':
-                setData(brandData)
+            case 'gis':
+                setData(gisData)
                 break;
             default:
                 setData(APIData)

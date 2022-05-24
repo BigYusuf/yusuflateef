@@ -23,7 +23,7 @@ const Contact = ({name, setName,mail, setMail, message, setMessage, loader, setL
             toast.success("Message Sent","Thank you, Will get back to You ASAP");
             
       /*--------------------------send to firestore database----------------------------*/
-            addDoc(collection(db, "portfolio"), {
+            addDoc(collection(db, "contact"), {
                 name:name,
                 mail:mail,
                 message:message,

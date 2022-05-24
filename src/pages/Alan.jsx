@@ -1,12 +1,14 @@
 import React, { useState, useEffect  } from 'react';
-import Intro from "./Intro";
-import About from "./About";
-import Skills from "./Skills";
-import Services from "./Services";
-import Work from "./Work";
-import Contact from './Contact';
-import Testimonials from "./Testimonials";
-import {handleTheme} from './Utils';
+import Navbar from "../components/Navbar";
+import Intro from "../components/Intro";
+import About from "../components/About";
+import Skills from "../components/Skills";
+import Services from "../components/Services";
+import Work from "../components/Work";
+import Contact from '../components/Contact';
+import Footer from '../components/Footer';
+import Testimonials from "../components/Testimonials";
+import {handleTheme} from '../components/Utils';
 import alanBtn from "@alan-ai/alan-sdk-web";
 
 const Alan = () => {
@@ -159,7 +161,8 @@ const Alan = () => {
         highlightdesc, highlightsupport, highlightexp, highlightwork]);
 
     return (
-        <div>
+        <main className="main" id="main">
+            <Navbar/>
             <Intro/>
             <About highlightdesc={highlightdesc}
                    highlightexp={highlightexp}
@@ -190,7 +193,9 @@ const Alan = () => {
                      highlightEmail={highlightEmail}
                      highlightMessenger={highlightMessenger}
             />
-        </div>
+            
+        <Footer/>
+        </main>
     )
 }
 

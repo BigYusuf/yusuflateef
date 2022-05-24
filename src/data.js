@@ -2,7 +2,7 @@
 export const list = [
     {id: "web", title:"Web App"},
     {id: "api", title:" API"},
-    {id: "design", title:"GIS / Mapping"},
+    {id: "gis", title:"GIS / Mapping"},
 ];
 
 export const webData = [
@@ -14,7 +14,7 @@ export const webData = [
     demo:'https://car-shop-ademoto.herokuapp.com/',
     github:'https://github.com/BigYusuf/Ademotor-cars',
     design:'MS Excel, MS word, sketch drawing on paper',
-    blog:'http://yusuflateefblog.vercel.app/car-ecommerce',
+    blog:'http://yusuflateefblog.vercel.app/Ademotor',
 },
     { id: 2, img: "/image/blog.png", title: "BigYusuf Blog",
     frontend:"Next JS, TypeScript, Tailwind CSS",
@@ -50,7 +50,7 @@ export const APIData = [
 },
 ];
 
-export const brandData = [
+export const gisData = [
     { id: 56, img: "/image/webGIS.png", title: "GIS geojson to Leaflet-Map",
     frontend:"HTML, Native CSS",
     backend:"QGIS Geojson",

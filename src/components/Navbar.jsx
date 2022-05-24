@@ -8,6 +8,8 @@ import {handleTheme} from "./Utils";
 const Navbar = () => {
     const [selected, setSelected] = useState("");
     const [showModal, setShowModal] = useState(true);
+    //const [addworkModal, setAddworkModal] = useState(true);
+    const [accessBtn, setAccessBtn] = useState(true);
 
     const modalRef = useRef();
 
@@ -39,6 +41,9 @@ const Navbar = () => {
    const handleShowModal = () => {
        setShowModal(!showModal);
    }
+   const handledropdown = () => {
+      setAccessBtn(!accessBtn);
+   }
     return (
         <header className="header" id="header">
         <nav className="nav container">
@@ -51,9 +56,47 @@ const Navbar = () => {
                 </ul>
             </div>
                 {/* Theme change button */}
+               
                 <div className="nav__icon">
-                  <i className="bx bx-info-circle change-theme"onClick={handleShowModal}></i>
-                  <i className="bx bx-moon change-theme"onClick={handleTheme} id="theme-button"></i>
+                  
+                  {accessBtn ? (
+                    <>
+                      <i className="bx bx-info-circle change-theme"onClick={handleShowModal}></i>
+                      <i className="bx bx-moon change-theme"onClick={handleTheme} id="theme-button"></i>
+                      <span className="nav__demo"onClick={handledropdown}>Demo Login</span>
+                    </>
+                  ) : (
+                <div className="dropdown">
+                  <p className="nav__logo1" >Admin{' '}
+                    <i className="bx bx-caret-down"></i>
+                  </p>
+                  <ul className="dropdown-contents">
+                    <li  className="dropdown-list"onClick={handleShowModal}>
+                      <i className="bx bx-info-circle change-theme"></i>
+                      <Link className="dropdown-link" to="#">Show Help</Link>
+                    </li>
+                    <li  className="dropdown-list"onClick={handleTheme}>
+                      <i className="bx bx-moon change-theme" id="theme-button"></i>
+                      <Link className="dropdown-link" to="#">Background</Link>
+                      
+                    </li>
+                    
+                    <li  className="dropdown-list">
+                      <i className="bx bx-plus change-theme"></i>
+                      <Link className="dropdown-link" to="/projects">Add Project</Link>
+                    </li>
+                    <li  className="dropdown-list">
+                      <i className="bx bx-book change-theme"></i>
+                      <Link className="dropdown-link" to="/projects">Projects List</Link>
+                    </li>
+                    <li  className="dropdown-list"onClick={()=> setAccessBtn(prev => !prev)}> 
+                      <i className="bx bx-log-out change-theme"></i>
+                      <Link className="dropdown-link" to="#">Sign Out</Link>
+                    </li>
+                  </ul>
+                </div>
+              )}
+                 
                   {/* <i className="button button--ghost">Demo Login</i>*/}
                 {/* show home modal*/}
                   <div className={showModal ? "home__modal active-modal" : "home__modal"} onClick={closeModal} ref={modalRef}>
@@ -71,7 +114,8 @@ const Navbar = () => {
                         </ul>
                     </div>
                   </div>
-                </div>
+                  
+            </div>
         </nav>
     </header>
     )

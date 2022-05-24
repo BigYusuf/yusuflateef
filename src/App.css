@@ -65,8 +65,8 @@
         --small-font-size: 0.875rem;
         --smaller-font-size: 0.813rem;
         --tiny-font-size: 0.575;
-            }
-        }
+   }
+}
 *{
     box-sizing: border-box;
     margin: 0;
@@ -149,13 +149,21 @@ img{
     display: flex;justify-content: space-between;
     align-items: center;
 }
+.nav__demo,
 .nav__logo{
     color: var(--first-color);
     font-weight: var(--font-medium);
     transition: .4s;
+    cursor: pointer;
 }
 .nav__logo1{
     color: var(--title-color);
+    cursor: pointer;
+}
+.nav__demo{
+    border: 2px var(--first-color) solid;
+    border-radius: .5rem;
+    padding: .35rem;
 }
 .nav__logo:hover{
     color: var(--first-color-alt);
@@ -182,6 +190,43 @@ img{
     display: flex;border-radius: 5rem;
 }
 
+/* Dropdown */
+.dropdown {
+    display: inline-block;
+    position: relative;
+  }
+  .dropdown-contents {
+    position: absolute;
+    display: none;
+    right: 0;
+    min-width: 7rem;
+    padding: 1rem;
+    z-index: 1; 
+    background-color: var(--container-color);
+    margin: 0;
+    margin-top: 0.4rem;
+    border-radius: 0.5rem;
+  }
+  .dropdown-list{
+      width: max-content;
+      cursor: pointer;
+      margin-bottom: .5rem;
+  }
+  .dropdown-link{
+      cursor: pointer;
+      color: var(--title-color);
+  }
+  .dropdown-link:hover,
+  .dropdown-list:hover{
+      color: var(--first-color);
+  }
+  .dropdown:hover .dropdown-contents{
+    display: block;
+  }
+
+.fa-caret-down:before{
+    padding-left: 0.5rem
+}
 /*Active Links*/
 .active-link, .nav__link.active{
     background: linear-gradient(180deg, 
@@ -784,6 +829,18 @@ img{
     border-radius: .75rem;
     text-align: center;
 }
+.contact__select{
+    background-color: var(--container-color);
+    color: var(--title-color);
+    width: 80%;
+    font-size: var(--smaller-font-size);
+    height: 100%;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+}
+.contact__select option{
+    padding: 2rem;
+}
 .contact__card-icon{
     font-size: 2rem;
     color: var(--title-color);
@@ -820,6 +877,12 @@ img{
     margin-bottom: 2rem;
     height: 4rem;
 }
+.contact__form-div1{
+    position: relative;
+    margin-bottom: .5rem;
+    height: 2rem;
+    margin-top: 1rem;
+}
 .contact__form-input{
     position: absolute;
     top: 0;
@@ -850,10 +913,11 @@ img{
 }
 .contact__form-buttonSection{
     display: flex;
+    justify-content: space-between;
 }
 .contact__Send-button{
     height: 47px;
-    width: 50%;
+    width: 40%;
 }
 button.active,
 .contact__Send-button.active{
@@ -967,7 +1031,7 @@ button.active,
     font-size: 1.25rem;
     cursor: pointer;
     transition: .3s;
-    margin-left: 2rem;
+    margin-right: 2rem;
 }
 .change-theme:hover{
     color: var(--first-color);
