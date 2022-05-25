@@ -1,3 +1,6 @@
+
+import { app } from '../firebase';
+import { getStorage, ref, uploadBytesResumable, getDownloadURL} from "firebase/storage";
 export const handleTheme = () => {
     const themeButton = document.getElementById('theme-button')
      const lightTheme = 'light-theme';
@@ -24,3 +27,78 @@ export const handleTheme = () => {
      localStorage.setItem('selected-theme', getCurrentTheme())
      localStorage.setItem('selected-icon', getCurrentIcon())
  }
+ 
+export const handleUpload = ({url, setUrl, image}) => {
+    const fileName = `images/${new Date().getTime() + image.name}`;
+    const storage = getStorage(app);
+    const storageRef = ref(storage, fileName);
+    const uploadTask = uploadBytesResumable(storageRef, image);
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {},
+      (error) => {
+        // Handle unsuccessful uploads
+      },
+      () => {
+          getDownloadURL(uploadTask.snapshot.ref).then((url) => {
+            setUrl(url);
+        });
+      }
+    );
+ 
+}
+ /*
+export const handleMultipleUpload = ({url, setUrl, images}) => {
+    const promises = [];
+    images.map((image) =>{
+        const fileName = `images/${new Date().getTime() + image.name}`;
+        const storage = getStorage(app);
+        const storageRef = ref(storage, fileName);
+        const uploadTask = uploadBytesResumable(storageRef, image);
+        promises.push(uploadTask);
+        uploadTask.on(
+        "state_changed",
+        (snapshot) => {},
+        (error) => {
+            // Handle unsuccessful uploads
+        },
+        async () => {
+            await getDownloadURL(uploadTask.snapshot.ref).then((url) => {
+                setUrl((prevState) => [...prevState, url]);
+                });
+            }
+        );
+ 
+    })
+    Promise.all(promises)
+      .then(() => console.log("All images uploaded"))
+      .catch((err) => console.log(err));
+};
+ */
+export const handleUpload1 = ({url, setUrl, images}) => {
+    const promises = [];
+    images.map((image) => {
+        
+        const fileName = `images/${new Date().getTime() + image.name}`;
+        const storage = getStorage(app);
+        const storageRef = ref(storage, fileName);
+        const uploadTask = uploadBytesResumable(storageRef, image);
+        promises.push(uploadTask);
+            uploadTask.on(
+            "state_changed",
+            (snapshot) => {},
+            (error) => {
+                // Handle unsuccessful uploads
+            },
+            async () => {
+            await getDownloadURL(uploadTask.snapshot.ref).then((url) => {
+                setUrl((prevState) => [...prevState, url]);
+                });
+            }
+            );
+    
+    });
+    Promise.all(promises)
+      .then(() => console.log("All images uploaded"))
+      .catch((err) => console.log(err));
+};

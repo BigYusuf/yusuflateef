@@ -832,11 +832,24 @@ img{
 .contact__select{
     background-color: var(--container-color);
     color: var(--title-color);
-    width: 80%;
+    width: 100%;
     font-size: var(--smaller-font-size);
     height: 100%;
     border-radius: 0.5rem;
     margin-bottom: 1rem;
+    padding: 0 1rem;
+    margin-right: 2rem;
+}
+.contact__select1{
+    background-color: var(--container-color);
+    color: var(--title-color);
+    width: 100%;
+    font-size: var(--normal-font-size);
+    height: 100%;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+    padding: 0 1rem;
+    margin-right: 2rem;
 }
 .contact__select option{
     padding: 2rem;
@@ -883,6 +896,12 @@ img{
     height: 2rem;
     margin-top: 1rem;
 }
+.contact__form-img{
+    position: relative;
+    margin-bottom: 2rem;
+    padding-top: 1rem;
+    position: relative;
+}
 .contact__form-input{
     position: absolute;
     top: 0;
@@ -914,10 +933,28 @@ img{
 .contact__form-buttonSection{
     display: flex;
     justify-content: space-between;
+    position: relative;
+}
+.contact__form-imgwrapper{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    
 }
 .contact__Send-button{
     height: 47px;
     width: 40%;
+}
+.upload-icon{
+    position: absolute;
+    top: 1rem;
+    left:1rem;
+}
+.bx-upload{
+    font-size: 9rem;
+    color: var(--first-color);
+    background-color: var(--body-color);
+    cursor:pointer;
+    opacity: 0;
 }
 button.active,
 .contact__Send-button.active{
@@ -943,6 +980,27 @@ button.active,
     margin-left: 15px;
     opacity: 0;
 }
+
+/*table css*/
+table {
+    width: 100%;
+}
+tr {
+    text-align: left;
+}
+th {
+    padding: 1rem;
+    border-bottom: 2px solid;
+}
+td {
+    text-transform: capitalize;
+    padding: 15px 10px;
+}
+tbody > tr:hover {
+    background-color: var(--first-color);
+    color: var(--body-color);
+}
+
 /*Footer*/
 .footer{
     background-color: var(--first-color);
