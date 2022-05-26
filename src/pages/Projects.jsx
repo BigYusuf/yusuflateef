@@ -1,14 +1,14 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { collection, doc, addDoc, onSnapshot, deleteDoc, serverTimestamp } from "firebase/firestore";
 import {handleUpload, handleUpload1} from '../components/Utils';
 import Navbar from "../components/Navbar";
-import { webData, APIData, gisData } from '../data'
+//import { webData, APIData, gisData } from '../data'
 import { db } from '../firebase';
 import {ToastContainer, toast, Zoom} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Projects = () => {
-    const [data, setData] = useState([]);
+  //  const [data, setData] = useState([]);
     const [title, setTitle] = useState("");
     const [frontend, setFrontend] = useState("");
     const [backend, setBackend] = useState("");
@@ -23,6 +23,7 @@ const Projects = () => {
     const [image1, setImage1] = useState([]);
     const [img, setImg] = useState("");
     const [img1, setImg1] = useState([]);
+    const [works, setWorks] = useState([]);
     const [loader, setLoader] = useState(false);
     const [projectpage, setProjectpage] = useState(true);
     const form = useRef();
@@ -32,6 +33,16 @@ const Projects = () => {
             setImage(e.target.files[0]);
         }
     }
+    // view database files in the table
+    const colRef = collection(db, tablecat || "web")
+    onSnapshot(colRef, (snapshot) => {
+        let works =[] 
+        snapshot.docs.forEach((doc) => {
+        works.push({ ...doc.data(), id: doc.id })
+        })
+        setWorks(works)
+    })
+    
     const handleChange1 = (e) => {
         for (let i = 0; i < e.target.files.length; i++) {
             const newImage = e.target.files[i];
@@ -86,7 +97,10 @@ const Projects = () => {
     setCat('');
     };
  };
-    
+    const deleteHandler = () => {
+        const docRef = doc(db, tablecat, doc.id)
+    }
+/*
     useEffect(() => {
         switch (tablecat) {
             case 'web':
@@ -103,7 +117,7 @@ const Projects = () => {
                 break;
         }
     }, [tablecat, setData])
-        /*console.log("table category",tablecat);
+        console.log("table category",tablecat);
         console.log("data",data);*/
     
     return (
@@ -140,15 +154,17 @@ const Projects = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {data.map((item, i)=>(
+                                    {works.map((item, i)=>(
                                         <tr className=""key={i}>
                                             <td>{i+1}</td>
                                             <td>{item.title}</td>
                                             <td>
                                               { /* <i type="" className="bx bx-pen" onClick={() => props.history.push(`/project/${project._id}/edit`)}></i>
                                                 <i type="" className="bx bx-trash" onClick={() => deleteHandler()}></i>*/}
-                                              <i type="" className="bx bx-pen"></i>
-                                                <i type="" className="bx bx-trash"></i>
+                                                <div className="actions">
+                                              <i type="" style={{width:22}} className="bx bx-pen"></i>
+                                                <i type="" style={{width:22}} className="bx bx-trash"></i>
+                                                </div>
                                             </td>
                                         </tr>
                                     ))}
@@ -262,28 +278,8 @@ const Projects = () => {
                                 </div>
                                 <div className="contact__form-img"> 
                                 <label htmlFor="" className="contact__form-tag">Extra Image</label>
-                                    <div> 
-                                        
                                     <input type="file" id="imagefile1" multiple accept="image/*"
                                                 onChange={handleChange1} />
-                                        {image1 ? (
-
-                                            <div className="contact__form-imgwrapper">
-                                                {img1.map((imgb, i) =>
-                                                (
-                                                    <img key={i} style={{width:160, height:150}}id="image1" 
-                                                        alt="imageh" src={imgb}
-                                                    />
-                                                ))}
-                                            </div>
-                                        ): (
-                                            <div>
-                                                <img style={{width:160, height:150, }}id="image1"
-                                                alt="" src="/image/default-img.png" 
-                                                />
-                                            </div>
-                                            )}
-                                    </div>
                                 </div>
                             
                             </div>

@@ -1000,7 +1000,21 @@ tbody > tr:hover {
     background-color: var(--first-color);
     color: var(--body-color);
 }
-
+.actions{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.bx-trash:before{
+    color: rgb(180, 58, 82); 
+    margin: 0 1.5rem;
+    cursor: pointer;
+}
+.bx-pen:before{
+    color: rgb(58, 137, 180);
+    margin: 0 1.5rem;
+    cursor: pointer;
+}
 /*Footer*/
 .footer{
     background-color: var(--first-color);

@@ -45,36 +45,8 @@ export const handleUpload = ({url, setUrl, image}) => {
         });
       }
     );
- 
 }
- /*
-export const handleMultipleUpload = ({url, setUrl, images}) => {
-    const promises = [];
-    images.map((image) =>{
-        const fileName = `images/${new Date().getTime() + image.name}`;
-        const storage = getStorage(app);
-        const storageRef = ref(storage, fileName);
-        const uploadTask = uploadBytesResumable(storageRef, image);
-        promises.push(uploadTask);
-        uploadTask.on(
-        "state_changed",
-        (snapshot) => {},
-        (error) => {
-            // Handle unsuccessful uploads
-        },
-        async () => {
-            await getDownloadURL(uploadTask.snapshot.ref).then((url) => {
-                setUrl((prevState) => [...prevState, url]);
-                });
-            }
-        );
  
-    })
-    Promise.all(promises)
-      .then(() => console.log("All images uploaded"))
-      .catch((err) => console.log(err));
-};
- */
 export const handleUpload1 = ({url, setUrl, images}) => {
     const promises = [];
     images.map((image) => {
