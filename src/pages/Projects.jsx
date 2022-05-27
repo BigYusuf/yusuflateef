@@ -1,14 +1,13 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { collection, doc, addDoc, onSnapshot, deleteDoc, serverTimestamp } from "firebase/firestore";
+import { serverTimestamp } from "firebase/firestore";
 import {handleUpload, handleUpload1} from '../components/Utils';
 import Navbar from "../components/Navbar";
-//import { webData, APIData, gisData } from '../data'
-import { db } from '../firebase';
+import ProjectDataService from "../components/project-firebase";
 import {ToastContainer, toast, Zoom} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Projects = () => {
-  //  const [data, setData] = useState([]);
+    const [dataId, setDataId] = useState("");
     const [title, setTitle] = useState("");
     const [frontend, setFrontend] = useState("");
     const [backend, setBackend] = useState("");
@@ -26,66 +25,89 @@ const Projects = () => {
     const [works, setWorks] = useState([]);
     const [loader, setLoader] = useState(false);
     const [projectpage, setProjectpage] = useState(true);
+    const [message, setMessage] = useState(false);
     const form = useRef();
-
+    
     const handleChange = (e) => {
         if (e.target.files[0]){
             setImage(e.target.files[0]);
         }
     }
-    // view database files in the table
-    const colRef = collection(db, tablecat || "web")
-    onSnapshot(colRef, (snapshot) => {
-        let works =[] 
-        snapshot.docs.forEach((doc) => {
-        works.push({ ...doc.data(), id: doc.id })
-        })
-        setWorks(works)
-    })
-    
+  const editProject = async () => {
+    try {
+      const docSnap = await ProjectDataService.getProject(dataId);
+      console.log("the record is :", docSnap.data());
+      setTitle(docSnap.data().title);
+      setFrontend(docSnap.data().frontend);
+      setBackend(docSnap.data().backend);
+      setImage(docSnap.data().image);
+      setOthers(docSnap.data().others);
+      setDescription(docSnap.data().description);
+      setLinkGithub(docSnap.data().linkGithub);
+      setLinkBlog(docSnap.data().linkBlog);
+      setLinkDemo(docSnap.data().linkDemo);
+      setCat(docSnap.data().cat);
+    } catch (error) {}
+  };
+  const ListProjects = async () => {
+    const data = await ProjectDataService.getAllProjects();
+    setWorks(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+  }
+
+    useEffect(() => {
+    ListProjects();
+   }, [])
+
+   useEffect(() => {
+    if (dataId !== undefined && dataId !== "") {
+        editProject();
+      }
+   }, [dataId])
+
     const handleChange1 = (e) => {
         for (let i = 0; i < e.target.files.length; i++) {
             const newImage = e.target.files[i];
             newImage["id"] = Math.random();
             setImage1((prevState) => [...prevState, newImage]);
-            console.log("images: ",image1)
-            console.log("urls: ",img1)
           }
     }
     
-    const sendData = (e) => {
+    const payload= {title, frontend, cat, img, img1, backend, others, description, linkBlog, linkDemo, linkGithub, createdAt: serverTimestamp()
+    }
+    
+    const addData = (e) => {
     e.preventDefault();
     setLoader(true);
-    if(!cat){
-        console.log('category is empty')
-    }else{
+    
+    if (dataId !== undefined && dataId !== "") {
+        
+        handleUpload({url:img,setUrl:setImg, image:image});
+        handleUpload1({url:img1,setUrl:setImg1, images:image1});
+        ProjectDataService.updateProject(payload).then(() => {
+            toast.success("Project Updated successfully");
+            setLoader(false);
+            ListProjects();
+        }, (error) => {
+            console.log(error.text);
+            toast.error("Error!!!, Project not Updated");
+            setLoader(false);
+        });
+      }else{
         //
           handleUpload({url:img,setUrl:setImg, image:image});
           handleUpload1({url:img1,setUrl:setImg1, images:image1});
-          console.log("urls: ",img1)
         //
       /*--------------------------send to firestore database----------------------------*/
-      addDoc(collection(db, cat), {
-        title:title,
-        frontend:frontend,
-        cat:cat,
-        img:img,
-        img1:img1,
-        backend:backend,
-        others:others,
-        description:description,
-        linkBlog:linkBlog,
-        linkDemo:linkDemo,
-        linkGithub:linkGithub,
-        createdAt:serverTimestamp()
-    }).then(() => {
+      ProjectDataService.addProject(payload).then(() => {
             toast.success("Project Added successfully");
             setLoader(false);
+            ListProjects();
         }, (error) => {
             console.log(error.text);
             toast.error("Error!!!, Project not Added");
             setLoader(false);
         });
+    };
     setTitle('');
     setFrontend('');
     setBackend('');
@@ -94,32 +116,18 @@ const Projects = () => {
     setLinkGithub('');
     setLinkBlog('');
     setLinkDemo('');
-    setCat('');
-    };
- };
-    const deleteHandler = () => {
-        const docRef = doc(db, tablecat, doc.id)
-    }
-/*
-    useEffect(() => {
-        switch (tablecat) {
-            case 'web':
-                setData(webData)
-                break;
-            case 'api':
-                setData(APIData)
-                break;
-            case 'gis':
-                setData(gisData)
-                break;
-            default:
-                setData([])
-                break;
-        }
-    }, [tablecat, setData])
-        console.log("table category",tablecat);
-        console.log("data",data);*/
+    setCat('');setImg1([]);setImage(null);setImage1([]);
+    setImg("");
     
+ };
+    const deleteHandler = async (id) => {
+       await ProjectDataService.deleteProject(id);
+       ListProjects();
+    }
+    const editHandler = (id) => {
+       setDataId(id);
+    }
+
     return (
         <div>
             <Navbar/>
@@ -162,8 +170,8 @@ const Projects = () => {
                                               { /* <i type="" className="bx bx-pen" onClick={() => props.history.push(`/project/${project._id}/edit`)}></i>
                                                 <i type="" className="bx bx-trash" onClick={() => deleteHandler()}></i>*/}
                                                 <div className="actions">
-                                              <i type="" style={{width:22}} className="bx bx-pen"></i>
-                                                <i type="" style={{width:22}} className="bx bx-trash"></i>
+                                              <i type="" className="bx bx-pen" onClick={() => editHandler(item.id) }></i>
+                                                <i type="" className="bx bx-trash"onClick={() => deleteHandler(item.id)}></i>
                                                 </div>
                                             </td>
                                         </tr>
@@ -176,8 +184,8 @@ const Projects = () => {
                     </div>
                         
                     <div className= "contact__content">
-                        <h3 className="contact__title">Add new project</h3>
-                        <form action="" className="contact__form" ref={form} onSubmit={sendData}>
+                        <h3 className="contact__title">{dataId ? "Edit Project":"Add new Project"}</h3>
+                        <form action="" className="contact__form" ref={form}>
                            {projectpage ? (
                                
                            <div className="contact__section1">
@@ -285,7 +293,14 @@ const Projects = () => {
                             </div>
                             <div className="contact__form-buttonSection">
                                <button className="button contact__Send-button" onClick={()=> setProjectpage(true)}>Back</button>
-                                <button className={loader ? "contact__Send-button button active" : "contact__Send-button button"}>Add Project</button>
+                               {!dataId ?
+                                <button className={loader ? "contact__Send-button button active" : "contact__Send-button button"} onClick={addData}>Add Project</button>
+                               :
+                                <>
+                                    <button className= "contact__Send-button button" onClick={()=> setMessage(prev => !prev)}>Edit Project</button>
+                                    {message && <span className= "contact__display-message">You are not permitted to edit any project</span>}
+                                </>
+                               }
                             </div>
                             </>
                            )}

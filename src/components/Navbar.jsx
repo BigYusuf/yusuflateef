@@ -1,13 +1,14 @@
 import React, { useRef, useEffect, useCallback, useState } from 'react';
 import {Link} from "react-router-dom";
-import {NavbarList} from './ActiveList';
-import {NavbarData} from '../data';
+import {NavbarList, NavbarList1} from './ActiveList';
+import {NavbarData1, NavbarData2} from '../data';
 import {handleTheme} from "./Utils";
 
 
 const Navbar = () => {
     const [selected, setSelected] = useState("");
     const [showModal, setShowModal] = useState(true);
+    const [navbarChange, setNavbarChange] = useState(false);
     //const [addworkModal, setAddworkModal] = useState(true);
     const [accessBtn, setAccessBtn] = useState(true);
 
@@ -44,15 +45,33 @@ const Navbar = () => {
    const handledropdown = () => {
       setAccessBtn(!accessBtn);
    }
+
+   
+   useEffect(()=>{
+    if (window.location.href.indexOf("projects") > -1) {
+        setNavbarChange(true);
+      }
+}, [navbarChange])
     return (
         <header className="header" id="header">
         <nav className="nav container">
             <Link to="/" className="nav__logo"><span className="nav__logo1">Big</span>Yusufff</Link>
-            <div className="nav__menu">
+            <div className={navbarChange ? "nav__menu nav__menu-width" : "nav__menu"}>
                 <ul className="nav__list">
-                     {NavbarData.map((e) =>(
-                        <NavbarList key= {e.id} id={e.id} icon={e.icon} titleRef={e.titleRef} active ={selected === e.id} setSelected={setSelected}/>
-                     ))}
+                  {navbarChange ? (
+                      <>
+                        {NavbarData2.map((e) =>(
+                          <NavbarList1 key= {e.id} id={e.id} icon={e.icon} titleRef={e.titleRef} active ={selected === e.id} setSelected={setSelected}/>
+                        ))}
+                      </>
+                    ):(
+                      <>
+                        {NavbarData1.map((e) =>(
+                          <NavbarList key= {e.id} id={e.id} icon={e.icon} titleRef={e.titleRef} active ={selected === e.id} setSelected={setSelected}/>
+                        ))}
+                      </>
+                    )
+                  }
                 </ul>
             </div>
                 {/* Theme change button */}
@@ -83,11 +102,7 @@ const Navbar = () => {
                     
                     <li  className="dropdown-list">
                       <i className="bx bx-plus change-theme"></i>
-                      <Link className="dropdown-link" to="/projects">Add Project</Link>
-                    </li>
-                    <li  className="dropdown-list">
-                      <i className="bx bx-book change-theme"></i>
-                      <Link className="dropdown-link" to="/projects">Projects List</Link>
+                      <Link className="dropdown-link" to="/projects">Project Manager</Link>
                     </li>
                     <li  className="dropdown-list"onClick={()=> setAccessBtn(prev => !prev)}> 
                       <i className="bx bx-log-out change-theme"></i>

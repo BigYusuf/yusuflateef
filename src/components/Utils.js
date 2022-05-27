@@ -49,13 +49,13 @@ export const handleUpload = ({url, setUrl, image}) => {
  
 export const handleUpload1 = ({url, setUrl, images}) => {
     const promises = [];
-    images.map((image) => {
-        
-        const fileName = `images/${new Date().getTime() + image.name}`;
-        const storage = getStorage(app);
-        const storageRef = ref(storage, fileName);
-        const uploadTask = uploadBytesResumable(storageRef, image);
-        promises.push(uploadTask);
+    const fileName = `images/${new Date().getTime()}`;
+    const storage = getStorage(app);
+    const storageRef = ref(storage, fileName);
+    const uploadTask = uploadBytesResumable(storageRef);
+    promises.push(uploadTask);
+    images.map(() => {
+        return(
             uploadTask.on(
             "state_changed",
             (snapshot) => {},
@@ -67,9 +67,9 @@ export const handleUpload1 = ({url, setUrl, images}) => {
                 setUrl((prevState) => [...prevState, url]);
                 });
             }
-            );
-    
-    });
+            )
+            )
+        });
     Promise.all(promises)
       .then(() => console.log("All images uploaded"))
       .catch((err) => console.log(err));

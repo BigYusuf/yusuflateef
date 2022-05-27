@@ -114,7 +114,7 @@ const Contact = ({name, setName,mail, setMail, message, setMessage, loader, setL
                             </div>
                             <div className="contact__form-buttonSection">
 
-                                <button className={loader ? "contact__Send-button button active" : "contact__Send-button button"}>Send Message</button>
+                                <button className={loader ? "contact__Send-button button active" : "contact__Send-button button"}>Send</button>
                                 <div className="contact__form-notification">
                                     <h4 className="contact__form-noti-header">Message Sent</h4>
                                     <span className="contact__form-noti-body">Thank you, Will get back to You ASAP</span>

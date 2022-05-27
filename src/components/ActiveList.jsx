@@ -19,6 +19,16 @@ export const NavbarList = ({id, icon, titleRef, active, setSelected}) =>{
         </li>
     )
 }
+export const NavbarList1 = ({id, icon, titleRef, active, setSelected}) =>{
+    return (
+        <li className="nav__item" key = {id}>
+            <Link to={titleRef} className={active ? "nav__link active-link" : "nav__link"} 
+            onClick={() => setSelected(id)}>
+                <i className={icon}></i>
+            </Link>
+        </li>
+    )
+}
 export const ModalList = ({id, title, active, setSelected}) =>{
     return (
         <div className="services__card"key = {id}>

@@ -62,12 +62,17 @@ export const gisData = [
 },
 ];
 
-export const NavbarData = [
+export const NavbarData1 = [
      { id: 19, titleRef: "#home", icon: "bx bx-home-alt"},
      { id: 20, titleRef: "#about", icon: "bx bx-user"},
      { id: 21, titleRef: "#skills", icon: "bx bx-book"},
      { id: 22, titleRef: "#work", icon: "bx bx-briefcase-alt-2"},
      { id: 23, titleRef: "#contact", icon: "bx bx-message-square-detail"},
+];
+
+export const NavbarData2 = [
+     { id: 19, titleRef: "", icon: "bx bx-home-alt"},
+     { id: 20, titleRef: "/", icon: "bx bx-log-out"}
 ];
 
 export const serviceModalData = [

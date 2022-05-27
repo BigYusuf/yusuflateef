@@ -178,6 +178,9 @@ img{
     backdrop-filter: blur(10px);
     transition: .4s;/*for light mode animation*/
 }
+.nav__menu-width{
+    width: 135px !important;
+}
 .nav__list{
     display: flex;
     justify-content: space-between;
@@ -980,7 +983,13 @@ button.active,
     margin-left: 15px;
     opacity: 0;
 }
+.contact__display-message{
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    background-color: var(--first-color);
+    color: var(--body-color);
 
+}
 /*table css*/
 table {
     width: 100%;
