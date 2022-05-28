@@ -1,19 +1,19 @@
 import React, { useRef, useEffect, useCallback, useState } from 'react';
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {NavbarList, NavbarList1} from './ActiveList';
 import {NavbarData1, NavbarData2} from '../data';
 import {handleTheme} from "./Utils";
+import { useAuth} from "./auth";
 
 
 const Navbar = () => {
     const [selected, setSelected] = useState("");
     const [showModal, setShowModal] = useState(true);
     const [navbarChange, setNavbarChange] = useState(false);
-    //const [addworkModal, setAddworkModal] = useState(true);
-    const [accessBtn, setAccessBtn] = useState(true);
+    const [user, setUser] = useState('');
 
     const modalRef = useRef();
-
+  const auth= useAuth()
 
   const closeModal = (e) => {
     if (modalRef.current === e.target) {
@@ -43,15 +43,21 @@ const Navbar = () => {
        setShowModal(!showModal);
    }
    const handledropdown = () => {
-      setAccessBtn(!accessBtn);
+      auth.login(user);
+      setUser("Admin");
    }
-
+   const navigate = useNavigate()
+   const handleLogout = () => {
+    auth.logout();
+    navigate('/')
+   }
    
    useEffect(()=>{
     if (window.location.href.indexOf("projects") > -1) {
         setNavbarChange(true);
       }
 }, [navbarChange])
+
     return (
         <header className="header" id="header">
         <nav className="nav container">
@@ -78,11 +84,13 @@ const Navbar = () => {
                
                 <div className="nav__icon">
                   
-                  {accessBtn ? (
+                  {!auth.user ? (
                     <>
                       <i className="bx bx-info-circle change-theme"onClick={handleShowModal}></i>
                       <i className="bx bx-moon change-theme"onClick={handleTheme} id="theme-button"></i>
-                      <span className="nav__demo"onClick={handledropdown}>Demo Login</span>
+                      <span className="nav__demo"onClick={handledropdown}>
+                        Demo Login
+                      </span>
                     </>
                   ) : (
                 <div className="dropdown">
@@ -104,7 +112,7 @@ const Navbar = () => {
                       <i className="bx bx-plus change-theme"></i>
                       <Link className="dropdown-link" to="/projects">Project Manager</Link>
                     </li>
-                    <li  className="dropdown-list"onClick={()=> setAccessBtn(prev => !prev)}> 
+                    <li  className="dropdown-list"onClick={handleLogout}> 
                       <i className="bx bx-log-out change-theme"></i>
                       <Link className="dropdown-link" to="#">Sign Out</Link>
                     </li>
@@ -136,4 +144,4 @@ const Navbar = () => {
     )
 }
 
-export default Navbar
+export default Navbar;

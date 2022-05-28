@@ -1,4 +1,3 @@
-
 import { app } from '../firebase';
 import { getStorage, ref, uploadBytesResumable, getDownloadURL} from "firebase/storage";
 export const handleTheme = () => {
