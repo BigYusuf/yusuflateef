@@ -241,7 +241,7 @@ img{
 }
 .contact__card.active,
 .contact__content.active,
-.contact__form-div.active,
+.contact__form-input.active,
 .about__box.active,
 .about__description.active,
 .skills__content.active,
@@ -893,11 +893,20 @@ img{
     margin-bottom: 2rem;
     height: 4rem;
 }
+.contact__form-div.active{
+    position: relative;
+    margin-bottom: 0rem;
+    height: 4rem;
+}
 .contact__form-div1{
     position: relative;
     margin-bottom: .5rem;
     height: 2rem;
     margin-top: 1rem;
+}
+.contact__form-p{
+    margin-bottom: 2rem;
+    color: var(--first-color);
 }
 .contact__form-img{
     position: relative;
@@ -929,6 +938,13 @@ img{
 }
 .contact__form-area{
     height: 11rem;
+    position: relative;
+    margin-bottom: 2rem;
+}
+.contact__form-area.active{
+    height: 11rem;
+    position: relative;
+    margin-bottom: 0rem;
 }
 .contact__form-area textarea{
     resize: none;

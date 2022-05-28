@@ -12,11 +12,15 @@ import {
   query,
 } from "firebase/firestore";
 
+const emailCollectionRef = collection(db, "contact");
 const projectCollectionRef = collection(db, "project");
 const q = query(projectCollectionRef, orderBy("timestamp","desc"))
 class ProjectDataService {
   addProject = (newProject) => {
     return addDoc(projectCollectionRef, newProject);
+  };
+  addEmail = (newProject) => {
+    return addDoc(emailCollectionRef, newProject);
   };
 
   updateProject = (id, updatedProject) => {
