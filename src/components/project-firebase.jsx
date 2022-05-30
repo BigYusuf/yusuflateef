@@ -10,11 +10,14 @@ import {
   doc,
   orderBy,
   query,
+  where
 } from "firebase/firestore";
 
 const emailCollectionRef = collection(db, "contact");
 const projectCollectionRef = collection(db, "project");
-const q = query(projectCollectionRef, orderBy("timestamp","desc"))
+//const q = query(projectCollectionRef, orderBy("timestamp","desc"))
+
+//const q = query(projectCollectionRef, where("cat","==","web"))
 class ProjectDataService {
   addProject = (newProject) => {
     return addDoc(projectCollectionRef, newProject);
@@ -34,7 +37,10 @@ class ProjectDataService {
   };
 
   getAllProjects = () => {
-    return getDocs(q);
+    return getDocs(projectCollectionRef);
+  };
+  getProjectsByCategory = (category) => {
+    return getDocs(query(projectCollectionRef, where("cat","==", category)));
   };
 
   getProject = (id) => {

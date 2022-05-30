@@ -53,10 +53,17 @@ const Projects = () => {
     const data = await ProjectDataService.getAllProjects();
     setWorks(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
   }
+  const ListProjectsBycategory = async () => {
+    const data = await ProjectDataService.getProjectsByCategory(tablecat);
+    setWorks(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+  }
 
     useEffect(() => {
     ListProjects();
    }, [])
+    useEffect(() => {
+    ListProjectsBycategory(tablecat);
+   }, [tablecat])
 
    useEffect(() => {
     if (dataId !== undefined && dataId !== "") {
@@ -138,7 +145,7 @@ const Projects = () => {
                 <div className="contact__container container grid">
                     <div className="contact__content">
                         <h3 className="contact__title">Project list</h3>
-                        <div className="contact__info">
+                        <div className="contact__info project__info">
                             <div className="contact__card">
                                 <i className="bx bx-data contact__card-icon"></i>
                                 <h3 className="contact__card-title">Project Database</h3>
@@ -158,6 +165,7 @@ const Projects = () => {
                                     <tr>
                                         <th>ID</th>
                                         <th>TITLE</th>
+                                        <th>CAT</th>
                                         <th>ACTIONS</th>
                                     </tr>
                                 </thead>
@@ -166,6 +174,7 @@ const Projects = () => {
                                         <tr className=""key={i}>
                                             <td>{i+1}</td>
                                             <td>{item.title}</td>
+                                            <td>{item.cat}</td>
                                             <td>
                                               { /* <i type="" className="bx bx-pen" onClick={() => props.history.push(`/project/${project._id}/edit`)}></i>
                                                 <i type="" className="bx bx-trash" onClick={() => deleteHandler()}></i>*/}
