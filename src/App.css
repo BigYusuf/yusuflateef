@@ -389,6 +389,7 @@ img{
     background-color: var(--body-color);
     padding: 4.5rem 1.5rem 2.5rem;
     border-radius: 1.5rem;
+    width: 250px;
 }
 .home__modal-title,
 .home__modal-description{

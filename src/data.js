@@ -123,7 +123,32 @@ export const TestimonialData =[
         id: 4, name: "Marvel", img: "/image/pic-4.png",
         desc: 'The only reason I like your work is because you take your time to listen to what i have to say and do my work how i want them.',
     },
-   
+
+]
+
+export const MainModalData =[
+    {
+        id: 1, title: " Voice Control", logo: "bx bx-microphone",
+        desc: 'Use the Microphone button to control website. You can perform task like',
+        l1: 'Navigation: Go home/ scroll to top/ contact',
+        l2: 'Interaction: Tell me about Yusuf/ switch background',
+        l3: 'conversation like AI portfolio',
+    },
+    {
+        id: 2, title: " Project Manager", logo: "bx bx-book",
+        desc: 'Click the Demo Login Button to access this page. You can perform task like',
+        l1: 'Add Project to portfolio (database)',
+        l2: 'Edit and manage Project: ',
+        l3: 'Delete Project from database',
+    },
+    {
+        id: 3, title: " Login", logo: "bx bx-login",
+        desc: 'In order to have access to the admin control, Click the Demo Login Button to access the special dropdown. You can perform task like',
+        l1: 'Manage all testimonials',
+        l2: 'project Manager ',
+        l3: 'Full control of web app',
+    },
+
 ]
 export const imgData = [
     { id: 1, img: "/image/car-1.png", title: "Web design"},

@@ -1,5 +1,4 @@
 import React, { useState, useEffect  } from 'react';
-import Navbar from "../components/Navbar";
 import Intro from "../components/Intro";
 import About from "../components/About";
 import Skills from "../components/Skills";
@@ -162,7 +161,6 @@ const Alan = () => {
 
     return (
         <main className="main" id="main">
-            <Navbar/>
             <Intro/>
             <About highlightdesc={highlightdesc}
                    highlightexp={highlightexp}

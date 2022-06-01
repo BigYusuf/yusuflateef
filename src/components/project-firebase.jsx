@@ -37,10 +37,10 @@ class ProjectDataService {
   };
 
   getAllProjects = () => {
-    return getDocs(projectCollectionRef);
+    return getDocs(projectCollectionRef, orderBy('createdAt'));
   };
   getProjectsByCategory = (category) => {
-    return getDocs(query(projectCollectionRef, where("cat","==", category)));
+    return getDocs(query(projectCollectionRef, where("cat","==", category), orderBy('createdAt')));
   };
 
   getProject = (id) => {

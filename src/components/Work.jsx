@@ -2,6 +2,7 @@
 import React, { useRef, useEffect, useCallback, useState } from 'react';
 import { useSpring } from 'react-spring';
 import { WorkList, WorkModal} from './ActiveList';
+import ProjectDataService from "./project-firebase";
 import {list, webData, APIData, gisData} from '../data'
 
 const Work = () => {
@@ -11,7 +12,24 @@ const Work = () => {
     //const openModal = () =>{
       //  setSelected(prev => !prev)
    // }
+  
+   const ListProjects = async () => {
+    const data = await ProjectDataService.getAllProjects();
+    setData(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+  }
+  const ListProjectsBycategory = async () => {
+    const data = await ProjectDataService.getProjectsByCategory(selected);
+    setData(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+  }
+   useEffect(() => {
+    if(selected){
+        ListProjectsBycategory();
+    }else{
+        ListProjects();
+    }
+}, [selected])
 
+/*
     useEffect(() => {
         switch (selected) {
             case 'web':
@@ -28,6 +46,7 @@ const Work = () => {
                 break;
         }
     }, [selected])
+    */
     const modalRef = useRef();
 
   const animation = useSpring({
@@ -72,7 +91,7 @@ const Work = () => {
        setCurrent(current > 0 ? current - 1 : length);
    };
 
-
+   console.log(data.img1)
     return (
         <div>
             {/* ========================== Work =========================== */}
@@ -87,17 +106,17 @@ const Work = () => {
                 </div>
 
                 <div className="work__container container grid">
-                    {data.map((c) => (
-                       <WorkModal key={c.id} title={c.title}
-                       id={c.id} img={c.img} images={c.images} current={current} 
+                    {data.map((c, i) => (
+                       <WorkModal key={i+1} title={c.title}
+                       id={c.id} img={c.img} images={c.img1} current={current} 
                        prevSlide={prevSlide}
                        nextSlide={nextSlide} animation={animation} 
                        modalRef={modalRef}
-                       demo={c.demo} github={c.github} design={c.design}
-                       backend={c.backend} frontend={c.frontend} desc={c.desc}
+                       demo={c.linkDemo} github={c.linkGithub} design={c.others}
+                       backend={c.backend} frontend={c.frontend} desc={c.description}
                        closeModal={closeModal} active ={showModal === c.id} 
                        setShowModal={setShowModal}/>
-                  ))}
+                    ))}
                 </div>
             </section>
         </div>

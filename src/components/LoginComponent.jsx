@@ -1,14 +1,17 @@
 import React, { useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
-import Navbar from './Navbar';
+import { Link, useNavigate } from 'react-router-dom';
+import { useUserAuth } from "../context/UserAuthContext";
 
 const LoginComponent = ({password, setPassword, mail, setMail}) => {
     const form = useRef();
+    const [error, setError] = useState("");
+    const { logIn } = useUserAuth();
+    const navigate = useNavigate();
 
     const [formErrors, setFormErrors] = useState({})
        
     
-   const handleLogin = (e) => {
+   const handleLogin = async (e) => {
       e.preventDefault();
       const errors = {};
       const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
@@ -30,14 +33,19 @@ const LoginComponent = ({password, setPassword, mail, setMail}) => {
             setFormErrors(errors);
         }
         if(password && mail && regex.test(mail) && password.length > 3){
-            
+            try {
+                await logIn(mail, password);
+                navigate("/");
+            } catch (err) {
+                setError(err.message);
+            }
         };
+        
         console.log(errors);
     };
     
     return (
         <div>
-            <Navbar/>
             {/* ========================== Login =========================== */}
             <section className="contact section"id="contact">
                 <span className="section__subtitle">Welcome Boss</span>
@@ -105,6 +113,8 @@ const LoginComponent = ({password, setPassword, mail, setMail}) => {
                                 <button className="contact__Send-button button">Sign in</button>
                                 
                             </div>
+                            <p className="contact__form-p">{error}</p>
+
                         </form>
                     </div>
 

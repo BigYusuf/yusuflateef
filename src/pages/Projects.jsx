@@ -1,10 +1,10 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { serverTimestamp } from "firebase/firestore";
 import {handleUpload, handleUpload1} from '../components/Utils';
-import Navbar from "../components/Navbar";
 import ProjectDataService from "../components/project-firebase";
 import {ToastContainer, toast, Zoom} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useUserAuth } from '../context/UserAuthContext';
 
 const Projects = () => {
     const [dataId, setDataId] = useState("");
@@ -27,6 +27,7 @@ const Projects = () => {
     const [projectpage, setProjectpage] = useState(true);
     const [message, setMessage] = useState(false);
     const form = useRef();
+    const {RealUser} = useUserAuth();
     
     const handleChange = (e) => {
         if (e.target.files[0]){
@@ -59,12 +60,13 @@ const Projects = () => {
   }
 
     useEffect(() => {
-    ListProjects();
-   }, [])
-    useEffect(() => {
-    ListProjectsBycategory(tablecat);
+        if(tablecat){
+            ListProjectsBycategory();
+        }else{
+            ListProjects();
+        }
    }, [tablecat])
-
+   
    useEffect(() => {
     if (dataId !== undefined && dataId !== "") {
         editProject();
@@ -79,8 +81,7 @@ const Projects = () => {
           }
     }
     
-    const payload= {title, frontend, cat, img, img1, backend, others, description, linkBlog, linkDemo, linkGithub, createdAt: serverTimestamp()
-    }
+    const payload= {title, frontend, cat, img, img1, backend, others, description, linkBlog, linkDemo, linkGithub, createdAt: serverTimestamp()}
     
     const addData = (e) => {
     e.preventDefault();
@@ -137,7 +138,6 @@ const Projects = () => {
 
     return (
         <div>
-            <Navbar/>
             {/* ========================== project manager =========================== */}
             <section className="contact section"id="contact">
                 <span className="section__subtitle">Project Matters</span>
@@ -178,9 +178,17 @@ const Projects = () => {
                                             <td>
                                               { /* <i type="" className="bx bx-pen" onClick={() => props.history.push(`/project/${project._id}/edit`)}></i>
                                                 <i type="" className="bx bx-trash" onClick={() => deleteHandler()}></i>*/}
-                                                <div className="actions">
-                                              <i type="" className="bx bx-pen" onClick={() => editHandler(item.id) }></i>
-                                                <i type="" className="bx bx-trash"onClick={() => deleteHandler(item.id)}></i>
+                                                <div className="actions">{RealUser ? (
+                                                    <>
+                                                        <i type="" className="bx bx-pen" onClick={() => editHandler(item.id) }></i>
+                                                        <i type="" className="bx bx-trash"onClick={() => deleteHandler(item.id)}></i>
+                                                    </>
+                                                ) : (
+                                                    <>
+                                                        <i type="" className="bx bx-pen" onClick={() => editHandler(item.id) }></i>
+                                                        <i type="" className="bx bx-trash"onClick={() => toast.error("Error!, You are not Authorized")}></i>
+                                                    </>
+                                                )}
                                                 </div>
                                             </td>
                                         </tr>

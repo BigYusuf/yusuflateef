@@ -183,3 +183,19 @@ export const AddProjectModal = ({addworkModal, setAddworkModal, modalRef }) => {
 
     )
 }
+
+export const MainModal = ({id, title, logo, desc, l1, l2, l3}) => {
+    return(
+            <div key={id}>
+                <h3 className="home__modal-title"><i className={logo}></i>{title}</h3>
+                <p className="home__modal-description">
+                {desc}
+                </p>
+                <ul className="home__modal-list">
+                    <li><i className="bx bx-check"></i>{l1}</li>
+                    <li><i className="bx bx-check"></i>{l2}</li>
+                    <li><i className="bx bx-check"></i>{l3}</li>
+                </ul>
+            </div>
+    )
+}
