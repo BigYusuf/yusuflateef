@@ -21,15 +21,15 @@ const Footer = () => {
                         </li>
                     </ul>
                     <ul className="footer__social">
-                        <Link to="https://www.facebook.com/" target="_blank"className="footer__social-link">
+                        <a href="https://www.facebook.com/bigyusufff" className="footer__social-link">
                             <i className="bx bxl-facebook"></i>
-                        </Link>
-                        <Link to="https://www.instagram.com/" target="_blank"className="footer__social-link">
+                        </a>
+                        <a href="https://www.instagram.com/bigyusufff" className="footer__social-link">
                             <i className="bx bxl-instagram"></i>
-                        </Link>
-                        <Link to="https://www.twitter.com/" target="_blank"className="footer__social-link">
+                        </a>
+                        <a href="https://www.twitter.com/" className="footer__social-link">
                             <i className="bx bxl-twitter"></i>
-                        </Link>
+                        </a>
                     </ul>
                     <span className="footer__copy">
                         &#169; BigYusufff. All rights reserved
