@@ -35,7 +35,7 @@ const LoginComponent = ({password, setPassword, mail, setMail}) => {
         if(password && mail && regex.test(mail) && password.length > 3){
             try {
                 await logIn(mail, password);
-                navigate("/");
+                navigate("/projects");
             } catch (err) {
                 setError(err.message);
             }

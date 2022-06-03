@@ -1,13 +1,14 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getFirestore } from 'firebase/firestore';
+import { getAuth } from "firebase/auth";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: process.env.FIREBASE_API_KEY,
+  apiKey: process.env.REACT_APP_FBASE_API_KEY,
   authDomain: "yusuflateef-d3dd8.firebaseapp.com",
   db_imageURL: "gs://yusuflateef-d3dd8.appspot.com",
   projectId: "yusuflateef-d3dd8",
@@ -19,29 +20,4 @@ const firebaseConfig = {
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
-
-/*
-const colRef = collection(db, 'works')
-
-//get collection database
-getDocs(colRef)
-.then((snapshot) => {
-  let works =[] 
-  snapshot.docs.forEach((doc) => {
-    works.push({ ...doc.data(), id: doc.id })
-  })
-  console.log(works)
-})
-.catch(err => {
-  console.log(err.message);
-})
-
-//get real time collection database
-onSnapshot(colRef, (snapshot) => {
-  let works =[] 
-  snapshot.docs.forEach((doc) => {
-    works.push({ ...doc.data(), id: doc.id })
-  })
-  console.log(works)
-})
-*/
+export const auth = getAuth(app);

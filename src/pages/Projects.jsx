@@ -25,41 +25,20 @@ const Projects = () => {
     const [works, setWorks] = useState([]);
     const [loader, setLoader] = useState(false);
     const [projectpage, setProjectpage] = useState(true);
-    const [message, setMessage] = useState(false);
     const form = useRef();
     const {RealUser} = useUserAuth();
     
-    const handleChange = (e) => {
-        if (e.target.files[0]){
-            setImage(e.target.files[0]);
-        }
-    }
-  const editProject = async () => {
-    try {
-      const docSnap = await ProjectDataService.getProject(dataId);
-      console.log("the record is :", docSnap.data());
-      setTitle(docSnap.data().title);
-      setFrontend(docSnap.data().frontend);
-      setBackend(docSnap.data().backend);
-      setImage(docSnap.data().image);
-      setOthers(docSnap.data().others);
-      setDescription(docSnap.data().description);
-      setLinkGithub(docSnap.data().linkGithub);
-      setLinkBlog(docSnap.data().linkBlog);
-      setLinkDemo(docSnap.data().linkDemo);
-      setCat(docSnap.data().cat);
-    } catch (error) {}
-  };
   const ListProjects = async () => {
     const data = await ProjectDataService.getAllProjects();
     setWorks(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
   }
-  const ListProjectsBycategory = async () => {
-    const data = await ProjectDataService.getProjectsByCategory(tablecat);
-    setWorks(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-  }
+  
 
     useEffect(() => {
+        const ListProjectsBycategory = async () => {
+            const data = await ProjectDataService.getProjectsByCategory(tablecat);
+            setWorks(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+          }
         if(tablecat){
             ListProjectsBycategory();
         }else{
@@ -68,6 +47,23 @@ const Projects = () => {
    }, [tablecat])
    
    useEffect(() => {
+       
+    const editProject = async () => {
+        try {
+        const docSnap = await ProjectDataService.getProject(dataId);
+        console.log("the record is :", docSnap.data());
+        setTitle(docSnap.data().title);
+        setFrontend(docSnap.data().frontend);
+        setBackend(docSnap.data().backend);
+        setImg(docSnap.data().img);
+        setOthers(docSnap.data().others);
+        setDescription(docSnap.data().description);
+        setLinkGithub(docSnap.data().linkGithub);
+        setLinkBlog(docSnap.data().linkBlog);
+        setLinkDemo(docSnap.data().linkDemo);
+        setCat(docSnap.data().cat);
+        } catch (error) {}
+    };
     if (dataId !== undefined && dataId !== "") {
         editProject();
       }
@@ -81,20 +77,25 @@ const Projects = () => {
           }
     }
     
-    const payload= {title, frontend, cat, img, img1, backend, others, description, linkBlog, linkDemo, linkGithub, createdAt: serverTimestamp()}
     
+    const unAuthenticated = (e) => {
+        e.preventDefault();
+        toast.error("Error!!!, You are not authenticated");
+    }
     const addData = (e) => {
     e.preventDefault();
     setLoader(true);
     
+    handleUpload({url:img,setUrl:setImg, image:image});
+    handleUpload1({img1:img1,setUrl:setImg1, images:image1});
+    const payload= {title, frontend, cat, img, img1, backend, others, description, linkBlog, linkDemo, linkGithub, createdAt: serverTimestamp()}
     if (dataId !== undefined && dataId !== "") {
         
-        handleUpload({url:img,setUrl:setImg, image:image});
-        handleUpload1({url:img1,setUrl:setImg1, images:image1});
-        ProjectDataService.updateProject(payload).then(() => {
+        ProjectDataService.updateProject(dataId, payload).then(() => {
             toast.success("Project Updated successfully");
             setLoader(false);
             ListProjects();
+            console.log('Updated Project ',payload);
         }, (error) => {
             console.log(error.text);
             toast.error("Error!!!, Project not Updated");
@@ -102,14 +103,14 @@ const Projects = () => {
         });
       }else{
         //
-          handleUpload({url:img,setUrl:setImg, image:image});
-          handleUpload1({url:img1,setUrl:setImg1, images:image1});
+          
         //
       /*--------------------------send to firestore database----------------------------*/
       ProjectDataService.addProject(payload).then(() => {
             toast.success("Project Added successfully");
             setLoader(false);
             ListProjects();
+            console.log('New Project ',payload);
         }, (error) => {
             console.log(error.text);
             toast.error("Error!!!, Project not Added");
@@ -130,6 +131,7 @@ const Projects = () => {
  };
     const deleteHandler = async (id) => {
        await ProjectDataService.deleteProject(id);
+       toast.success("Project successfully deleted");
        ListProjects();
     }
     const editHandler = (id) => {
@@ -159,13 +161,12 @@ const Projects = () => {
                                     </select>
                                 </div>
                             </div>
-                        <div className="contact__card">
+                            <div className="contact__card">
                             <table>
                                 <thead>
                                     <tr>
                                         <th>ID</th>
                                         <th>TITLE</th>
-                                        <th>CAT</th>
                                         <th>ACTIONS</th>
                                     </tr>
                                 </thead>
@@ -174,10 +175,7 @@ const Projects = () => {
                                         <tr className=""key={i}>
                                             <td>{i+1}</td>
                                             <td>{item.title}</td>
-                                            <td>{item.cat}</td>
                                             <td>
-                                              { /* <i type="" className="bx bx-pen" onClick={() => props.history.push(`/project/${project._id}/edit`)}></i>
-                                                <i type="" className="bx bx-trash" onClick={() => deleteHandler()}></i>*/}
                                                 <div className="actions">{RealUser ? (
                                                     <>
                                                         <i type="" className="bx bx-pen" onClick={() => editHandler(item.id) }></i>
@@ -206,21 +204,43 @@ const Projects = () => {
                            {projectpage ? (
                                
                            <div className="contact__section1">
-                                <div className="contact__form-img"> 
-                                <label htmlFor="" className="contact__form-tag">Project Image</label>
-                                    {image ? (
-                                    <img style={{width:200, height:150}}id="image" 
-                                    alt="" src={URL.createObjectURL(image)} 
-                                    />) : (
-                                        <img style={{width:200, height:150, }}id="image"
-                                        alt="" src="/image/default-img.png" 
-                                        />)}
-                                    <input type="file" id="imagefile"accept="image/*" style={{display:"none"}}
-                                        onChange={handleChange} />
-                                        <label htmlFor="imagefile" onChange={handleChange}className="upload-icon">
-                                        <i className="bx bx-upload"></i>
-                                        </label>
-                                </div>
+                               {dataId ? (
+                                    <div className="contact__form-img"> 
+                                    <label htmlFor="" className="contact__form-tag">Project Image</label>
+                                        {img ? (
+                                        <img style={{width:200, height:150}}id="image" 
+                                        alt="" src={img} 
+                                        />) : (
+                                            image ? (
+                                                <img style={{width:200, height:150}}id="image" 
+                                                alt="" src={URL.createObjectURL(image)} 
+                                                />) : (
+                                                    <img style={{width:200, height:150, }}id="image"
+                                                    alt="" src="/image/default-img.png" 
+                                                    />))}
+                                        <input type="file" id="imagefile"accept="image/*" style={{display:"none"}}
+                                            onChange={(e) => setImage(e.target.files[0])} />
+                                            <label htmlFor="imagefile" onChange={(e) => setImage(e.target.files[0])}className="upload-icon">
+                                            <i className="bx bx-upload"></i>
+                                            </label>
+                                    </div>
+                                ) : (
+                                    <div className="contact__form-img"> 
+                                    <label htmlFor="" className="contact__form-tag">Project Image</label>
+                                        {image ? (
+                                        <img style={{width:200, height:150}}id="image" 
+                                        alt="" src={URL.createObjectURL(image)} 
+                                        />) : (
+                                            <img style={{width:200, height:150, }}id="image"
+                                            alt="" src="/image/default-img.png" 
+                                            />)}
+                                        <input type="file" id="imagefile"accept="image/*" style={{display:"none"}}
+                                            onChange={(e) => setImage(e.target.files[0])} />
+                                            <label htmlFor="imagefile" onChange={(e) => setImage(e.target.files[0])}className="upload-icon">
+                                            <i className="bx bx-upload"></i>
+                                            </label>
+                                    </div>
+                               )}
                                 <div className="contact__form-div">
                                     <label htmlFor="" className="contact__form-tag">Project Title</label>
                                     <input
@@ -310,13 +330,19 @@ const Projects = () => {
                             </div>
                             <div className="contact__form-buttonSection">
                                <button className="button contact__Send-button" onClick={()=> setProjectpage(true)}>Back</button>
-                               {!dataId ?
+                               {!dataId ?(
                                 <button className={loader ? "contact__Send-button button active" : "contact__Send-button button"} onClick={addData}>Add Project</button>
-                               :
-                                <>
-                                    <button className= "contact__Send-button button" onClick={()=> setMessage(prev => !prev)}>Edit Project</button>
-                                    {message && <span className= "contact__display-message">You are not permitted to edit any project</span>}
-                                </>
+                               ) : (
+                               RealUser? (
+                                    <>
+                                        <button className= "contact__Send-button button" onClick={addData}>Update Project</button>
+                                    </>
+                                ) : (
+                                    <>
+                                        <button className= "contact__Send-button button" onClick={unAuthenticated}>Update Project</button>
+                                    </>
+                                )
+                                )
                                }
                             </div>
                             </>

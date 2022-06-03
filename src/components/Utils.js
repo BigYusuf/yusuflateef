@@ -41,19 +41,21 @@ export const handleUpload = ({url, setUrl, image}) => {
       () => {
           getDownloadURL(uploadTask.snapshot.ref).then((url) => {
             setUrl(url);
+           // console.log(url)
         });
       }
     );
 }
  
-export const handleUpload1 = ({url, setUrl, images}) => {
+export const handleUpload1 = ({img1, setUrl, images}) => {
     const promises = [];
-    const fileName = `images/${new Date().getTime()}`;
-    const storage = getStorage(app);
-    const storageRef = ref(storage, fileName);
-    const uploadTask = uploadBytesResumable(storageRef);
-    promises.push(uploadTask);
-    images.map(() => {
+    
+    images.map((image) => {
+        const fileName = `images/${new Date().getTime() + image.name}`;
+        const storage = getStorage(app);
+        const storageRef = ref(storage, fileName);
+        const uploadTask = uploadBytesResumable(storageRef, image);
+        promises.push(uploadTask);
         return(
             uploadTask.on(
             "state_changed",
@@ -62,8 +64,9 @@ export const handleUpload1 = ({url, setUrl, images}) => {
                 // Handle unsuccessful uploads
             },
             async () => {
-            await getDownloadURL(uploadTask.snapshot.ref).then((url) => {
-                setUrl((prevState) => [...prevState, url]);
+            await getDownloadURL(uploadTask.snapshot.ref).then((img1) => {
+                setUrl((prevState) => [...prevState, img1]);
+               // console.log(img1)
                 });
             }
             )

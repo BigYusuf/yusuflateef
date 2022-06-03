@@ -3,7 +3,7 @@ import React, { useRef, useEffect, useCallback, useState } from 'react';
 import { useSpring } from 'react-spring';
 import { WorkList, WorkModal} from './ActiveList';
 import ProjectDataService from "./project-firebase";
-import {list, webData, APIData, gisData} from '../data'
+import {list} from '../data'
 
 const Work = () => {
     const [selected, setSelected] = useState("web")
@@ -17,11 +17,11 @@ const Work = () => {
     const data = await ProjectDataService.getAllProjects();
     setData(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
   }
-  const ListProjectsBycategory = async () => {
-    const data = await ProjectDataService.getProjectsByCategory(selected);
-    setData(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-  }
    useEffect(() => {
+    const ListProjectsBycategory = async () => {
+      const data = await ProjectDataService.getProjectsByCategory(selected);
+      setData(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    }
     if(selected){
         ListProjectsBycategory();
     }else{
@@ -67,7 +67,6 @@ const Work = () => {
     e => {
       if (e.key === 'Escape' && showModal) {
         setShowModal(false);
-     //   console.log('I pressed');
       }
     },
     [setShowModal, showModal]
@@ -91,7 +90,7 @@ const Work = () => {
        setCurrent(current > 0 ? current - 1 : length);
    };
 
-   console.log(data.img1)
+   console.log(data)
     return (
         <div>
             {/* ========================== Work =========================== */}

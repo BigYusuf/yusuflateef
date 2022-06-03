@@ -71,11 +71,13 @@ const Navbar = () => {
    useEffect(()=>{
     if (window.location.href.indexOf("projects") > -1) {
         setNavbarChange(true);
-      }
-    if (window.location.href.indexOf("login") > -1) {
+      }else if (window.location.href.indexOf("login") > -1){
         setNavbarChange(true);
+      }else {
+        setNavbarChange(false);
       }
 }, [navbarChange])
+
 var settings = {
   dots: true,
   infinite: true,
@@ -165,12 +167,12 @@ var settings = {
                 {/* show home modal*/}
                 <div className={showModal ? "home__modal active-modal" : "home__modal"} onClick={closeModal} ref={modalRef}>
                   <div className="home__modal-content">
-                    <Slider {...settings}>
                     <i className="bx bx-x home__modal-close" onClick={() => setShowModal(prev => !prev)}></i>
+                    <Slider {...settings}>
                       {MainModalData.map((item) =>(
                         
                         <MainModal
-                        id={item.id} title={item.title}
+                        key={item.id} id={item.id} title={item.title}
                         logo={item.logo} desc={item.desc}
                         l1={item.l1} l2={item.l2} l3={item.l3}
                         />

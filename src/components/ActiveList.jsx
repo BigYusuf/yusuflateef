@@ -76,7 +76,7 @@ export const WorkModal = ({id, design, demo, github, desc, frontend, backend, ti
                                 {images.map((e, index)=> {
                                     return( 
                                         <div key={index} className={index === current ? 'slide active': 'slide'}>
-                                            {index === current && (<img  src={e.img1} alt="" className="work__modal-image"/>)}
+                                            {index === current && (<img  src={e} alt="" className="work__modal-image"/>)}
                                         </div>
                                     )
                                 })}

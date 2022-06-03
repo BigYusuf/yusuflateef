@@ -29,7 +29,7 @@ export const webData = [
 { id: 3, img: "/image/blue-tesla1.png", title: "Blue Tesla ",
     frontend:"React JS, Styled-Components",
     backend:"Firebase 9",
-    desc: "Responsive and interesting Tesla Clone",
+    desc: "Responsive and interesting Tesla Clone powered with firebase authetication with fully functioning login ang sign up pages. Manage using redux state management tool",
     images:[{img1:"/image/blue-tesla1.png"}, {img1:"/image/tesla-register.png"}, {img1:"/image/tesla-account.png"}, {img1:"/image/blue-tesla.png",}],
     demo:'https://tesla-clone-49069.web.app/',
     github:'https://github.com/BigYusuf/tesla-clone',
