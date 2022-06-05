@@ -3,7 +3,6 @@ import {Link, useNavigate} from "react-router-dom";
 import {NavbarList, NavbarList1, MainModal} from './ActiveList';
 import {NavbarData1, NavbarData2, MainModalData} from '../data';
 import {handleTheme} from "./Utils";
-import { useAuth } from "../context/auth";
 import { useUserAuth } from '../context/UserAuthContext';
 import Slider from "react-slick";
 // Import css files
@@ -11,15 +10,12 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 
-const Navbar = () => {
+const Navbar = ({ navbarChange, setNavbarChange }) => {
     const [selected, setSelected] = useState("");
     const [showModal, setShowModal] = useState(true);
-    const [navbarChange, setNavbarChange] = useState(false);
-    const [user, setUser] = useState('');
     const {RealUser, logOut} = useUserAuth();
 
     const modalRef = useRef();
-  const auth= useAuth()
 
   const closeModal = (e) => {
     if (modalRef.current === e.target) {
@@ -49,34 +45,23 @@ const Navbar = () => {
        setShowModal(!showModal);
    }
    const handledropdown = () => {
-      auth.login(user);
-      setUser("Admin");
+      navigate('/login')
    }
    const navigate = useNavigate()
    const handleLogout = async () => {
      if(RealUser){
        try {
         await logOut();
-        auth.logout();
         navigate("/");
       } catch (error) {
         console.log(error.message);
       }
      }else{
-       auth.logout();
        navigate('/')
      }
    }
    
-   useEffect(()=>{
-    if (window.location.href.indexOf("projects") > -1) {
-        setNavbarChange(true);
-      }else if (window.location.href.indexOf("login") > -1){
-        setNavbarChange(true);
-      }else {
-        setNavbarChange(false);
-      }
-}, [navbarChange])
+   
 
 var settings = {
   dots: true,
@@ -113,12 +98,12 @@ var settings = {
                
                 <div className="nav__icon">
                   
-                  {!auth.user ? (
+                  {!RealUser ? (
                     <>
                       <i className="bx bx-info-circle change-theme"onClick={handleShowModal}></i>
                       <i className="bx bx-moon change-theme"onClick={handleTheme} id="theme-button"></i>
                       <span className="nav__demo"onClick={handledropdown}>
-                        Demo Login
+                        Admin Login
                       </span>
                     </>
                   ) : (
@@ -127,13 +112,6 @@ var settings = {
                     <i className="bx bx-caret-down"></i>
                   </p>
                   <ul className="dropdown-contents">
-                    {!RealUser &&
-                    <>
-                      <li  className="dropdown-list">
-                        <i className="bx bx-plus change-theme"></i>
-                        <Link className="dropdown-link" to="/login">Real Admin</Link>
-                      </li>
-                    </>}
                     <li  className="dropdown-list"onClick={handleShowModal}>
                       <i className="bx bx-info-circle change-theme"></i>
                       <Link className="dropdown-link" to="#">Show Help</Link>
@@ -143,14 +121,10 @@ var settings = {
                       <Link className="dropdown-link" to="#">Background</Link>
                       
                     </li>
-                    {RealUser &&
-                    <>
-                      <li  className="dropdown-list">
-                        <i className="bx bx-plus change-theme"></i>
-                        <Link className="dropdown-link" to="#">Testimonial client</Link>
-                      </li>
-                    </>}
-                    
+                    <li  className="dropdown-list">
+                      <i className="bx bx-plus change-theme"></i>
+                      <Link className="dropdown-link" to="#">Testimonial client</Link>
+                    </li>
                     <li  className="dropdown-list">
                       <i className="bx bx-plus change-theme"></i>
                       <Link className="dropdown-link" to="/projects">Project Manager</Link>
@@ -163,7 +137,6 @@ var settings = {
                 </div>
               )}
                  
-                  {/* <i className="button button--ghost">Demo Login</i>*/}
                 {/* show home modal*/}
                 <div className={showModal ? "home__modal active-modal" : "home__modal"} onClick={closeModal} ref={modalRef}>
                   <div className="home__modal-content">

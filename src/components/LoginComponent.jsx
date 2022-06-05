@@ -43,6 +43,11 @@ const LoginComponent = ({password, setPassword, mail, setMail}) => {
         
         console.log(errors);
     };
+    const demoLogin = (e) => {
+        e.preventDefault();
+        setMail(process.env.REACT_APP_GUEST_EMAIL);
+        setPassword(process.env.REACT_APP_GUEST_PASSWORD);
+    }
     
     return (
         <div>
@@ -64,7 +69,7 @@ const LoginComponent = ({password, setPassword, mail, setMail}) => {
                             </div>
                                 
                             <div className={"contact__card"}>
-                                <i className="bx bxl-whatsapp contact__card-icon"></i>
+                                <i className="bx bxl-data contact__card-icon"></i>
                                 <h3 className="contact__card-title">Testimonial Manager</h3>
                                 <span className="contact__card-data">Enable/ Disable any testimonial from Database</span>
                                 <Link to="" className="contact__button">
@@ -73,9 +78,9 @@ const LoginComponent = ({password, setPassword, mail, setMail}) => {
                             </div>
                             
                             <div className={"contact__card"}>
-                                <i className="bx bxl-profile contact__card-icon"></i>
+                                <i className="bx bx-user contact__card-icon"></i>
                                 <h3 className="contact__card-title">Full Control of portfolio</h3>
-                                <span className="contact__card-data">Coming soon</span>
+                                <span className="contact__card-data">Grant access to the following sections: about me, services list, skills section, footer ands home section</span>
                                 <Link to="" className="contact__button">
                                     Let's go <i className="bx bx-right-arrow-alt contact__button-icon"></i>
                                 </Link>
@@ -88,7 +93,7 @@ const LoginComponent = ({password, setPassword, mail, setMail}) => {
                         <form action="" className="contact__form" ref={form} onSubmit={handleLogin}>
                             
                             <div className={formErrors.mail ? "contact__form-div active" : "contact__form-div"}>
-                                <label htmlFor="" className="contact__form-tag">Mail</label>
+                                <label htmlFor="" className="contact__form-tag">Email</label>
                                 <input type="text"name="email" value={mail}
                                     onChange={(e) => setMail(e.target.value)}
                                      placeholder="Insert your Email"
@@ -113,9 +118,26 @@ const LoginComponent = ({password, setPassword, mail, setMail}) => {
                                 <button className="contact__Send-button button">Sign in</button>
                                 
                             </div>
-                            <p className="contact__form-p">{error}</p>
+                            {error && ( <p className="contact__form-p">{error}</p> )}
 
                         </form>
+                            <div className= "contact__card demo_login">
+                                <h3 className="contact__card-title">Demo App</h3>
+                                <span className="contact__card-data">If you wish to demo this app with admin access</span>
+                                <span className="contact__card-data">Enter the following details</span>
+                                
+                                <ul className="contact__card-data">
+                                <li className="contact__card-list">Email: guest@bigyusufff.com</li>
+                                <li className="contact__card-list">Password: guest123</li>
+                                </ul>
+                                <hr/>
+                                <span className="contact__card-data">OR</span>
+                                <span className="contact__card-data">Just Click this</span>
+                                <Link to="#" className="contact__button" onClick={demoLogin}>
+                                    Demo Login <i className="bx bx-right-arrow-alt contact__button-icon"></i>
+                                </Link>
+                            </div>
+
                     </div>
 
                 </div>

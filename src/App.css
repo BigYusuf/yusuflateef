@@ -877,6 +877,10 @@ img{
     display: block;
     margin-bottom: 0.75rem;
 }
+.contact__card-list{
+    display: block;
+    text-align: left;
+}
 .contact__button{
     color: var(--first-color);
     font-size: var(--small-font-size);
@@ -1015,6 +1019,11 @@ button.active,
     background-color: var(--first-color);
     color: var(--body-color);
 
+}
+
+/*demo login*/
+.demo_login{
+    margin-top: 2rem;
 }
 /*table css*/
 table {

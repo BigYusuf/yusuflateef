@@ -5,6 +5,7 @@ import ProjectDataService from "../components/project-firebase";
 import {ToastContainer, toast, Zoom} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useUserAuth } from '../context/UserAuthContext';
+import Navbar from '../components/Navbar';
 
 const Projects = () => {
     const [dataId, setDataId] = useState("");
@@ -27,6 +28,7 @@ const Projects = () => {
     const [projectpage, setProjectpage] = useState(true);
     const form = useRef();
     const {RealUser} = useUserAuth();
+    const [navbarChange, setNavbarChange] = useState(true);
     
   const ListProjects = async () => {
     const data = await ProjectDataService.getAllProjects();
@@ -140,6 +142,11 @@ const Projects = () => {
 
     return (
         <div>
+        
+            <Navbar
+                  navbarChange={navbarChange}
+                  setNavbarChange={setNavbarChange}
+            />
             {/* ========================== project manager =========================== */}
             <section className="contact section"id="contact">
                 <span className="section__subtitle">Project Matters</span>

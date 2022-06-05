@@ -82,7 +82,7 @@ const Work = () => {
   const slides = data;
    const [current, setCurrent] = useState(0);
    const length = slides.length;
-
+    console.log(slides.length)
    const nextSlide = () =>{
        setCurrent(current < length ? current + 1 : 0);
    };

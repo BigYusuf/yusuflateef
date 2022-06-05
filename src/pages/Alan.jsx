@@ -9,6 +9,7 @@ import Footer from '../components/Footer';
 import Testimonials from "../components/Testimonials";
 import {handleTheme} from '../components/Utils';
 import alanBtn from "@alan-ai/alan-sdk-web";
+import Navbar from '../components/Navbar';
 
 const Alan = () => {
   //  const [change, setChange] = useState("");
@@ -56,6 +57,7 @@ const Alan = () => {
         window.location.href = '#Testimonial';
     }
     
+    const [navbarChange, setNavbarChange] = useState(false);
     useEffect(() => {
       if(alanInstance != null) return
       setAlanInstance(
@@ -161,7 +163,12 @@ const Alan = () => {
 
     return (
         <main className="main" id="main">
+          
             <Intro/>
+            <Navbar
+                  navbarChange={navbarChange}
+                  setNavbarChange={setNavbarChange}
+            />
             <About highlightdesc={highlightdesc}
                    highlightexp={highlightexp}
                    highlightwork={highlightwork}
