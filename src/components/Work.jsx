@@ -17,8 +17,9 @@ const Work = () => {
     const data = await ProjectDataService.getAllProjects();
     setData(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
   }
+
    useEffect(() => {
-    const ListProjectsBycategory = async () => {
+    /*const ListProjectsBycategory = async () => {
       const data = await ProjectDataService.getProjectsByCategory(selected);
       setData(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     }
@@ -27,6 +28,13 @@ const Work = () => {
     }else{
         ListProjects();
     }
+     */ 
+    if(selected){
+      ListProjects();
+    }else{
+      ListProjects();
+  }
+     
 }, [selected])
 
 /*
@@ -82,7 +90,6 @@ const Work = () => {
   const slides = data;
    const [current, setCurrent] = useState(0);
    const length = slides.length;
-    console.log(slides.length)
    const nextSlide = () =>{
        setCurrent(current < length ? current + 1 : 0);
    };
@@ -90,7 +97,6 @@ const Work = () => {
        setCurrent(current > 0 ? current - 1 : length);
    };
 
-   console.log(data)
     return (
         <div>
             {/* ========================== Work =========================== */}
@@ -105,7 +111,7 @@ const Work = () => {
                 </div>
 
                 <div className="work__container container grid">
-                    {data.map((c, i) => (
+                    {data.filter(newdata => newdata.cat.includes(selected)).map((c, i) => (
                        <WorkModal key={i+1} title={c.title}
                        id={c.id} img={c.img} images={c.img1} current={current} 
                        prevSlide={prevSlide}

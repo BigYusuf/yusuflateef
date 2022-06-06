@@ -1,6 +1,10 @@
 import React from 'react';
 import { animated } from 'react-spring';
 import {Link} from "react-router-dom";
+import Slider from "react-slick";
+// Import css files
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 
 export const WorkList = ({id, title, active, setSelected}) => {
@@ -51,6 +55,15 @@ export const ModalList = ({id, title, active, setSelected}) =>{
     )
 }
 export const WorkModal = ({id, design, demo, github, desc, frontend, backend, title, img, current, prevSlide, nextSlide, active, setShowModal,animation, closeModal, modalRef, images}) =>{
+    
+    var settings = {
+        dots: true,
+        infinite: true,
+        autoplay: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+    };
     return (
         <div className="work__card" key={id}>
         <Link to="#" onClick={() => setShowModal(id)}>
@@ -70,9 +83,9 @@ export const WorkModal = ({id, design, demo, github, desc, frontend, backend, ti
                     </div>
                     <div className="work__modal-contentDown">
                         <div className="work__modal-left">
-                        <i className="bx bx-left-arrow work__modal-icon" onClick={prevSlide} ></i>
+                        {/*<i className="bx bx-left-arrow work__modal-icon" onClick={prevSlide} ></i>*/}
                 
-                            <div className="wrapper__img">
+                            {/*<div className="wrapper__img">
                                 {images.map((e, index)=> {
                                     return( 
                                         <div key={index} className={index === current ? 'slide active': 'slide'}>
@@ -80,8 +93,21 @@ export const WorkModal = ({id, design, demo, github, desc, frontend, backend, ti
                                         </div>
                                     )
                                 })}
+                            </div>*/}
+                            <div className="wrapper__img">
+                                <Slider {...settings}>
+                    
+                                {images.map((e, index)=> {
+                                    return( 
+                                        
+                                        <div key={index} className='slide active'>
+                                            <img  src={e} alt="" className="work__modal-image"/>
+                                        </div>
+                                    )
+                                })}
+                                </Slider>
                             </div>
-                        <i className="bx bx-right-arrow work__modal-icon" onClick={nextSlide}></i>
+                        {/*<i className="bx bx-right-arrow work__modal-icon" onClick={nextSlide}></i>*/}
                         </div>
                         <div className="work__modal-right">
                             <p className="work__modal-description">
