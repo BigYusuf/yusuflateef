@@ -188,28 +188,105 @@ export const ServicesList =({id, title1, title2, description, li1, li2, li3, act
     )
 }
 
-export const AddProjectModal = ({addworkModal, setAddworkModal, modalRef }) => {
+export const CreateTestimonialModal = ({projectpage, formErrors, setProjectpage, form, showModal1, setShowModal1, closeModal, modalRef, image, setImage, title, setTitle, occupation, setOccupation, description, setDescription, addData }) => {
     return(
         
-        <div className={addworkModal ? "home__modal active-modal" : "home__modal"} onClick={()=> setAddworkModal(false)} ref={modalRef}>
-        <div className="home__modal-content">
-          <i className="bx bx-x home__modal-close"onClick={() => setAddworkModal(prev => !prev)}></i>
-          <h3 className="home__modal-title"><span className="bx bx-microphone"></span> Add Project</h3>
-          <p className="home__modal-description">
-          Use aaaaaadd work <span className="bx bx-microphone"></span> to control website.
-              You can perform task like
-          </p>
-            <ul className="home__modal-list">
-              <li><span className="bx bx-check"></span>Navigation: Go home/ scroll to top/ contact</li>
-              <li><span className="bx bx-check"></span>Interaction: Tell me about Yusuf/ switch background</li>
-              <li><span className="bx bx-check"></span>conversation like AI portfolio</li>
-            </ul>
-        </div>
+        <div className={showModal1 ? "home__modal active-modal" : "home__modal"} onClick={closeModal} ref={modalRef}>
+          <div className= "home__modal-content">
+          <i className="bx bx-x home__modal-close" onClick={() => setShowModal1(prev => !prev)}></i>
+                   
+                <h3 className="home__modal-title">Add new Testimonial</h3>
+                <form action="" className="contact__form" ref={form}>
+                {projectpage ? (
+                    <div className="contact__section1">
+                        
+                        <div className="contact__form-img"> 
+                        <label htmlFor="" className="contact__form-tag">User Image</label>
+                            {image ? (
+                            <img style={{width:200, height:150}}id="image" 
+                            alt="" src={URL.createObjectURL(image)} 
+                            />) : (
+                                <img style={{width:200, height:150, }}id="image"
+                                alt="" src="/image/default-img.png" 
+                                />)}
+                            <input type="file" id="imagefile"accept="image/*" style={{display:"none"}}
+                                onChange={(e) => setImage(e.target.files[0])} />
+                                <label htmlFor="imagefile" onChange={(e) => setImage(e.target.files[0])}className="upload-icon">
+                                <i className="bx bx-upload"></i>
+                                </label>
+                        </div>
+                        <p className="contact__form-p">{formErrors.image}</p>
+                        
+                        <div className="contact__form-div">
+                            <label htmlFor="" className="contact__form-tag">Name</label>
+                            <input
+                                type="text" name="name" value={title}
+                                onChange={(e) => setTitle(e.target.value)}
+                                required placeholder="Insert your name" 
+                                className="contact__form-input">
+                            </input>
+                        </div>
+                        <p className="contact__form-p">{formErrors.title}</p>
+                        
+                        <button className="button contact__Send-button" onClick={()=> setProjectpage(false)}>Next</button>
+                        </div>
+                    ) : (
+                    <>
+                    <div className="contact__section2">
+                            
+                        <div className= "contact__form-div">
+                            <label htmlFor="" className="contact__form-tag">Occupation</label>
+                            <input type="text"name="occupation" value={occupation}
+                                onChange={(e) => setOccupation(e.target.value)}
+                                required placeholder="Insert your Occupation "
+                                className="contact__form-input">
+                            </input>
+                        </div>
+                        <p className="contact__form-p">{formErrors.occupation}</p>
+                        
+                        <div className="contact__form-div contact__form-area">
+                            <label htmlFor="" className="contact__form-tag">What do you think about us</label>
+                            <textarea rows="10"required name="description"  value={description}
+                                onChange={(e) => setDescription(e.target.value)}
+                                id="" col="30" placeholder="Tell us about the experience with us" 
+                                type="text" className= "contact__form-input">
+
+                                </textarea>
+                        </div>
+                        <p className="contact__form-p">{formErrors.description}</p>
+                        
+                        <div className="contact__form-buttonSection">
+                            <button className="button contact__Send-button" onClick={()=> setProjectpage(true)}>Back</button>
+                            <button className={"contact__Send-button button"} onClick={addData}>Add Review</button>
+                        </div>
+                        
+                    </div>
+                    </>
+                           )}
+                          
+                
+                </form>
+            </div>
       </div>
 
     )
 }
 
+export const MainModal1 = () => {
+    return(
+            <div >
+                <h3 className="home__modal-title"><i className="bx bx-book"></i>fuck shit</h3>
+                <p className="home__modal-description">
+                testetr
+                </p>
+                <ul className="home__modal-list">
+                    <li><i className="bx bx-check"></i>aaa</li>
+                    <li><i className="bx bx-check"></i>adfghjk</li>
+                    <li><i className="bx bx-check"></i>aadddf</li>
+                </ul>
+            </div>
+    )
+}
 export const MainModal = ({id, title, logo, desc, l1, l2, l3}) => {
     return(
             <div key={id}>

@@ -27,7 +27,7 @@ export const handleTheme = () => {
      localStorage.setItem('selected-icon', getCurrentIcon())
  }
  
-export const handleUpload = ({url, setUrl, image}) => {
+export const handleUploadImg = ({url, setImg, image}) => {
     const fileName = `images/${new Date().getTime() + image.name}`;
     const storage = getStorage(app);
     const storageRef = ref(storage, fileName);
@@ -37,16 +37,17 @@ export const handleUpload = ({url, setUrl, image}) => {
       (snapshot) => {},
       (error) => {
         // Handle unsuccessful uploads
+            console.log(error)
       },
       () => {
           getDownloadURL(uploadTask.snapshot.ref).then((url) => {
-            setUrl(url);
-           // console.log(url)
+            setImg(url);
         });
       }
     );
 }
- 
+
+//multiple images
 export const handleUpload1 = ({img1, setUrl, images}) => {
     const promises = [];
     

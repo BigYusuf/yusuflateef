@@ -778,7 +778,7 @@ img{
     padding: 1.25rem 1.5rem;
     border-radius: 1.5rem;
     margin-bottom: 3rem;
-    min-height: 12rem;
+    min-height: 13rem;
 }
 .testimonial__img{
     width: 60px;
@@ -792,6 +792,17 @@ img{
 }
 .testimonial__description{
     font-size: var(--small-font-size);
+}
+.testimonial__logo{
+    margin-left: auto;
+    margin-right: auto;
+    object-fit: 50%;
+}
+.testimonial__addlogo{
+    font-size: 8rem;
+    display: block;
+    text-align: center;
+    cursor: pointer;
 }
 .slick-slide{
     padding: 1rem;

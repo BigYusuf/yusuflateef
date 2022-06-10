@@ -16,7 +16,6 @@ const Navbar = ({ navbarChange, setNavbarChange }) => {
     const {RealUser, logOut} = useUserAuth();
 
     const modalRef = useRef();
-
   const closeModal = (e) => {
     if (modalRef.current === e.target) {
       setShowModal(false);
@@ -123,7 +122,7 @@ var settings = {
                     </li>
                     <li  className="dropdown-list">
                       <i className="bx bx-plus change-theme"></i>
-                      <Link className="dropdown-link" to="#">Testimonial client</Link>
+                      <Link className="dropdown-link" to="/testimonials">Testimonial client</Link>
                     </li>
                     <li  className="dropdown-list">
                       <i className="bx bx-plus change-theme"></i>

@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { serverTimestamp } from "firebase/firestore";
-import {handleUpload, handleUpload1} from '../components/Utils';
+import { handleUpload1, handleUploadImg} from '../components/Utils';
 import ProjectDataService from "../components/project-firebase";
 import {ToastContainer, toast, Zoom} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -83,14 +83,19 @@ const Projects = () => {
     const unAuthenticated = (e) => {
         e.preventDefault();
         toast.error("Error!!!, You are not authenticated");
-    }
-    const addData = (e) => {
-    e.preventDefault();
-    setLoader(true);
+    } 
+    useEffect(() => {
+      if(image){
+        handleUploadImg({url:img, setImg, image})
+      }
+  }, [image,img])
     
-    handleUpload({url:img,setUrl:setImg, image:image});
-    handleUpload1({img1:img1,setUrl:setImg1, images:image1});
-    const payload= {title, frontend, cat, img, img1, backend, others, description, linkBlog, linkDemo, linkGithub, createdAt: serverTimestamp()}
+    const addData = (e) => {
+        e.preventDefault();
+        setLoader(true);
+        
+        handleUpload1({img1:img1,setUrl:setImg1, images:image1});
+    const payload= {title, frontend, cat, img:img, img1: img1, backend, others, description, linkBlog, linkDemo, linkGithub, createdAt: serverTimestamp()}
     if (dataId !== undefined && dataId !== "") {
         
         ProjectDataService.updateProject(dataId, payload).then(() => {
@@ -103,10 +108,8 @@ const Projects = () => {
             toast.error("Error!!!, Project not Updated");
             setLoader(false);
         });
-      }else{
-        //
-          
-        //
+    }else{
+          console.log(img1);
       /*--------------------------send to firestore database----------------------------*/
       ProjectDataService.addProject(payload).then(() => {
             toast.success("Project Added successfully");
@@ -183,15 +186,15 @@ const Projects = () => {
                                             <td>{i+1}</td>
                                             <td>{item.title}</td>
                                             <td>
-                                                <div className="actions">{RealUser ? (
+                                                <div className="actions">{(RealUser && RealUser.email === process.env.REACT_APP_GUEST_EMAIL) ? (
                                                     <>
                                                         <i type="" className="bx bx-pen" onClick={() => editHandler(item.id) }></i>
-                                                        <i type="" className="bx bx-trash"onClick={() => deleteHandler(item.id)}></i>
+                                                        <i type="" className="bx bx-trash"onClick={() => toast.error("Error!, You are not Authorized")}></i>
                                                     </>
                                                 ) : (
                                                     <>
                                                         <i type="" className="bx bx-pen" onClick={() => editHandler(item.id) }></i>
-                                                        <i type="" className="bx bx-trash"onClick={() => toast.error("Error!, You are not Authorized")}></i>
+                                                        <i type="" className="bx bx-trash"onClick={() => deleteHandler(item.id)}></i>
                                                     </>
                                                 )}
                                                 </div>
@@ -340,13 +343,13 @@ const Projects = () => {
                                {!dataId ?(
                                 <button className={loader ? "contact__Send-button button active" : "contact__Send-button button"} onClick={addData}>Add Project</button>
                                ) : (
-                               RealUser? (
+                                (RealUser && RealUser.email === process.env.REACT_APP_GUEST_EMAIL) ? (
                                     <>
-                                        <button className= "contact__Send-button button" onClick={addData}>Update Project</button>
+                                        <button className= "contact__Send-button button" onClick={unAuthenticated}>Update Project</button>
                                     </>
                                 ) : (
                                     <>
-                                        <button className= "contact__Send-button button" onClick={unAuthenticated}>Update Project</button>
+                                        <button className= "contact__Send-button button" onClick={addData}>Update Project</button>
                                     </>
                                 )
                                 )
