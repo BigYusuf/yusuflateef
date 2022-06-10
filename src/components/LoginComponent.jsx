@@ -5,12 +5,25 @@ import { useUserAuth } from "../context/UserAuthContext";
 const LoginComponent = ({password, setPassword, mail, setMail}) => {
     const form = useRef();
     const [error, setError] = useState("");
-    const { logIn } = useUserAuth();
+    const { logIn, logOut, RealUser } = useUserAuth();
     const navigate = useNavigate();
 
     const [formErrors, setFormErrors] = useState({})
-       
+
+    const handleLogout = async () => {
+      if(RealUser){
+        try {
+         await logOut();
+         navigate("/");
+       } catch (error) {
+         console.log(error.message);
+       }
+      }else{
+        navigate('/')
+      }
+    }
     
+        
    const handleLogin = async (e) => {
       e.preventDefault();
       const errors = {};
@@ -63,16 +76,16 @@ const LoginComponent = ({password, setPassword, mail, setMail}) => {
                                 <i className="bx bx-book contact__card-icon"></i>
                                 <h3 className="contact__card-title">Project Manager</h3>
                                 <span className="contact__card-data">Add, Edit and Delete project from Database</span>
-                                <Link to="/project" className="contact__button">
+                                <Link to="/projects" className="contact__button">
                                     Let's go <i className="bx bx-right-arrow-alt contact__button-icon"></i>
                                 </Link>
                             </div>
                                 
                             <div className={"contact__card"}>
-                                <i className="bx bxl-data contact__card-icon"></i>
+                                <i className="bx bx-data contact__card-icon"></i>
                                 <h3 className="contact__card-title">Testimonial Manager</h3>
                                 <span className="contact__card-data">Enable/ Disable any testimonial from Database</span>
-                                <Link to="" className="contact__button">
+                                <Link to="/testimonials" className="contact__button">
                                     Let's go <i className="bx bx-right-arrow-alt contact__button-icon"></i>
                                 </Link>
                             </div>
@@ -89,54 +102,78 @@ const LoginComponent = ({password, setPassword, mail, setMail}) => {
                     </div>
                         
                     <div className= "contact__content">
-                        <h3 className="contact__title">Sign In</h3>
-                        <form action="" className="contact__form" ref={form} onSubmit={handleLogin}>
-                            
-                            <div className={formErrors.mail ? "contact__form-div active" : "contact__form-div"}>
-                                <label htmlFor="" className="contact__form-tag">Email</label>
-                                <input type="text"name="email" value={mail}
-                                    onChange={(e) => setMail(e.target.value)}
-                                     placeholder="Insert your Email"
-                                    className={"contact__form-input"}>
-                                </input>
-                            </div>
-                            <p className="contact__form-p">{formErrors.mail}</p>
+                        {!RealUser ? (
+                            <>
+                                <h3 className="contact__title">Sign In</h3>
+                                <form action="" className="contact__form" ref={form} onSubmit={handleLogin}>
+                                    
+                                    <div className={formErrors.mail ? "contact__form-div active" : "contact__form-div"}>
+                                        <label htmlFor="" className="contact__form-tag">Email</label>
+                                        <input type="text"name="email" value={mail}
+                                            onChange={(e) => setMail(e.target.value)}
+                                            placeholder="Insert your Email"
+                                            className={"contact__form-input"}>
+                                        </input>
+                                    </div>
+                                    <p className="contact__form-p">{formErrors.mail}</p>
 
-                            <div className={formErrors.password ? "contact__form-div active" : "contact__form-div"}>
-                                <label htmlFor="" className="contact__form-tag">Password</label>
-                                <input
-                                    type="password" name="password" value={password}
-                                    onChange={(e) => setPassword(e.target.value)}
-                                     placeholder="Insert password" 
-                                    className={"contact__form-input"}>
-                                </input>
-                            </div>
-                            <p className="contact__form-p">{formErrors.password}</p>
-                            
-                            <div className="contact__form-buttonSection">
+                                    <div className={formErrors.password ? "contact__form-div active" : "contact__form-div"}>
+                                        <label htmlFor="" className="contact__form-tag">Password</label>
+                                        <input
+                                            type="password" name="password" value={password}
+                                            onChange={(e) => setPassword(e.target.value)}
+                                            placeholder="Insert password" 
+                                            className={"contact__form-input"}>
+                                        </input>
+                                    </div>
+                                    <p className="contact__form-p">{formErrors.password}</p>
+                                    
+                                    <div className="contact__form-buttonSection">
 
-                                <button className="contact__Send-button button">Sign in</button>
-                                
-                            </div>
-                            {error && ( <p className="contact__form-p">{error}</p> )}
+                                        <button className="contact__Send-button button">Sign in</button>
+                                        
+                                    </div>
+                                    {error && ( <p className="contact__form-p">{error}</p> )}
 
-                        </form>
-                            <div className= "contact__card demo_login">
-                                <h3 className="contact__card-title">Demo App</h3>
-                                <span className="contact__card-data">If you wish to demo this app with admin access</span>
-                                <span className="contact__card-data">Enter the following details</span>
-                                
-                                <ul className="contact__card-data">
-                                <li className="contact__card-list">Email: guest@bigyusufff.com</li>
-                                <li className="contact__card-list">Password: guest123</li>
-                                </ul>
-                                <hr/>
-                                <span className="contact__card-data">OR</span>
-                                <span className="contact__card-data">Just Click this</span>
-                                <Link to="#" className="contact__button" onClick={demoLogin}>
-                                    Demo Login <i className="bx bx-right-arrow-alt contact__button-icon"></i>
-                                </Link>
-                            </div>
+                                </form>
+                                <div className= "contact__card demo_login">
+                                    <h3 className="contact__card-title">Demo App</h3>
+                                    <span className="contact__card-data">If you wish to demo this app with admin access</span>
+                                    <span className="contact__card-data">Enter the following details</span>
+                                    
+                                    <ul className="contact__card-data">
+                                    <li className="contact__card-list">Email: guest@bigyusufff.com</li>
+                                    <li className="contact__card-list">Password: guest123</li>
+                                    </ul>
+                                    <hr/>
+                                    <span className="contact__card-data">OR</span>
+                                    <span className="contact__card-data">Just Click this</span>
+                                    <Link to="#" className="contact__button" onClick={demoLogin}>
+                                        Demo Login <i className="bx bx-right-arrow-alt contact__button-icon"></i>
+                                    </Link>
+                                </div>
+                            </>
+                        ):(
+                            <>
+                                <h3 className="contact__title">Sign Out</h3>
+                                <form action="" className="contact__form" ref={form} onSubmit={handleLogin}>
+                                <div className= "contact__card">
+                                    <img src="/image/pic-4.png" alt="" className="testimonial__img"/>
+                                    <h3 className="contact__card-title">Demo App</h3>
+                                    
+                                    <ul className="contact__card-data">
+                                    <li className="contact__card-list">Email: guest@bigyusufff.com</li>
+                                    <br/>
+                                    <li className="contact__card-list">This is a guest administrative account which grants access to some admin 
+                                    privileges.</li>
+                                    </ul>
+                                    <Link to="#" className="contact__button" onClick={handleLogout}>
+                                        Log Out <i className="bx bx-right-arrow-alt contact__button-icon"></i>
+                                    </Link>
+                                </div>
+                                </form>
+                            </>
+                        )}
 
                     </div>
 
