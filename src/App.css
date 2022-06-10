@@ -834,6 +834,10 @@ img{
     row-gap: 3rem;
     padding-bottom: 3rem;
 }
+.contact__container1{
+    padding-bottom: 3rem;
+    display: grid;
+}
 .contact__title{
     text-align: center;
     font-size: var(--h3-font-size);
@@ -1186,6 +1190,25 @@ tbody > tr:hover {
 .info__AI-list li{
     padding: 0 0.5rem 0.5rem 0.5rem;
 }
+/*check out steps*/
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+.checkout-steps > div {
+    border-top: 0.3rem #c0c0c0 solid;
+    color: #c0c0c0;
+    flex: 1;
+    padding: 1rem;
+    font-weight: bold;
+  }
+.checkout-steps > div.active {
+    border-top-color: var(--first-color);
+    color: var(--first-color);
+  }
 body.light-theme{
     --title-color: hsl(var(--second-hue), 15%, 15%);
     --text-color: hsl(var(--second-hue), 8%, 35%);
@@ -1387,6 +1410,7 @@ body.light-theme{
     .work__container{
         grid-template-columns: repeat(2, max-content);
     }
+    .contact__container1,
     .contact__container{
         grid-template-columns: repeat(2, max-content);
         justify-content: center;

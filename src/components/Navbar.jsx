@@ -128,6 +128,10 @@ var settings = {
                       <i className="bx bx-plus change-theme"></i>
                       <Link className="dropdown-link" to="/projects">Project Manager</Link>
                     </li>
+                    <li  className="dropdown-list">
+                      <i className="bx bx-plus change-theme"></i>
+                      <Link className="dropdown-link" to="/details">Portfolio Manager</Link>
+                    </li>
                     <li  className="dropdown-list"onClick={handleLogout}> 
                       <i className="bx bx-log-out change-theme"></i>
                       <Link className="dropdown-link" to="#">Sign Out</Link>

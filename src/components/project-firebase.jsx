@@ -45,6 +45,11 @@ class ProjectDataService {
   addEmail = (newProject) => {
     return addDoc(emailCollectionRef, newProject);
   };
+  /*-------------------------- Folio -----------------------------------------*/
+  updateFolio = (id, updatedFolio) => {
+    const projectDoc = doc(db, "portfolio", id);
+    return updateDoc(projectDoc, updatedFolio);
+  };
   /*-------------------------- Testimonials -----------------------------------------*/
   addTestimonial = (newTestimonial) => {
     return addDoc(testimonialCollectionRef, newTestimonial);

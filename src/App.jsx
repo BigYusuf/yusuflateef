@@ -6,6 +6,7 @@ import Login  from "./pages/Login";
 import TestimonialManager from "./pages/TestimonialManager";
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import "./App.css";
+import FolioDetails from "./pages/FolioDetails";
 
 
 
@@ -17,6 +18,7 @@ const App = () => {
               <Route path="/login" element={<Login />}/>
               <Route path="/projects" element={<ProtectedRoute><Projects /></ProtectedRoute>}/>
               <Route path="/testimonials" element={<ProtectedRoute><TestimonialManager /></ProtectedRoute>}/>
+              <Route path="/details" element={<ProtectedRoute><FolioDetails /></ProtectedRoute>}/>
           </Routes>
       </Router>
   )
