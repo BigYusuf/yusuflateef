@@ -78,7 +78,7 @@ const FolioLinks = () => {
     return (
         <div>
             {/* ========================== contact =========================== */}
-            <section className="contact section"id="contact">
+            <section className="">
                 <PortfolioSteps step1 step2 step3></PortfolioSteps>
                 <div className="contact__container1 container">
                     <div className= "contact__content">

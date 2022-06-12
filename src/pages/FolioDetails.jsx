@@ -77,7 +77,7 @@ const FolioDetails = () => {
     return (
         <div>
             {/* ========================== contact =========================== */}
-            <section className="contact section"id="contact">
+            <section className="">
                 <PortfolioSteps step1></PortfolioSteps>
                 <div className="contact__container1 container">
                     <div className= "contact__content">

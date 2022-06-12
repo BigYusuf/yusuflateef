@@ -20,6 +20,8 @@ const FolioServices = () => {
     const [works, setWorks] = useState([]);
     const [loader, setLoader] = useState(false);
     const [navbarChange, setNavbarChange] = useState(true);
+    const [showModal, setShowModal] = useState(false);
+    const [header, setHeader] = useState(false);
     const form = useRef();
     const {RealUser} = useUserAuth();
     
@@ -119,10 +121,12 @@ const FolioServices = () => {
         <div>
             <Navbar
                   navbarChange={navbarChange} setNavbarChange={setNavbarChange}
+                 showModal={showModal} setShowModal={setShowModal}
+                 header={header} setHeader={setHeader}
             />
         
             {/* ========================== Service manager =========================== */}
-            <section className="contact section"id="contact">
+            <section className="">
             <PortfolioSteps step1 step2 step3 step4></PortfolioSteps>
                 <div className="contact__container container grid">
                     <div className="contact__content">

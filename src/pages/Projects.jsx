@@ -29,6 +29,8 @@ const Projects = () => {
     const form = useRef();
     const {RealUser} = useUserAuth();
     const [navbarChange, setNavbarChange] = useState(true);
+    const [showModal, setShowModal] = useState(false);
+    const [header, setHeader] = useState(true);
     
   const ListProjects = async () => {
     const data = await ProjectDataService.getAllProjects();
@@ -146,9 +148,10 @@ const Projects = () => {
     return (
         <div>
         
-            <Navbar
-                  navbarChange={navbarChange}
-                  setNavbarChange={setNavbarChange}
+        <Navbar
+                  navbarChange={navbarChange} setNavbarChange={setNavbarChange}
+                  showModal={showModal} setShowModal={setShowModal}
+                  header={header} setHeader={setHeader}
             />
             {/* ========================== project manager =========================== */}
             <section className="contact section"id="contact">

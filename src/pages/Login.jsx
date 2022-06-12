@@ -6,12 +6,15 @@ const Login = () => {
     const [password, setPassword] = useState("")
     const [mail, setMail] = useState("")
     const [navbarChange, setNavbarChange] = useState(true);
+    const [showModal, setShowModal] = useState(false);
+    const [header, setHeader] = useState(true);
     return (
         <div>
             
             <Navbar
-                  navbarChange={navbarChange}
-                  setNavbarChange={setNavbarChange}
+                  navbarChange={navbarChange} setNavbarChange={setNavbarChange}
+                  showModal={showModal} setShowModal={setShowModal}
+                  header={header} setHeader={setHeader}
             />
             <LoginComponent 
             password={password} setPassword={setPassword}

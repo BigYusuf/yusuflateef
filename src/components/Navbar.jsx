@@ -10,9 +10,8 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 
-const Navbar = ({ navbarChange, setNavbarChange }) => {
+const Navbar = ({ navbarChange, setNavbarChange, showModal, setShowModal, header, setHeader }) => {
     const [selected, setSelected] = useState("");
-    const [showModal, setShowModal] = useState(true);
     const {RealUser, logOut} = useUserAuth();
 
     const modalRef = useRef();
@@ -73,8 +72,8 @@ var settings = {
 
     return (
         <header className="header" id="header">
-        <nav className="nav container">
-            <Link to="/" className="nav__logo"><span className="nav__logo1">Big</span>Yusufff</Link>
+        <nav className={!header ? "nav1" : "nav container"}>
+            {header &&<Link to="/" className="nav__logo"><span className="nav__logo1">Big</span>Yusufff</Link>}
             <div className={navbarChange ? "nav__menu nav__menu-width" : "nav__menu"}>
                 <ul className="nav__list">
                   {navbarChange ? (
@@ -94,71 +93,71 @@ var settings = {
                 </ul>
             </div>
                 {/* Theme change button */}
-               
-                <div className="nav__icon">
+            {header &&  
+              <div className="nav__icon">
+                
+                {!RealUser ? (
+                  <>
+                    <i className="bx bx-info-circle change-theme"onClick={handleShowModal}></i>
+                    <i className="bx bx-moon change-theme"onClick={handleTheme} id="theme-button"></i>
+                    <span className="nav__demo"onClick={handledropdown}>
+                      Admin Login
+                    </span>
+                  </>
+                ) : (
+              <div className="dropdown">
+                <p className="nav__logo1">{RealUser ? "Real " :"Demo "} Admin{' '}
+                  <i className="bx bx-caret-down"></i>
+                </p>
+                <ul className="dropdown-contents">
+                  <li  className="dropdown-list"onClick={handleShowModal}>
+                    <i className="bx bx-info-circle change-theme"></i>
+                    <Link className="dropdown-link" to="#">Show Help</Link>
+                  </li>
+                  <li  className="dropdown-list"onClick={handleTheme}>
+                    <i className="bx bx-moon change-theme" id="theme-button"></i>
+                    <Link className="dropdown-link" to="#">Background</Link>
+                    
+                  </li>
+                  <li  className="dropdown-list">
+                    <i className="bx bx-plus change-theme"></i>
+                    <Link className="dropdown-link" to="/testimonials">Testimonial client</Link>
+                  </li>
+                  <li  className="dropdown-list">
+                    <i className="bx bx-plus change-theme"></i>
+                    <Link className="dropdown-link" to="/projects">Project Manager</Link>
+                  </li>
+                  <li  className="dropdown-list">
+                    <i className="bx bx-plus change-theme"></i>
+                    <Link className="dropdown-link" to="/details">Portfolio Manager</Link>
+                  </li>
+                  <li  className="dropdown-list"onClick={handleLogout}> 
+                    <i className="bx bx-log-out change-theme"></i>
+                    <Link className="dropdown-link" to="#">Sign Out</Link>
+                  </li>
+                </ul>
+              </div>
+            )}
+                
+              </div>
+            }
+            {/* show home modal*/}
+            <div className={showModal ? "home__modal active-modal" : "home__modal"} onClick={closeModal} ref={modalRef}>
+              <div className="home__modal-content">
+                <i className="bx bx-x home__modal-close" onClick={() => setShowModal(prev => !prev)}></i>
+                <Slider {...settings}>
+                  {MainModalData.map((item) =>(
+                    
+                    <MainModal
+                    key={item.id} id={item.id} title={item.title}
+                    logo={item.logo} desc={item.desc}
+                    l1={item.l1} l2={item.l2} l3={item.l3}
+                    />
+                    
+                    ))}
                   
-                  {!RealUser ? (
-                    <>
-                      <i className="bx bx-info-circle change-theme"onClick={handleShowModal}></i>
-                      <i className="bx bx-moon change-theme"onClick={handleTheme} id="theme-button"></i>
-                      <span className="nav__demo"onClick={handledropdown}>
-                        Admin Login
-                      </span>
-                    </>
-                  ) : (
-                <div className="dropdown">
-                  <p className="nav__logo1">{RealUser ? "Real " :"Demo "} Admin{' '}
-                    <i className="bx bx-caret-down"></i>
-                  </p>
-                  <ul className="dropdown-contents">
-                    <li  className="dropdown-list"onClick={handleShowModal}>
-                      <i className="bx bx-info-circle change-theme"></i>
-                      <Link className="dropdown-link" to="#">Show Help</Link>
-                    </li>
-                    <li  className="dropdown-list"onClick={handleTheme}>
-                      <i className="bx bx-moon change-theme" id="theme-button"></i>
-                      <Link className="dropdown-link" to="#">Background</Link>
-                      
-                    </li>
-                    <li  className="dropdown-list">
-                      <i className="bx bx-plus change-theme"></i>
-                      <Link className="dropdown-link" to="/testimonials">Testimonial client</Link>
-                    </li>
-                    <li  className="dropdown-list">
-                      <i className="bx bx-plus change-theme"></i>
-                      <Link className="dropdown-link" to="/projects">Project Manager</Link>
-                    </li>
-                    <li  className="dropdown-list">
-                      <i className="bx bx-plus change-theme"></i>
-                      <Link className="dropdown-link" to="/details">Portfolio Manager</Link>
-                    </li>
-                    <li  className="dropdown-list"onClick={handleLogout}> 
-                      <i className="bx bx-log-out change-theme"></i>
-                      <Link className="dropdown-link" to="#">Sign Out</Link>
-                    </li>
-                  </ul>
-                </div>
-              )}
-                 
-                {/* show home modal*/}
-                <div className={showModal ? "home__modal active-modal" : "home__modal"} onClick={closeModal} ref={modalRef}>
-                  <div className="home__modal-content">
-                    <i className="bx bx-x home__modal-close" onClick={() => setShowModal(prev => !prev)}></i>
-                    <Slider {...settings}>
-                      {MainModalData.map((item) =>(
-                        
-                        <MainModal
-                        key={item.id} id={item.id} title={item.title}
-                        logo={item.logo} desc={item.desc}
-                        l1={item.l1} l2={item.l2} l3={item.l3}
-                        />
-                        
-                        ))}
-                      
-                    </Slider>
-                  </div>
-                </div>
-                  
+                </Slider>
+              </div>
             </div>
         </nav>
     </header>

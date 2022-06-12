@@ -42,13 +42,13 @@ const FolioSkills = () => {
       toast.success("Updated");
           
          navigate("/links");
-        
+        console.log(payload);
    }
     
     return (
         <div>
             {/* ========================== contact =========================== */}
-            <section className="contact section"id="contact">
+            <section className="">
                 <PortfolioSteps step1 step2></PortfolioSteps>
                 <div className="contact__container container grid">
                     
@@ -160,12 +160,12 @@ const FolioSkills = () => {
                         </div>
                     </div>
                 
-                </div>
                     <div className="contact__form-buttonSection">
                         <button onClick={GoBack}className={"contact__Send-button button"}>Back</button>
                         <button onClick={updateHandler}className={loader ? "contact__Send-button button active" : "contact__Send-button button"}>Next</button>
                             
                     </div>
+                </div>
                 <ToastContainer draggable={false} transition={Zoom} autoClose={3000}/>
             </section>
         </div>

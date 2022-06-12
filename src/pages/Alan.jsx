@@ -34,6 +34,9 @@ const Alan = () => {
     const [highlightservices1, setHighlightservices1] = useState(false);
     const [highlightservices2, setHighlightservices2] = useState(false);
     const [highlightservices3, setHighlightservices3] = useState(false);
+    const [navbarChange, setNavbarChange] = useState(false);
+    const [showModal, setShowModal] = useState(false);
+    const [header, setHeader] = useState(true);
 
     const aboutMe = () => {  
         window.location.href = '#about';
@@ -57,7 +60,6 @@ const Alan = () => {
         window.location.href = '#Testimonial';
     }
     
-    const [navbarChange, setNavbarChange] = useState(false);
     useEffect(() => {
       if(alanInstance != null) return
       setAlanInstance(
@@ -166,8 +168,9 @@ const Alan = () => {
           
             <Intro/>
             <Navbar
-                  navbarChange={navbarChange}
-                  setNavbarChange={setNavbarChange}
+                  navbarChange={navbarChange} setNavbarChange={setNavbarChange}
+                  showModal={showModal} setShowModal={setShowModal}
+                  header={header} setHeader={setHeader}
             />
             <About highlightdesc={highlightdesc}
                    highlightexp={highlightexp}

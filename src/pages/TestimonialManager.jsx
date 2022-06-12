@@ -21,6 +21,8 @@ const TestimonialManager = () => {
     const form = useRef();
     const {RealUser} = useUserAuth();
     const [navbarChange, setNavbarChange] = useState(true);
+    const [showModal, setShowModal] = useState(false);
+    const [header, setHeader] = useState(true);
     
   const ListTestimonial = async () => {
     const data = await ProjectDataService.getAllTestimonial();
@@ -121,8 +123,9 @@ const TestimonialManager = () => {
         <div>
         
             <Navbar
-                  navbarChange={navbarChange}
-                  setNavbarChange={setNavbarChange}
+                  navbarChange={navbarChange} setNavbarChange={setNavbarChange}
+                  showModal={showModal} setShowModal={setShowModal}
+                  header={header} setHeader={setHeader}
             />
             {/* ========================== Testimonial manager =========================== */}
             <section className="contact section"id="contact">
