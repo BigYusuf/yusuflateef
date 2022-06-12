@@ -15,6 +15,7 @@ import {
 
 const emailCollectionRef = collection(db, "contact");
 const projectCollectionRef = collection(db, "project");
+const serviceCollectionRef = collection(db, "service");
 const testimonialCollectionRef = collection(db, "testimonial");
 class ProjectDataService {
   /*-------------------------- Projects -----------------------------------------*/
@@ -40,6 +41,30 @@ class ProjectDataService {
   getProject = (id) => {
     const projectDoc = doc(db, "project", id);
     return getDoc(projectDoc);
+  };
+  /*-------------------------- Services -----------------------------------------*/
+  addService = (newService) => {
+    return addDoc(serviceCollectionRef, newService);
+  };
+
+  updateService = (id, updatedService) => {
+    const ServiceDoc = doc(db, "service", id);
+    return updateDoc(ServiceDoc, updatedService);
+  };
+
+  deleteService = (id) => {
+    const ServiceDoc = doc(db, "service", id);
+    return deleteDoc(ServiceDoc);
+  };
+  getAllServices = () => {
+    return getDocs(serviceCollectionRef, orderBy('createdAt'));
+  };
+  getServicesByCategory = (category) => {
+    return getDocs(query(serviceCollectionRef, where("cat","==", category), orderBy('createdAt')));
+  };
+  getService = (id) => {
+    const ServiceDoc = doc(db, "service", id);
+    return getDoc(ServiceDoc);
   };
   /*-------------------------- Emails -----------------------------------------*/
   addEmail = (newProject) => {

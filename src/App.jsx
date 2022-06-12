@@ -9,6 +9,7 @@ import "./App.css";
 import FolioDetails from "./pages/FolioDetails";
 import FolioSkills from "./pages/FolioSkills";
 import FolioLinks from "./pages/FolioLinks";
+import FolioServices from "./pages/FolioServices";
 
 
 
@@ -23,6 +24,7 @@ const App = () => {
               <Route path="/details" element={<ProtectedRoute><FolioDetails /></ProtectedRoute>}/>
               <Route path="/skills" element={<ProtectedRoute><FolioSkills /></ProtectedRoute>}/>
               <Route path="/links" element={<ProtectedRoute><FolioLinks /></ProtectedRoute>}/>
+              <Route path="/services" element={<ProtectedRoute><FolioServices /></ProtectedRoute>}/>
           </Routes>
       </Router>
   )
