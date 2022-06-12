@@ -7,6 +7,7 @@ import TestimonialManager from "./pages/TestimonialManager";
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import "./App.css";
 import FolioDetails from "./pages/FolioDetails";
+import FolioSkills from "./pages/FolioSkills";
 
 
 
@@ -19,6 +20,7 @@ const App = () => {
               <Route path="/projects" element={<ProtectedRoute><Projects /></ProtectedRoute>}/>
               <Route path="/testimonials" element={<ProtectedRoute><TestimonialManager /></ProtectedRoute>}/>
               <Route path="/details" element={<ProtectedRoute><FolioDetails /></ProtectedRoute>}/>
+              <Route path="/skills" element={<ProtectedRoute><FolioSkills /></ProtectedRoute>}/>
           </Routes>
       </Router>
   )

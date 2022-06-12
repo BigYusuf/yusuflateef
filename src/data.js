@@ -5,6 +5,18 @@ export const list = [
     {id: "gis", title:"GIS / Mapping"},
 ];
 
+export const option1 = [
+    {id: 0, value: "", title:"Select Stacks"},
+    {id: 1, value: "React JS", title:"React JS"},
+    {id: 2, value: "Next JS", title:"Next JS"},
+    {id: 3, value: "Tailwind CSS", title:"Tailwind CSS"},
+    {id: 4, value: "MongoDB", title:"MongoDB"},
+    {id: 5, value: "FireBase", title:"Firebase"},
+    {id: 6, value: "Sanity CMS", title:"Sanity CMS"},
+    {id: 7, value: "Node JS", title:"Node JS"},
+    {id: 8, value: "Markdown", title:"Markdown"},
+];
+
 export const webData = [
     { id: 1, img: "/image/ademotor1.png", title: "Ademotor Car Dealers",
     frontend:"React JS and CSS",

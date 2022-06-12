@@ -3,6 +3,7 @@ import { serverTimestamp } from "firebase/firestore";
 import ProjectDataService from "../components/project-firebase";
 import PortfolioSteps from '../components/PortfolioSteps'
 import {ToastContainer, toast, Zoom} from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
 import { ImageBox, InputBox, TextAreaBox } from '../components/CommonComponents';
 
@@ -37,6 +38,9 @@ const FolioDetails = () => {
         setImg('');
         
    }
+   
+   const navigate = useNavigate();
+
    const handleUpdate = (e) => {
       e.preventDefault();
       const errors = {};
@@ -63,6 +67,9 @@ const FolioDetails = () => {
         } 
         if(name && title && desc && desc.length > 3 && name.length > 3){
           updateHandler();
+          
+         navigate("/skills");
+
         };
         console.log(errors);
     };
