@@ -1,5 +1,4 @@
 import {Link} from 'react-router-dom';
-import { option1 } from '../data';
 
 export const Card = ({icon, title, desc, LinkUrl, LinkAction, LinkActionIcon}) => {
     return(
@@ -71,6 +70,19 @@ export const ImageBox = ({errData, labelName, id1, id2, imgUrl, newImage,setAny,
     </>
     )
 }
+export const FileBox = ({errData, labelName, id,setAny, typeData}) => {
+    return(
+    <>
+        <div className={errData ? "contact__form-img" : "contact__form-img"}>
+            <label htmlFor="" className="contact__form-tag">{labelName}</label>
+            <input type={typeData} id={id} accept="image/pdf*"
+            onChange={(e) => setAny(e.target.files[0])} />    
+        </div>
+        {errData && <p className="contact__form-p">{errData}</p>}        
+    </>
+    )
+}
+
 export const SelectBox1 = ({errData, valueData, nameData, setAny}) => {
     return(
     <>
@@ -86,13 +98,13 @@ export const SelectBox1 = ({errData, valueData, nameData, setAny}) => {
     </>
     )
 }
-export const SelectBox = ({errData, valueData, nameData, setAny}) => {
+export const SelectBox = ({errData, valueData, nameData, data, setAny}) => {
     return(
     <>
         <div className="contact__form-div1">
             <select name={nameData} value={valueData} id={nameData} onChange={(e) => setAny(e.target.value)}
-        options={option1} className="contact__select1">
-                {option1.map((data) => (
+        className="contact__select1">
+                {data.map((data) => (
                     <option key={data.id} className="contact__option" value={data.value}>{data.title}</option>
                 ))}
             </select>

@@ -35,7 +35,7 @@ const Alan = () => {
     const [highlightservices2, setHighlightservices2] = useState(false);
     const [highlightservices3, setHighlightservices3] = useState(false);
     const [navbarChange, setNavbarChange] = useState(false);
-    const [showModal, setShowModal] = useState(false);
+    const [showModal, setShowModal] = useState(true);
     const [header, setHeader] = useState(true);
 
     const aboutMe = () => {  

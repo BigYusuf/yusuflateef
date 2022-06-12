@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { serverTimestamp } from "firebase/firestore";
 import ProjectDataService from "../components/project-firebase";
 import PortfolioSteps from '../components/PortfolioSteps'
@@ -6,9 +6,12 @@ import {ToastContainer, toast, Zoom} from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
 import { ImageBox, InputBox, TextAreaBox } from '../components/CommonComponents';
+import { handleUploadImg } from '../components/Utils';
+import { useUserAuth } from '../context/UserAuthContext';
 
 const FolioDetails = () => {
     const form = useRef();
+    const [dataId, setDataId] = useState("Details");
     const [name, setName] = useState("");
     const [title, setTitle] = useState("");
     const [desc, setDesc] = useState("");
@@ -18,25 +21,55 @@ const FolioDetails = () => {
     const [experience, setExperience] = useState("");
     const [occupation, setOccupation] = useState("");
     const [support, setSupport] = useState("");
-    const [loader, setLoader] = useState("");
     const [formErrors, setFormErrors] = useState({})
+    const {RealUser} = useUserAuth();
+
+    useEffect(() => {
        
-    
+        const editDetails = async () => {
+            try {
+            const docSnap = await ProjectDataService.getFolioDetails();
+            console.log("the record is :", docSnap.data());
+            setName(docSnap.data().name);
+            setTitle(docSnap.data().title);
+            setDesc(docSnap.data().desc);
+            setImg(docSnap.data().img);
+            setCompleted(docSnap.data().completed);
+            setExperience(docSnap.data().experience);
+            setOccupation(docSnap.data().occupation);
+            setSupport(docSnap.data().support);
+            } catch (error) {}
+        };
+        if (dataId !== undefined && dataId !== "") {
+            editDetails();
+          }
+       }, [dataId])
+       
+    useEffect(() => {
+        if(image){
+          handleUploadImg({url:img, setImg, image})
+        }
+    }, [image,img])
+
     const updateHandler = () => {
-      setLoader(true);
-      
+      const payload= {name, title, desc, img, occupation, completed, experience, support, createdAt: serverTimestamp()}
+      if(RealUser && RealUser.email === process.env.REACT_APP_GUEST_EMAIL) {
+          toast.success("Personal Details Updated");
+      }else{
+          ProjectDataService.updateFolioDetails( payload).then(() => {
+            toast.success("Personal Details Updated");
+            console.log('Updated Service ',payload);
+            }, (error) => {
+                console.log(error.text);
+                toast.error("Error!!!, Service not Updated");
+            });
+      }
       /*--------------------------send to firestore database----------------------------*/
-      
-      const payload= {name, title, desc, createdAt: serverTimestamp()}
-      toast.success("Updated");
-                ProjectDataService.updateFolio(payload)
-                /*--------------------------send to firestore database----------------------------*/
-                setLoader(false);
         setName('');
         setTitle('');
         setDesc('');
         setImg('');
-        
+        setDataId('');
    }
    
    const navigate = useNavigate();
@@ -122,7 +155,7 @@ const FolioDetails = () => {
                             />
                             <div className="contact__form-buttonSection">
 
-                                <button onClick={handleUpdate}className={loader ? "contact__Send-button button active" : "contact__Send-button button"}>Next</button>
+                                <button onClick={handleUpdate}className={"contact__Send-button button"}>Next</button>
                                 
                             </div>
                             <ToastContainer draggable={false} transition={Zoom} autoClose={3000}/>

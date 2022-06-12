@@ -16,6 +16,17 @@ export const option1 = [
     {id: 7, value: "Node JS", title:"Node JS"},
     {id: 8, value: "Markdown", title:"Markdown"},
 ];
+export const option2 = [
+    {id: 0, value: "", title:"Select Tools"},
+    {id: 1, value: "Chrome", title:"Chrome Browser"},
+    {id: 2, value: "Git/ Github", title:"Git/ Github"},
+    {id: 3, value: "Postman", title:"Postman"},
+    {id: 4, value: "Redux", title:"Redux"},
+    {id: 5, value: "Context API", title:"Context API"},
+    {id: 6, value: "Jest", title:"Jest"},
+    {id: 7, value: "Profiler", title:"Profiler"},
+    {id: 8, value: "VS Code", title:"VS Code"},
+];
 
 export const webData = [
     { id: 1, img: "/image/ademotor1.png", title: "Ademotor Car Dealers",
@@ -154,11 +165,18 @@ export const MainModalData =[
         l3: 'Delete Project from database',
     },
     {
-        id: 3, title: " Login", logo: "bx bx-login",
+        id: 3, title: " Login", logo: "bx bx-user",
         desc: 'In order to have access to the admin control, Click the Demo Login Button to access the special dropdown. You can perform task like',
         l1: 'Manage all testimonials',
         l2: 'project Manager ',
         l3: 'Full control of web app',
+    },
+    {
+        id: 4, title: " Portfolio Manager", logo: "bx bx-data",
+        desc: 'Total Access to manage web app without any assistance or limitation, After Login in, click the portfolio manager from the dropdown. You can perform task like',
+        l1: 'Add new, edit and delete services',
+        l2: 'Add new skill & even change about me page',
+        l3: 'Edit all links like facebook, twitter, blog etc',
     },
 
 ]

@@ -106,7 +106,7 @@ var settings = {
                   </>
                 ) : (
               <div className="dropdown">
-                <p className="nav__logo1">{RealUser ? "Real " :"Demo "} Admin{' '}
+                <p className="nav__logo1">{(RealUser && RealUser.email === process.env.REACT_APP_GUEST_EMAIL) ? "Demo " : "Real "} Admin{' '}
                   <i className="bx bx-caret-down"></i>
                 </p>
                 <ul className="dropdown-contents">
@@ -124,11 +124,11 @@ var settings = {
                     <Link className="dropdown-link" to="/testimonials">Testimonial client</Link>
                   </li>
                   <li  className="dropdown-list">
-                    <i className="bx bx-plus change-theme"></i>
+                    <i className="bx bx-book change-theme"></i>
                     <Link className="dropdown-link" to="/projects">Project Manager</Link>
                   </li>
                   <li  className="dropdown-list">
-                    <i className="bx bx-plus change-theme"></i>
+                    <i className="bx bx-data change-theme"></i>
                     <Link className="dropdown-link" to="/details">Portfolio Manager</Link>
                   </li>
                   <li  className="dropdown-list"onClick={handleLogout}> 

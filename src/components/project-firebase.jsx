@@ -70,10 +70,32 @@ class ProjectDataService {
   addEmail = (newProject) => {
     return addDoc(emailCollectionRef, newProject);
   };
-  /*-------------------------- Folio -----------------------------------------*/
-  updateFolio = (id, updatedFolio) => {
-    const projectDoc = doc(db, "portfolio", id);
-    return updateDoc(projectDoc, updatedFolio);
+  /*-------------------------- Folio Details -----------------------------------------*/
+  updateFolioDetails = (updatedFolioDetails) => {
+    const projectDoc = doc(db, "portfolio",  "Details");
+    return updateDoc(projectDoc, updatedFolioDetails);
+  };
+  getFolioDetails = () => {
+    const projectDoc = doc(db, "portfolio", "Details");
+    return getDoc(projectDoc);
+  };
+  /*-------------------------- Folio Skills -----------------------------------------*/
+  updateFolioSkills = (updatedFolioSkills) => {
+    const projectDoc = doc(db, "portfolio",  "Skills");
+    return updateDoc(projectDoc, updatedFolioSkills);
+  };
+  getFolioSkills = () => {
+    const projectDoc = doc(db, "portfolio", "Skills");
+    return getDoc(projectDoc);
+  };
+  /*-------------------------- Folio Links -----------------------------------------*/
+  updateFolioLinks = (updatedFolioLinks) => {
+    const projectDoc = doc(db, "portfolio",  "Links");
+    return updateDoc(projectDoc, updatedFolioLinks);
+  };
+  getFolioLinks = () => {
+    const projectDoc = doc(db, "portfolio", "Links");
+    return getDoc(projectDoc);
   };
   /*-------------------------- Testimonials -----------------------------------------*/
   addTestimonial = (newTestimonial) => {
