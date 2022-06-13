@@ -47,7 +47,6 @@ const TestimonialManager = () => {
     const editTestimonial = async () => {
         try {
         const docSnap = await ProjectDataService.getTestimonial(dataId);
-        console.log("the record is :", docSnap.data());
         setTitle(docSnap.data().title);
         setOccupation(docSnap.data().occupation);
         setImg(docSnap.data().img);
@@ -81,7 +80,6 @@ const TestimonialManager = () => {
             toast.success("Testimonial Updated successfully");
             setLoader(false);
             ListTestimonial();
-            console.log('Updated Testimonial ',payload);
         }, (error) => {
             console.log(error.text);
             toast.error("Error!!!, Testimonial not Updated");
@@ -96,7 +94,6 @@ const TestimonialManager = () => {
             toast.success("Testimonial Added successfully");
             setLoader(false);
             ListTestimonial();
-            console.log('New Testimonial ',payload);
         }, (error) => {
             console.log(error.text);
             toast.error("Error!!!, Testimonial not Added");

@@ -17,7 +17,6 @@ const About = ({highlightdesc, highlightexp, highlightwork, highlightsupport}) =
         const editDetails = async () => {
             try {
             const docSnap = await ProjectDataService.getFolioDetails();
-            console.log("the record is :", docSnap.data());
             setDesc(docSnap.data().desc);
             setImg(docSnap.data().img);
             setExperience(docSnap.data().experience);

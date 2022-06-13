@@ -18,7 +18,6 @@ const Intro = () => {
             try {
             const docSnap = await ProjectDataService.getFolioDetails();
             const docSnap1 = await ProjectDataService.getFolioLinks();
-            console.log("the record is :", docSnap.data());
             setName(docSnap.data().name);
             setImg(docSnap.data().img);
             setOccupation(docSnap.data().occupation);

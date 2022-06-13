@@ -71,7 +71,6 @@ const Contact = ({name, setName, mail, setMail, message, setMessage, loader, set
         if(name && mail && message && message.length > 3 && regex.test(mail) && name.length > 3){
             sendEmailHandler();
         };
-        console.log(errors);
     };
     
     return (

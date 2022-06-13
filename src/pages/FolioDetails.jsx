@@ -29,7 +29,6 @@ const FolioDetails = () => {
         const editDetails = async () => {
             try {
             const docSnap = await ProjectDataService.getFolioDetails();
-            console.log("the record is :", docSnap.data());
             setName(docSnap.data().name);
             setTitle(docSnap.data().title);
             setDesc(docSnap.data().desc);
@@ -57,8 +56,7 @@ const FolioDetails = () => {
           toast.success("Personal Details Updated");
       }else{
           ProjectDataService.updateFolioDetails( payload).then(() => {
-            toast.success("Personal Details Updated");
-            console.log('Updated Service ',payload);
+            toast.success("Details Updated");
             }, (error) => {
                 console.log(error.text);
                 toast.error("Error!!!, Service not Updated");
@@ -104,7 +102,6 @@ const FolioDetails = () => {
          navigate("/skills");
 
         };
-        console.log(errors);
     };
     
     return (

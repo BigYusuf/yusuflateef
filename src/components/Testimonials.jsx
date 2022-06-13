@@ -35,7 +35,6 @@ const Testimonials = () => {
     e => {
       if (e.key === 'Escape' && showModal1) {
         setShowModal1(false);
-     //   console.log('I pressed');
       }
     },
     [setShowModal1, showModal1]
@@ -133,7 +132,6 @@ const Testimonials = () => {
             addDataHandler()
         };
    };
-    console.log(data.filter(newdata => newdata.status.includes("enable")));
    const addDataHandler = () => {
      
     const payload= {title, occupation, status:"enable", img: img, description, createdAt: serverTimestamp()}
@@ -141,10 +139,8 @@ const Testimonials = () => {
     /*--------------------------send to firestore database----------------------------*/
     ProjectDataService.addTestimonial(payload).then(() => {
           toast.success("Testimonial Added successfully");
-          console.log('New Testimonial ',payload);
           ListTestimonial();
         }, (error) => {
-          console.log(error.text);
           toast.error("Error!!!, Testimonial not Added");
           
         });

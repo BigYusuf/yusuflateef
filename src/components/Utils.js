@@ -67,7 +67,6 @@ export const handleUpload1 = ({img1, setUrl, images}) => {
             async () => {
             await getDownloadURL(uploadTask.snapshot.ref).then((img1) => {
                 setUrl((prevState) => [...prevState, img1]);
-               // console.log(img1)
                 });
             }
             )

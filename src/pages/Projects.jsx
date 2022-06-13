@@ -55,7 +55,6 @@ const Projects = () => {
     const editProject = async () => {
         try {
         const docSnap = await ProjectDataService.getProject(dataId);
-        console.log("the record is :", docSnap.data());
         setTitle(docSnap.data().title);
         setFrontend(docSnap.data().frontend);
         setBackend(docSnap.data().backend);
@@ -104,20 +103,17 @@ const Projects = () => {
             toast.success("Project Updated successfully");
             setLoader(false);
             ListProjects();
-            console.log('Updated Project ',payload);
         }, (error) => {
             console.log(error.text);
             toast.error("Error!!!, Project not Updated");
             setLoader(false);
         });
     }else{
-          console.log(img1);
       /*--------------------------send to firestore database----------------------------*/
       ProjectDataService.addProject(payload).then(() => {
             toast.success("Project Added successfully");
             setLoader(false);
             ListProjects();
-            console.log('New Project ',payload);
         }, (error) => {
             console.log(error.text);
             toast.error("Error!!!, Project not Added");

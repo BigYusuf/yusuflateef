@@ -25,7 +25,6 @@ const Navbar = ({ navbarChange, setNavbarChange, showModal, setShowModal, header
     e => {
       if (e.key === 'Escape' && showModal) {
         setShowModal(false);
-     //   console.log('I pressed');
       }
     },
     [setShowModal, showModal]

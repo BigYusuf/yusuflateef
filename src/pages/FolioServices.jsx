@@ -47,7 +47,6 @@ const FolioServices = () => {
     const editService = async () => {
         try {
         const docSnap = await ProjectDataService.getService(dataId);
-        console.log("the record is :", docSnap.data());
         setTitle(docSnap.data().title);
         setList1(docSnap.data().list1);
         setList2(docSnap.data().list2);
@@ -77,7 +76,6 @@ const FolioServices = () => {
             toast.success("Service Updated successfully");
             setLoader(false);
             ListServices();
-            console.log('Updated Service ',payload);
         }, (error) => {
             console.log(error.text);
             toast.error("Error!!!, Service not Updated");
@@ -88,7 +86,6 @@ const FolioServices = () => {
             toast.success("Service Added successfully");
             setLoader(false);
             ListServices();
-            console.log('New Service ',payload);
         }, (error) => {
             console.log(error.text);
             toast.error("Error!!!, Service not Added");

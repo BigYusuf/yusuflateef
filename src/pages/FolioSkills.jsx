@@ -43,7 +43,6 @@ const FolioSkills = () => {
         const editSkills = async () => {
             try {
             const docSnap = await ProjectDataService.getFolioSkills();
-            console.log("the record is :", docSnap.data());
             setTool1(docSnap.data().tool1); setStack1(docSnap.data().stack1);
             setTool2(docSnap.data().tool2); setStack2(docSnap.data().stack2);
             setTool3(docSnap.data().tool3); setStack3(docSnap.data().stack3);
@@ -67,7 +66,6 @@ const FolioSkills = () => {
         }else{
             ProjectDataService.updateFolioSkills( payload).then(() => {
               toast.success("Skills Updated");
-              console.log('Updated Skills ',payload);
               }, (error) => {
                   console.log(error.text);
                   toast.error("Error!!!, Skills not Updated");

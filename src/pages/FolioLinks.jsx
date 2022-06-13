@@ -31,7 +31,6 @@ const FolioLinks = () => {
         const editDetails = async () => {
             try {
             const docSnap = await ProjectDataService.getFolioLinks();
-            console.log("the record is :", docSnap.data());
             setCV(docSnap.data().CV);
             setFB(docSnap.data().facebook);
             setLin(docSnap.data().linkedIn);
@@ -56,7 +55,6 @@ const FolioLinks = () => {
         }
     }, [file,CV])
 
-       console.log(CV)
    const updateHandler = () => {
     
     const payload= {facebook:fb, linkedIn:lin, website:web,email1,email2,email3,twitter,phone:whatsapp,
@@ -66,7 +64,6 @@ const FolioLinks = () => {
     }else{
         ProjectDataService.updateFolioLinks( payload).then(() => {
           toast.success("Personal Links Updated");
-          console.log('Updated Links ',payload);
           }, (error) => {
               console.log(error.text);
               toast.error("Error!!!, Links not Updated");
