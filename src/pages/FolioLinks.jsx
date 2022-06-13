@@ -59,7 +59,7 @@ const FolioLinks = () => {
        console.log(CV)
    const updateHandler = () => {
     
-    const payload= {facebook:fb, linkedin:lin, website:web,email1,email2,email3,twitter,phone:whatsapp,
+    const payload= {facebook:fb, linkedIn:lin, website:web,email1,email2,email3,twitter,phone:whatsapp,
         github:git,blog,CV, createdAt: serverTimestamp()}
     if(RealUser && RealUser.email === process.env.REACT_APP_GUEST_EMAIL) {
         toast.success("Personal Links Updated");

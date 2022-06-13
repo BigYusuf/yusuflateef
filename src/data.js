@@ -173,10 +173,10 @@ export const MainModalData =[
     },
     {
         id: 4, title: " Portfolio Manager", logo: "bx bx-data",
-        desc: 'Total Access to manage web app without any assistance or limitation, After Login in, click the portfolio manager from the dropdown. You can perform task like',
-        l1: 'Add new, edit and delete services',
-        l2: 'Add new skill & even change about me page',
-        l3: 'Edit all links like facebook, twitter, blog etc',
+        desc: 'Total Access to manage web app without any limitation. Login in, select portfolio manager from dropdown. Perform task like',
+        l1: 'manage services',
+        l2: 'manage skill, about me',
+        l3: 'Edit links e.g. facebook, email etc',
     },
 
 ]

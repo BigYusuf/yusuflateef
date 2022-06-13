@@ -1,7 +1,38 @@
-import React from 'react';
-import {Link} from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import ProjectDataService from "./project-firebase";
 
 const Intro = () => {
+    const [name, setName]= useState('');
+    const [occupation, setOccupation]= useState('');
+    const [img, setImg]= useState('');
+    const [CV, setCV]= useState('');
+    const [lin, setLin]= useState('');
+    const [blog, setBlog]= useState('');
+    const [git, setGit]= useState('');
+    const [dataId, setDataId] = useState("");
+    
+    
+    useEffect(() => {
+       setDataId('Details')
+        const editDetails = async () => {
+            try {
+            const docSnap = await ProjectDataService.getFolioDetails();
+            const docSnap1 = await ProjectDataService.getFolioLinks();
+            console.log("the record is :", docSnap.data());
+            setName(docSnap.data().name);
+            setImg(docSnap.data().img);
+            setOccupation(docSnap.data().occupation);
+            setCV(docSnap1.data().CV);
+            setLin(docSnap1.data().linkedIn);
+            setBlog(docSnap1.data().blog);
+            setGit(docSnap1.data().github);
+            } catch (error) {}
+        };
+        if (dataId !== undefined && dataId !== "") {
+            editDetails();
+          }
+       }, [dataId])
+
     return (
         <div>
                     {/* ========================== Home=========================== */}
@@ -9,26 +40,26 @@ const Intro = () => {
                 <div className="home__container container grid">
                     <div className="home__data">
                         <span className="home__greeting">Hello, I'm</span>
-                        <h1 className="home__name"> Yusuf Lateef</h1> 
-                        <h3 className="home__education"> Full Stack Developer</h3> 
+                        <h1 className="home__name"> {name}</h1> 
+                        <h3 className="home__education">{occupation}</h3> 
 
                         <div className="home__buttons">
-                            <Link download="" to="#" className="button button--ghost">Download CV</Link>
+                            <a href={CV} className="button button--ghost">Download CV</a>
                             <a href="#contact" className="button">connect</a>
                         </div>
                     </div>
                     <div className="home__handle">
-                        <img src="/image/yusuf1.jpg" alt="" className="home__img"/>
+                        <img src={img} alt="" className="home__img"/>
                     </div>
                  
                     <div className="home__social">
-                        <a href="https://www.linkedin.com" className="home__social-link">
+                        <a href={lin} className="home__social-link">
                             <i className="bx bxl-linkedin-square"></i>
                         </a>
-                        <a href="https://www.github.com/bigYusuf" className="home__social-link">
+                        <a href={git} className="home__social-link">
                             <i className="bx bxl-github"></i>
                         </a>
-                        <a href="http://yusuflateefblog.vercel.app/" className="home__social-link">
+                        <a href={blog} className="home__social-link">
                             <i className="bx bxl-dribbble"></i>
                         </a>
                     </div>
