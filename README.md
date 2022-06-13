@@ -14,7 +14,7 @@
     <a href="https://github.com/BigYusuf/yusuflateef"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://yusuflateef-d3dd8.web.app/">View Demo</a>
+    <a href="https://yusuflateef.vercel.app/">View Demo</a>
     ·
     <a href="https://github.com/BigYusuf/yusuflateef/issues">Report Bug</a>
     ·
@@ -53,7 +53,7 @@
 
 ## About The Project
 
-[![Desktop Mode][product-screenshot]](https://yusuflateef-d3dd8.web.app/)
+[![Desktop Mode][product-screenshot]](https://yusuflateef.vercel.app/)
 
 This project is simple and unique. The project ideas was inspired by a friend, who wants an interactive portfolio. Where the applicant's portfolio website will do all the talking and answer some of the unknown questions recruiters have in mind. The portfolio is mobile friendly
 
@@ -65,7 +65,7 @@ Due to some responses i got from other developers:
 
 Of course, the website is mobile responsive. I used a mobile first approach to desgn this website. Although, It took longer than expected due to integrating the alan AI to the web application.
 
-[![Mobile screen][product-screenshot2]](https://yusuflateef-d3dd8.web.app/)
+[![Mobile screen][product-screenshot2]](https://yusuflateef.vercel.app/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -86,19 +86,27 @@ This section is still in progress
 
 #### Email
 
-[![Sample Email][product-screenshot3]](https://yusuflateef-d3dd8.web.app/)
+[![Sample Email][product-screenshot3]](https://yusuflateef.vercel.app/)
 
 #### Database storage
 
-[![Sample Database][product-screenshot4]](https://yusuflateef-d3dd8.web.app/)
+[![Sample Database][product-screenshot4]](https://yusuflateef.vercel.app/)
 
 #### Elegant design and multi-mode
 
-[![Mobile][product-screenshot5]](https://yusuflateef-d3dd8.web.app/)
+[![Mobile][product-screenshot5]](https://yusuflateef.vercel.app/)
+
+#### Authenticated Admin and protected route
+
+[![Mobile][product-screenshot7]](https://yusuflateef.vercel.app/)
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+<!-- GETTING STARTED -->
 
 #### Voice control
 
-[![Mobile][product-screenshot6]](https://yusuflateef-d3dd8.web.app/)
+[![Mobile][product-screenshot6]](https://yusuflateef.vercel.app/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -141,6 +149,13 @@ _Below is an example of how you can instruct your audience on installing and set
    REACT_APP_USER_ID = "ENTER YOUR EMAILJS USER ID";
    REACT_APP_TEMPLATE_ID = "ENTER YOUR EMAIL JS TEMPLATE ID";
    REACT_APP_SERVICE_ID = "ENTER YOUR EMAIL JS SERVICE ID";
+   REACT_APP_FBASE_API_KEY="ENTER YOUR FIREBASE API KEY";
+   REACT_APP_FBASE_AUTH_DOMAIN="ENTER YOUR FIREBASE AUTH DOMAIN"
+   REACT_APP_FBASE_PROJECT_ID="ENTER YOUR FIREBASE PROJECT ID"
+   REACT_APP_FBASE_STORAGE_BUCKET="ENTER YOUR FIREBASE STORAGE BUCKET"
+   REACT_APP_FBASE_MESSAGE_ID="ENTER YOUR FIREBASE MESSAGE ID"
+   REACT_APP_FBASE_APP_ID="ENTER YOUR FIREBASE APP ID"
+   REACT_APP_FBASE_DB_IMAGEURL="ENTER YOUR FIREBASE DATABASE IMAGE URL"
    ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -248,3 +263,4 @@ Here are the list of resources I find helpful and would like to give credit to.
 [product-screenshot4]: images/databasesample.png
 [product-screenshot5]: images/mobilemode2.png
 [product-screenshot6]: images/alanstudio.png
+[product-screenshot7]: images/login.png
