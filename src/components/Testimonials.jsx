@@ -58,7 +58,7 @@ const Testimonials = () => {
     infinite: true,
     centerMode: true,
     centerPadding: "0px",
-    autoplay: false,
+    autoplay: true,
     speed: 500,
     slidesToShow: 2,
     slidesToScroll: 1,
