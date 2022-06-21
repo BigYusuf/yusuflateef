@@ -75,7 +75,7 @@ export const FileBox = ({errData, labelName, id,setAny, typeData}) => {
     <>
         <div className={errData ? "contact__form-img" : "contact__form-img"}>
             <label htmlFor="" className="contact__form-tag">{labelName}</label>
-            <input type={typeData} id={id} accept="image/pdf*"
+            <input type={typeData} id={id} accept=".pdf, .doc, .docx, .txt, image/*"
             onChange={(e) => setAny(e.target.files[0])} />    
         </div>
         {errData && <p className="contact__form-p">{errData}</p>}        
