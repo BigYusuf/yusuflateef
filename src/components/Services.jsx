@@ -4,7 +4,7 @@ const Services = ({highlightservices1, highlightservices2, highlightservices3}) 
     return (
         <div>
             {/* ========================== services=========================== */}
-            <section className="services section"id="services">
+            <section className="services section">
                 <span className="section__subtitle">My Services</span>
                 <h2 className="section__title">What I Offer</h2>
                 

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import {Link} from "react-router-dom";
 import ProjectDataService from "./project-firebase";
 
 
@@ -58,7 +57,7 @@ const About = ({highlightdesc, highlightexp, highlightwork, highlightsupport}) =
                 <p className={highlightdesc ? "about__description active": "about__description"}>
                 {desc}
                 </p>
-                <Link to="#contact" className="button">Let's chat</Link>
+                <a href="#contact" className="button">Let's chat</a>
             </div>
 
         </div>
