@@ -10,6 +10,7 @@ import Testimonials from "../components/Testimonials";
 import {handleTheme} from '../components/Utils';
 import alanBtn from "@alan-ai/alan-sdk-web";
 import Navbar from '../components/Navbar';
+import Loader from '../components/Loader';
 
 const Alan = () => {
   //  const [change, setChange] = useState("");
@@ -37,6 +38,13 @@ const Alan = () => {
     const [navbarChange, setNavbarChange] = useState(false);
     const [showModal, setShowModal] = useState(true);
     const [header, setHeader] = useState(true);
+    const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+  }, []);
 
     const aboutMe = () => {  
         window.location.href = '#about';
@@ -164,8 +172,11 @@ const Alan = () => {
         highlightdesc, highlightsupport, highlightexp, highlightwork]);
 
     return (
-        <main className="main" id="main">
-          
+      <>
+      {loading ? (
+        <Loader/>
+        ):(
+            <main className="main" id="main">
             <Intro/>
             <Navbar
                   navbarChange={navbarChange} setNavbarChange={setNavbarChange}
@@ -204,6 +215,8 @@ const Alan = () => {
             
         <Footer/>
         </main>
+        )}
+        </>
     )
 }
 
