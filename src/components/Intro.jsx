@@ -43,7 +43,7 @@ const Intro = () => {
                         <h3 className="home__education">{occupation}</h3> 
 
                         <div className="home__buttons">
-                            <a href={CV} className="button button--ghost">Download CV</a>
+                            <a  target="_blank" rel="noreferrer" href={CV} className="button button--ghost">Download CV</a>
                             <a href="#contact" className="button">connect</a>
                         </div>
                     </div>
@@ -52,13 +52,13 @@ const Intro = () => {
                     </div>
                  
                     <div className="home__social">
-                        <a href={lin} className="home__social-link">
+                        <a target="_blank" rel="noreferrer" href={lin} className="home__social-link">
                             <i className="bx bxl-linkedin-square"></i>
                         </a>
-                        <a href={git} className="home__social-link">
+                        <a target="_blank" rel="noreferrer" href={git} className="home__social-link">
                             <i className="bx bxl-github"></i>
                         </a>
-                        <a href={blog} className="home__social-link">
+                        <a target="_blank" rel="noreferrer" href={blog} className="home__social-link">
                             <i className="bx bxl-dribbble"></i>
                         </a>
                     </div>

@@ -87,7 +87,7 @@ const Contact = ({name, setName, mail, setMail, message, setMessage, loader, set
                                     <i className="bx bx-mail-send contact__card-icon"></i>
                                     <h3 className="contact__card-title">Email</h3>
                                     <span className="contact__card-data">yusuflateef0000@gmail.com</span>
-                                    <a href="mailto:yusuflateef0000@gmail.com" className="contact__button">
+                                    <a target="_blank"  rel="noreferrer"href="mailto:yusuflateef0000@gmail.com" className="contact__button">
                                         Write me <i className="bx bx-right-arrow-alt contact__button-icon"></i>
                                     </a>
                             </div>
@@ -96,7 +96,7 @@ const Contact = ({name, setName, mail, setMail, message, setMessage, loader, set
                                 <i className="bx bxl-whatsapp contact__card-icon"></i>
                                 <h3 className="contact__card-title">WhatsApp</h3>
                                 <span className="contact__card-data">08101109290</span>
-                                <a href="https://api.whatsapp.com/send?phone=+2348101109290&text=Hello, more information!" className="contact__button">
+                                <a target="_blank"  rel="noreferrer"href="https://api.whatsapp.com/send?phone=+2348101109290&text=Hello, Yusuf" className="contact__button">
                                     Write me <i className="bx bx-right-arrow-alt contact__button-icon"></i>
                                 </a>
                             </div>
@@ -105,7 +105,7 @@ const Contact = ({name, setName, mail, setMail, message, setMessage, loader, set
                                 <i className="bx bxl-messenger contact__card-icon"></i>
                                 <h3 className="contact__card-title">Messenger</h3>
                                 <span className="contact__card-data">BigYusufff</span>
-                                <a href="http://m.me/Bigyusufff/" className="contact__button">
+                                <a target="_blank"  rel="noreferrer"href="http://m.me/Bigyusufff/" className="contact__button">
                                     Write me <i className="bx bx-right-arrow-alt contact__button-icon"></i>
                                 </a>
                             </div>

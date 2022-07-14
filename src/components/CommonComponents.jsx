@@ -19,7 +19,7 @@ export const Card2 = ({highlightAny, icon, title, desc, LinkUrl, LinkAction, Lin
         <i className={icon}></i>
         <h3 className="contact__card-title">{title}</h3>
         <span className="contact__card-data">{desc}</span>
-        <a href={LinkUrl} className="contact__button">
+        <a href={LinkUrl} target="_blank"  rel="noreferrer" className="contact__button">
             {LinkAction} <i className={LinkActionIcon}></i>
         </a>
     </div>

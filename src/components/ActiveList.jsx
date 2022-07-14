@@ -130,10 +130,10 @@ export const WorkModal = ({id, design, demo, github, desc, frontend, backend, ti
                                 </li>
                             </ul>
                             <div className="work__modal-buttonGroup">
-                                <a href={github} className="work__button">
+                                <a href={github} target="_blank"  rel="noreferrer" className="work__button">
                                     Codes <i className="bx bx-right-arrow-alt work__icon"></i>
                                 </a>
-                                <a href={demo} className="work__button">
+                                <a href={demo} target="_blank"  rel="noreferrer"className="work__button">
                                     Demo <i className="bx bx-right-arrow-alt work__icon"></i>
                                 </a>
                             </div>

@@ -84,7 +84,7 @@ const Alan = () => {
               else if (commandData.command === 'skills' ) {  skills(); }
               else if (commandData.command === 'work' ) {projects();}
                if (commandData.command === 'whats-app' ) { 
-                window.location.href = "https://api.whatsapp.com/send?phone=+2348101109290&text=Hello, more information!";
+                window.location.href = "https://api.whatsapp.com/send?phone=+2348101109290&text=Hello, Yusuf";
               }
                if (commandData.command === 'email' ) { 
                 window.location.href = "mailto:yusuflateef0000@gmail.com" 
