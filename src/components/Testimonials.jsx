@@ -93,11 +93,18 @@ const Testimonials = () => {
   useEffect(() => {
     ListTestimonial();
 }, [])
-  useEffect(() => {
-    if(image){
-      handleUploadImg({url:img, setImg, image})
-    }
-}, [image,img])
+
+  const UploadImg = (e) => {
+   e.preventDefault();
+   if(!img){
+     if(image){
+      setProjectpage(false)
+      handleUploadImg({img, setImg, image});
+     }  
+   }else{
+     setProjectpage(false)
+   }
+  }
     const addData = (e) => {
       e.preventDefault();
       const errors = {};
@@ -184,7 +191,7 @@ const Testimonials = () => {
                   <div className="testimonail__add">
                        {/* show home modal*/}
                   <CreateTestimonialModal
-                  form={form} showModal1={showModal1} setShowModal1={setShowModal1} 
+                  form={form} showModal1={showModal1} setShowModal1={setShowModal1} UploadImg={UploadImg}
                   closeModal={closeModal} setProjectpage={setProjectpage} projectpage={projectpage}
                   modalRef={modalRef} image={image} setImage={setImage} title={title} setTitle={setTitle} 
                   occupation={occupation} setOccupation={setOccupation} formErrors={formErrors}

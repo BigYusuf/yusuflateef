@@ -175,6 +175,7 @@ img{
     width: 90%;
     border-radius: 4rem;
     padding: 1rem 2.25rem;
+    -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     transition: .4s;/*for light mode animation*/
 }
@@ -1067,6 +1068,11 @@ img{
     cursor:pointer;
     opacity: 0;
 }
+.upload__button{
+    color: var(--first-color);
+    background-color: var(--body-color);
+    cursor:pointer;
+}
 button.active,
 .contact__Send-button.active{
     background-color:  var(--container-color);
@@ -1384,12 +1390,18 @@ body.light-theme{
     .change-theme{
         margin-right: 0.5rem;
     }
+    .alanBtn-root{
+        z-index: 100 !important;
+    }
 }
 @media screen and (max-width: 450px){
     .services__container{
         grid-template-columns: 1fr;
         justify-content: center;
         grid-template-columns: 1fr;
+    }
+    .alanBtn-root{
+        z-index: 100 !important;
     }
     .info__AI{
         right: 2rem;

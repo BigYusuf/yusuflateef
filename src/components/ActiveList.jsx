@@ -188,7 +188,7 @@ export const ServicesList =({id, title1, title2, description, li1, li2, li3, act
     )
 }
 
-export const CreateTestimonialModal = ({projectpage, formErrors, setProjectpage, form, showModal1, setShowModal1, closeModal, modalRef, image, setImage, title, setTitle, occupation, setOccupation, description, setDescription, addData }) => {
+export const CreateTestimonialModal = ({projectpage,UploadImg, formErrors, setProjectpage, form, showModal1, setShowModal1, closeModal, modalRef, image, setImage, title, setTitle, occupation, setOccupation, description, setDescription, addData }) => {
     return(
         
         <div className={showModal1 ? "home__modal active-modal" : "home__modal"} onClick={closeModal} ref={modalRef}>
@@ -201,7 +201,7 @@ export const CreateTestimonialModal = ({projectpage, formErrors, setProjectpage,
                     <div className="contact__section1">
                         
                         <div className="contact__form-img"> 
-                        <label htmlFor="" className="contact__form-tag">User Image</label>
+                            <label htmlFor="" className="contact__form-tag">User Image</label>
                             {image ? (
                             <img style={{width:200, height:150}}id="image" 
                             alt="" src={URL.createObjectURL(image)} 
@@ -211,7 +211,7 @@ export const CreateTestimonialModal = ({projectpage, formErrors, setProjectpage,
                                 />)}
                             <input type="file" id="imagefile"accept="image/*" style={{display:"none"}}
                                 onChange={(e) => setImage(e.target.files[0])} />
-                                <label htmlFor="imagefile" onChange={(e) => setImage(e.target.files[0])}className="upload-icon">
+                                <label htmlFor="imagefile" className="upload-icon">
                                 <i className="bx bx-upload"></i>
                                 </label>
                         </div>
@@ -228,7 +228,7 @@ export const CreateTestimonialModal = ({projectpage, formErrors, setProjectpage,
                         </div>
                         <p className="contact__form-p">{formErrors.title}</p>
                         
-                        <button className="button contact__Send-button" onClick={()=> setProjectpage(false)}>Next</button>
+                        <button className="button contact__Send-button" onClick={UploadImg}>Next</button>
                         </div>
                     ) : (
                     <>

@@ -1,11 +1,13 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { serverTimestamp } from "firebase/firestore";
-import { handleUpload1, handleUploadImg} from '../components/Utils';
+import { handleUploadImg} from '../components/Utils';
+import { getStorage, ref, uploadBytesResumable, getDownloadURL} from "firebase/storage";
 import ProjectDataService from "../components/project-firebase";
 import {ToastContainer, toast, Zoom} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useUserAuth } from '../context/UserAuthContext';
 import Navbar from '../components/Navbar';
+import { app } from '../firebase';
 
 const Projects = () => {
     const [dataId, setDataId] = useState("");
@@ -85,17 +87,66 @@ const Projects = () => {
         e.preventDefault();
         toast.error("Error!!!, You are not authenticated");
     } 
-    useEffect(() => {
-      if(image){
-        handleUploadImg({url:img, setImg, image})
-      }
-  }, [image,img])
     
+  const UploadImg = (e) => {
+    e.preventDefault();
+    if(!img){
+      if(image){
+       setProjectpage(false)
+       handleUploadImg({img, setImg, image});
+      }  
+    }else{
+      setProjectpage(false)
+    }
+   }
+ 
+  
+  const UploadImg1 = (e) => {
+    e.preventDefault();
+    if(!img1){
+      if(image1){
+      // setProjectpage(false)
+        const promises = [];
+        
+        image1.map((image) => {
+            const fileName = `images/${new Date().getTime() + image.name}`;
+            const storage = getStorage(app);
+            const storageRef = ref(storage, fileName);
+            const uploadTask = uploadBytesResumable(storageRef, image);
+            promises.push(uploadTask);
+            return(
+                uploadTask.on(
+                "state_changed",
+                (snapshot) => {},
+                (error) => {
+                    // Handle unsuccessful uploads
+                },
+                async () => {
+                await getDownloadURL(uploadTask.snapshot.ref).then((img1) => {
+                    setImg1((prevState) => [...prevState, img1]);
+                    console.log(img1);
+                    });
+                }
+                )
+                )
+            });
+        Promise.all(promises)
+          .then(() => console.log("All images uploaded"))
+          .catch((err) => console.log(err));
+    
+      }  
+    }else{
+     // setProjectpage(false)
+    }
+   }
+   console.log(img1);
+   console.log(image1);
+ 
+
     const addData = (e) => {
         e.preventDefault();
         setLoader(true);
         
-        handleUpload1({img1:img1,setUrl:setImg1, images:image1});
     const payload= {title, frontend, cat, img:img, img1: img1, backend, others, description, linkBlog, linkDemo, linkGithub, createdAt: serverTimestamp()}
     if (dataId !== undefined && dataId !== "") {
         
@@ -293,7 +344,7 @@ const Projects = () => {
 
                                         </textarea>
                                 </div>
-                                <button className="button contact__Send-button" onClick={()=> setProjectpage(false)}>Next</button>
+                                <button className="button contact__Send-button" onClick={UploadImg}>Next</button>
                             </div>
                            ) : (
                             <>
@@ -334,7 +385,9 @@ const Projects = () => {
                                 <label htmlFor="" className="contact__form-tag">Extra Image</label>
                                     <input type="file" id="imagefile1" multiple accept="image/*"
                                                 onChange={handleChange1} />
+                                    <button onClick={UploadImg1}>upload</button>
                                 </div>
+
                             
                             </div>
                             <div className="contact__form-buttonSection">

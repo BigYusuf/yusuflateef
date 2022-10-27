@@ -72,8 +72,8 @@ const Alan = () => {
       if(alanInstance != null) return
       setAlanInstance(
             alanBtn({
-              bottom: '20px',
-              left: '20px',
+              bottom: 50,
+              right: 20,
               //
             key: process.env.REACT_APP_ALAN_KEY,
             onCommand: (commandData) => {
